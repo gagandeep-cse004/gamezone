@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone - Play Free Online Games</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Play free online games - Snake, Tetris, Memory, Puzzle and more. No download required!">
+    <meta name="keywords" content="free games, online games, play games, snake game, tetris, puzzle games">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .hero-buttons .btn {
+            padding: 15px 35px;
+            font-size: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: #888;
+            margin: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-image img {
+            max-width: 500px;
+            filter: drop-shadow(0 20px 50px rgba(0, 212, 255, 0.3));
+        }
+
+        /* Floating Elements */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: floatRandom 4s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            color: #00d4ff;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            left: 5%;
+            animation-delay: 1s;
+            color: #7c3aed;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            color: #ff6b6b;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 0.5s;
+            color: #feca57;
+        }
+
+        .floating-icon:nth-child(5) {
+            top: 10%;
+            right: 30%;
+            animation-delay: 1.5s;
+            color: #1dd1a1;
+        }
+
+        @keyframes floatRandom {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(10px, -10px) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(-5px, -20px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(-10px, -10px) rotate(3deg);
+            }
+        }
+
+        /* ========== GAMES SECTION ========== */
+        .section {
+            padding: 100px 50px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .game-card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .game-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-card-image img {
+            transform: scale(1.1);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .game-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-rating i {
+            color: #feca57;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 212, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay i {
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .game-card-content {
+            padding: 20px;
+        }
+
+        .game-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .game-card-content p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-plays {
+            color: #666;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-plays i {
+            color: #00d4ff;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ========== CATEGORIES SECTION ========== */
+        .categories {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* ========== AD BANNER ========== */
+        .ad-banner {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 728px;
+        }
+
+        .ad-banner p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* ========== FEATURES SECTION ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: #00d4ff;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            text-align: center;
+            padding: 80px 50px;
+            margin: 50px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 120px 30px 60px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: 50px;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #0f0f23;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .cta-section {
+                margin: 30px 20px;
+                padding: 50px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <!-- Floating Icons Background -->
+        <div class="floating-icons">
+            <i class="fas fa-gamepad floating-icon"></i>
+            <i class="fas fa-trophy floating-icon"></i>
+            <i class="fas fa-star floating-icon"></i>
+            <i class="fas fa-bolt floating-icon"></i>
+            <i class="fas fa-gem floating-icon"></i>
+        </div>
+
+        <div class="hero-content">
+            <span class="hero-badge">🎮 #1 Gaming Platform</span>
+            <h1>Play <span>Unlimited</span> Games Online for Free</h1>
+            <p>Discover thousands of free online games. No downloads, no installations. Just click and play instantly on
+                any device!</p>
+
+            <div class="hero-buttons">
+                <a href="games.html" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Play Now
+                </a>
+                <a href="#popular-games" class="btn btn-outline">
+                    <i class="fas fa-fire"></i> Popular Games
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Free Games</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1M+</h3>
+                    <p>Players</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Categories</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/3612/3612569.png" alt="Gaming">
+        </div>
+    </section>
+
+    <!-- ========== AD BANNER (Top) ========== -->
+    <div class="ad-banner">
+        <p>📢 Advertisement Space - 728x90</p>
+        <!-- Replace with actual ad code -->
+        <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    </div>
+
+    <!-- ========== POPULAR GAMES ========== -->
+    <section class="section" id="popular-games">
+        <div class="section-header">
+            <h2>🔥 <span>Popular</span> Games</h2>
+            <p>Play the most loved games by millions of players worldwide</p>
+        </div>
+
+        <div class="games-grid">
+            <!-- Game Card 1 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400" alt="Snake Game">
+                    <span class="game-badge">HOT 🔥</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>Snake Game</h3>
+                    <p>Classic snake game with modern graphics</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 250K plays</span>
+                        <a href="games/snake.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 2 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=400" alt="Tetris">
+                    <span class="game-badge">TRENDING</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>Tetris Classic</h3>
+                    <p>The legendary puzzle game</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 180K plays</span>
+                        <a href="games/tetris.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 3 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400" alt="Memory Game">
+                    <span class="game-badge">NEW</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>Memory Match</h3>
+                    <p>Test your memory skills</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 95K plays</span>
+                        <a href="games/memory.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 4 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400" alt="2048">
+                    <span class="game-badge">POPULAR</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>2048 Puzzle</h3>
+                    <p>Addictive number puzzle game</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 320K plays</span>
+                        <a href="games/2048.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 5 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400" alt="Flappy Bird">
+                    <span class="game-badge">CLASSIC</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>Flappy Bird</h3>
+                    <p>The infamous flying bird game</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 410K plays</span>
+                        <a href="games/flappy.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Card 6 -->
+            <div class="game-card">
+                <div class="game-card-image">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400" alt="Racing">
+                    <span class="game-badge">ACTION</span>
+                    <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="game-card-content">
+                    <h3>Speed Racer</h3>
+                    <p>High-speed racing adventure</p>
+                    <div class="game-meta">
+                        <span class="game-plays"><i class="fas fa-users"></i> 275K plays</span>
+                        <a href="games/racing.html" class="play-btn">Play</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="games.html" class="btn btn-primary" style="padding: 15px 40px;">
+                View All Games <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== AD BANNER (Middle) ========== -->
+    <div class="ad-banner">
+        <p>📢 Advertisement Space - 728x90</p>
+    </div>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section class="section categories">
+        <div class="section-header">
+            <h2>🎯 Game <span>Categories</span></h2>
+            <p>Find your favorite type of games</p>
+        </div>
+
+        <div class="categories-grid">
+            <a href="category.html?type=action" class="category-card">
+                <i class="fas fa-crosshairs"></i>
+                <h3>Action</h3>
+                <p>85 Games</p>
+            </a>
+
+            <a href="category.html?type=puzzle" class="category-card">
+                <i class="fas fa-puzzle-piece"></i>
+                <h3>Puzzle</h3>
+                <p>120 Games</p>
+            </a>
+
+            <a href="category.html?type=racing" class="category-card">
+                <i class="fas fa-car"></i>
+                <h3>Racing</h3>
+                <p>65 Games</p>
+            </a>
+
+            <a href="category.html?type=sports" class="category-card">
+                <i class="fas fa-futbol"></i>
+                <h3>Sports</h3>
+                <p>45 Games</p>
+            </a>
+
+            <a href="category.html?type=adventure" class="category-card">
+                <i class="fas fa-hiking"></i>
+                <h3>Adventure</h3>
+                <p>90 Games</p>
+            </a>
+
+            <a href="category.html?type=arcade" class="category-card">
+                <i class="fas fa-ghost"></i>
+                <h3>Arcade</h3>
+                <p>110 Games</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="section">
+        <div class="section-header">
+            <h2>⚡ Why Choose <span>GameZone</span>?</h2>
+            <p>The best gaming experience awaits you</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Instant Play</h3>
+                <p>No downloads or installations required. Just click and start playing immediately.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Play Anywhere</h3>
+                <p>Works on all devices - desktop, tablet, and mobile phones.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <h3>Unlimited Games</h3>
+                <p>Access to 500+ games for free. New games added every week.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Leaderboards</h3>
+                <p>Compete with players worldwide and climb the rankings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>🎮 Ready to Play?</h2>
+            <p>Join millions of players and start your gaming adventure today. It's completely free!</p>
+            <a href="games.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+                Start Playing Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="games.html">All Games</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Action Games</a></li>
+                    <li><a href="#">Puzzle Games</a></li>
+                    <li><a href="#">Racing Games</a></li>
+                    <li><a href="#">Sports Games</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

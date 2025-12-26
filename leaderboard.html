@@ -1,0 +1,3159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - GameZone | Top Players & Rankings</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Check out the top players on GameZone. View global rankings, high scores, and compete to be the best!">
+    <meta name="keywords" content="game leaderboard, top players, high scores, gaming rankings, best players">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding: 120px 50px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1600') center/cover;
+            opacity: 0.05;
+        }
+
+        /* Animated Trophy */
+        .trophy-animation {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .trophy-icon {
+            font-size: 5rem;
+            color: #feca57;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(254, 202, 87, 0.5));
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .trophy-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(254, 202, 87, 0.3) 0%, transparent 70%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, #feca57, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            color: #aaa;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Leaderboard Stats */
+        .leaderboard-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card:nth-child(1) i {
+            color: #feca57;
+        }
+
+        .stat-card:nth-child(2) i {
+            color: #00d4ff;
+        }
+
+        .stat-card:nth-child(3) i {
+            color: #ff6b6b;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* ========== TOP 3 PODIUM ========== */
+        .podium-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .podium-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .podium-player {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .podium-player:hover {
+            transform: translateY(-10px);
+        }
+
+        .podium-avatar-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .podium-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .podium-player:nth-child(2) .podium-avatar {
+            width: 150px;
+            height: 150px;
+            border-color: #feca57;
+            box-shadow: 0 0 50px rgba(254, 202, 87, 0.5);
+        }
+
+        .podium-player:nth-child(1) .podium-avatar {
+            border-color: #c0c0c0;
+            box-shadow: 0 0 30px rgba(192, 192, 192, 0.5);
+        }
+
+        .podium-player:nth-child(3) .podium-avatar {
+            border-color: #cd7f32;
+            box-shadow: 0 0 30px rgba(205, 127, 50, 0.5);
+        }
+
+        .podium-crown {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            animation: crownBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes crownBounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-5px) rotate(5deg);
+            }
+        }
+
+        .podium-rank {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .podium-player:nth-child(2) .podium-rank {
+            background: linear-gradient(135deg, #feca57, #f39c12);
+            color: #000;
+        }
+
+        .podium-player:nth-child(1) .podium-rank {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: #000;
+        }
+
+        .podium-player:nth-child(3) .podium-rank {
+            background: linear-gradient(135deg, #cd7f32, #b8860b);
+            color: #000;
+        }
+
+        .podium-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .podium-info .score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .podium-info .games {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .podium-stand {
+            margin-top: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .podium-player:nth-child(2) .podium-stand {
+            width: 180px;
+            height: 150px;
+            background: linear-gradient(180deg, rgba(254, 202, 87, 0.3), rgba(254, 202, 87, 0.1));
+            border: 2px solid rgba(254, 202, 87, 0.5);
+        }
+
+        .podium-player:nth-child(1) .podium-stand {
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(180deg, rgba(192, 192, 192, 0.3), rgba(192, 192, 192, 0.1));
+            border: 2px solid rgba(192, 192, 192, 0.5);
+        }
+
+        .podium-player:nth-child(3) .podium-stand {
+            width: 150px;
+            height: 70px;
+            background: linear-gradient(180deg, rgba(205, 127, 50, 0.3), rgba(205, 127, 50, 0.1));
+            border: 2px solid rgba(205, 127, 50, 0.5);
+        }
+
+        /* ========== FILTER TABS ========== */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #aaa;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .filter-tab:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .filter-select-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            min-width: 150px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .filter-select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        /* ========== LEADERBOARD TABLE ========== */
+        .leaderboard-table-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table thead {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-table th {
+            padding: 20px 25px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .leaderboard-table th:first-child {
+            width: 80px;
+            text-align: center;
+        }
+
+        .leaderboard-table tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-table tbody tr:hover {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .leaderboard-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-table td {
+            padding: 20px 25px;
+        }
+
+        /* Rank Cell */
+        .rank-cell {
+            text-align: center;
+        }
+
+        .rank-badge {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .rank-badge.gold {
+            background: linear-gradient(135deg, #feca57, #f39c12);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(254, 202, 87, 0.4);
+        }
+
+        .rank-badge.silver {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(192, 192, 192, 0.4);
+        }
+
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #cd7f32, #b8860b);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(205, 127, 50, 0.4);
+        }
+
+        .rank-badge.normal {
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+        }
+
+        /* Player Cell */
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .player-info h4 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .player-info p {
+            color: #888;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .player-info p i {
+            color: #00d4ff;
+        }
+
+        .player-badges {
+            display: flex;
+            gap: 5px;
+            margin-left: auto;
+        }
+
+        .player-badge {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+        }
+
+        .player-badge.verified {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+
+        .player-badge.pro {
+            background: rgba(254, 202, 87, 0.2);
+            color: #feca57;
+        }
+
+        .player-badge.streak {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        /* Score Cell */
+        .score-cell {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Games Cell */
+        .games-cell {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* Win Rate Cell */
+        .winrate-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .winrate-bar {
+            width: 100px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .winrate-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .winrate-fill.high {
+            background: linear-gradient(90deg, #26de81, #20bf6b);
+        }
+
+        .winrate-fill.medium {
+            background: linear-gradient(90deg, #feca57, #f39c12);
+        }
+
+        .winrate-fill.low {
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+        }
+
+        .winrate-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Level Cell */
+        .level-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .level-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .level-badge.legendary {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(238, 90, 36, 0.2));
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .level-badge.master {
+            background: linear-gradient(135deg, rgba(165, 94, 234, 0.2), rgba(136, 84, 208, 0.2));
+            color: #a55eea;
+            border: 1px solid rgba(165, 94, 234, 0.3);
+        }
+
+        .level-badge.pro {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(9, 132, 227, 0.2));
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .level-badge.expert {
+            background: linear-gradient(135deg, rgba(254, 202, 87, 0.2), rgba(243, 156, 18, 0.2));
+            color: #feca57;
+            border: 1px solid rgba(254, 202, 87, 0.3);
+        }
+
+        .level-badge.intermediate {
+            background: linear-gradient(135deg, rgba(38, 222, 129, 0.2), rgba(32, 191, 107, 0.2));
+            color: #26de81;
+            border: 1px solid rgba(38, 222, 129, 0.3);
+        }
+
+        /* Trend Cell */
+        .trend-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trend-up {
+            color: #26de81;
+        }
+
+        .trend-down {
+            color: #ff6b6b;
+        }
+
+        .trend-same {
+            color: #888;
+        }
+
+        /* ========== PAGINATION ========== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #888;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .page-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .page-btn.active {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .page-btn.nav-btn {
+            width: auto;
+            padding: 0 20px;
+            gap: 8px;
+        }
+
+        /* ========== YOUR RANK SECTION ========== */
+        .your-rank-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 25px;
+            padding: 40px;
+            margin-top: 60px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .your-rank-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .your-rank-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .your-rank-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .your-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .your-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .your-info p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .your-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .your-stat {
+            text-align: center;
+        }
+
+        .your-stat h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .your-stat p {
+            color: #888;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .your-rank-right {
+            text-align: center;
+        }
+
+        .your-rank-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .your-rank-label {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .rank-progress {
+            margin-top: 15px;
+        }
+
+        .rank-progress p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 65%;
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            border-radius: 10px;
+        }
+
+        /* ========== ACHIEVEMENTS SECTION ========== */
+        .achievements-section {
+            margin-top: 60px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .achievement-card.locked {
+            opacity: 0.5;
+        }
+
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .achievement-icon.gold {
+            background: linear-gradient(135deg, rgba(254, 202, 87, 0.2), rgba(243, 156, 18, 0.1));
+            color: #feca57;
+            border: 2px solid rgba(254, 202, 87, 0.5);
+        }
+
+        .achievement-icon.purple {
+            background: linear-gradient(135deg, rgba(165, 94, 234, 0.2), rgba(136, 84, 208, 0.1));
+            color: #a55eea;
+            border: 2px solid rgba(165, 94, 234, 0.5);
+        }
+
+        .achievement-icon.cyan {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(9, 132, 227, 0.1));
+            color: #00d4ff;
+            border: 2px solid rgba(0, 212, 255, 0.5);
+        }
+
+        .achievement-icon.red {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(238, 90, 36, 0.1));
+            color: #ff6b6b;
+            border: 2px solid rgba(255, 107, 107, 0.5);
+        }
+
+        .achievement-icon.green {
+            background: linear-gradient(135deg, rgba(38, 222, 129, 0.2), rgba(32, 191, 107, 0.1));
+            color: #26de81;
+            border: 2px solid rgba(38, 222, 129, 0.5);
+        }
+
+        .achievement-icon.locked {
+            background: rgba(255, 255, 255, 0.05);
+            color: #666;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .achievement-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement-card p {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .achievement-progress {
+            font-size: 0.8rem;
+            color: #00d4ff;
+        }
+
+        /* ========== AD BANNER ========== */
+        .ad-banner {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 25px;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin: 50px 0;
+        }
+
+        .ad-banner p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* ========== BACK TO TOP ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .podium-container {
+                gap: 20px;
+            }
+
+            .podium-player:nth-child(2) .podium-avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .podium-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .podium-player:nth-child(2) .podium-stand {
+                width: 150px;
+                height: 120px;
+            }
+
+            .podium-player:nth-child(1) .podium-stand,
+            .podium-player:nth-child(3) .podium-stand {
+                width: 120px;
+            }
+
+            .leaderboard-table th:nth-child(5),
+            .leaderboard-table td:nth-child(5),
+            .leaderboard-table th:nth-child(6),
+            .leaderboard-table td:nth-child(6) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 100px 20px 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .trophy-icon {
+                font-size: 4rem;
+            }
+
+            .leaderboard-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .stat-card {
+                flex: 1;
+                min-width: 140px;
+                padding: 20px;
+            }
+
+            .stat-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .podium-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .podium-player {
+                order: 2;
+            }
+
+            .podium-player:nth-child(2) {
+                order: 1;
+            }
+
+            .podium-stand {
+                display: none;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-tabs {
+                justify-content: center;
+            }
+
+            .filter-select-group {
+                justify-content: center;
+            }
+
+            .leaderboard-table th:nth-child(4),
+            .leaderboard-table td:nth-child(4) {
+                display: none;
+            }
+
+            .your-rank-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .your-rank-left {
+                flex-direction: column;
+            }
+
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .stat-card {
+                min-width: 100%;
+            }
+
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: 15px 10px;
+            }
+
+            .player-cell {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .player-badges {
+                margin-left: 0;
+            }
+
+            .leaderboard-table th:nth-child(3),
+            .leaderboard-table td:nth-child(3) {
+                display: none;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tab {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .your-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .progress-bar {
+                width: 150px;
+            }
+        }
+
+        /* Mobile Nav */
+        .nav-links.mobile-active {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.98);
+            flex-direction: column;
+            padding: 20px;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="login.html" class="btn btn-primary">Sign Up</a>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <!-- Animated Trophy -->
+            <div class="trophy-animation">
+                <div class="trophy-glow"></div>
+                <i class="fas fa-trophy trophy-icon"></i>
+            </div>
+
+            <h1>🏆 <span>Leaderboard</span></h1>
+            <p>Compete with players worldwide and climb to the top! Check out the best players and their amazing scores.
+            </p>
+
+            <!-- Leaderboard Stats -->
+            <div class="leaderboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>10K+</h3>
+                    <p>Ranked Players</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>5M+</h3>
+                    <p>Games Played</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>500K+</h3>
+                    <p>High Scores</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+
+        <!-- Top 3 Podium -->
+        <section class="podium-section">
+            <div class="section-header">
+                <h2>👑 Top <span>Champions</span></h2>
+            </div>
+
+            <div class="podium-container">
+                <!-- 2nd Place -->
+                <div class="podium-player">
+                    <div class="podium-avatar-container">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" alt="Player 2"
+                            class="podium-avatar">
+                        <div class="podium-rank">2</div>
+                    </div>
+                    <div class="podium-info">
+                        <h3>NightHawk</h3>
+                        <div class="score">1,250,000</div>
+                        <p class="games">842 games played</p>
+                    </div>
+                    <div class="podium-stand">2</div>
+                </div>
+
+                <!-- 1st Place -->
+                <div class="podium-player">
+                    <div class="podium-avatar-container">
+                        <div class="podium-crown">👑</div>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Player 1"
+                            class="podium-avatar">
+                        <div class="podium-rank">1</div>
+                    </div>
+                    <div class="podium-info">
+                        <h3>ProGamer99</h3>
+                        <div class="score">2,450,000</div>
+                        <p class="games">1,205 games played</p>
+                    </div>
+                    <div class="podium-stand">1</div>
+                </div>
+
+                <!-- 3rd Place -->
+                <div class="podium-player">
+                    <div class="podium-avatar-container">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Player 3"
+                            class="podium-avatar">
+                        <div class="podium-rank">3</div>
+                    </div>
+                    <div class="podium-info">
+                        <h3>ShadowQueen</h3>
+                        <div class="score">985,000</div>
+                        <p class="games">654 games played</p>
+                    </div>
+                    <div class="podium-stand">3</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterLeaderboard('all')">
+                    <i class="fas fa-globe"></i> All Time
+                </button>
+                <button class="filter-tab" onclick="filterLeaderboard('weekly')">
+                    <i class="fas fa-calendar-week"></i> This Week
+                </button>
+                <button class="filter-tab" onclick="filterLeaderboard('daily')">
+                    <i class="fas fa-calendar-day"></i> Today
+                </button>
+                <button class="filter-tab" onclick="filterLeaderboard('monthly')">
+                    <i class="fas fa-calendar"></i> This Month
+                </button>
+            </div>
+
+            <div class="filter-select-group">
+                <select class="filter-select" onchange="filterByGame(this.value)">
+                    <option value="all">All Games</option>
+                    <option value="snake">Snake Game</option>
+                    <option value="tetris">Tetris</option>
+                    <option value="2048">2048</option>
+                    <option value="pacman">Pac-Man</option>
+                    <option value="flappy">Flappy Bird</option>
+                </select>
+
+                <select class="filter-select" onchange="filterByRegion(this.value)">
+                    <option value="global">🌍 Global</option>
+                    <option value="us">🇺🇸 United States</option>
+                    <option value="uk">🇬🇧 United Kingdom</option>
+                    <option value="in">🇮🇳 India</option>
+                    <option value="de">🇩🇪 Germany</option>
+                    <option value="jp">🇯🇵 Japan</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="leaderboard-table-container">
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                        <th>Games</th>
+                        <th>Win Rate</th>
+                        <th>Level</th>
+                        <th>Trend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rank 1 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge gold">1</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+                                    alt="ProGamer99" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>ProGamer99</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> United States</p>
+                                </div>
+                                <div class="player-badges">
+                                    <span class="player-badge verified" title="Verified"><i
+                                            class="fas fa-check"></i></span>
+                                    <span class="player-badge pro" title="Pro Player"><i class="fas fa-star"></i></span>
+                                    <span class="player-badge streak" title="10 Day Streak"><i
+                                            class="fas fa-fire"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">2,450,000</td>
+                        <td class="games-cell">1,205</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill high" style="width: 92%"></div>
+                            </div>
+                            <span class="winrate-text">92%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge legendary">Legendary</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+2</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 2 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge silver">2</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100"
+                                    alt="NightHawk" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>NightHawk</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> United Kingdom</p>
+                                </div>
+                                <div class="player-badges">
+                                    <span class="player-badge verified" title="Verified"><i
+                                            class="fas fa-check"></i></span>
+                                    <span class="player-badge streak" title="7 Day Streak"><i
+                                            class="fas fa-fire"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">1,250,000</td>
+                        <td class="games-cell">842</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill high" style="width: 88%"></div>
+                            </div>
+                            <span class="winrate-text">88%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge master">Master</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-down trend-down"></i>
+                            <span class="trend-down">-1</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 3 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge bronze">3</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+                                    alt="ShadowQueen" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>ShadowQueen</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Germany</p>
+                                </div>
+                                <div class="player-badges">
+                                    <span class="player-badge pro" title="Pro Player"><i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">985,000</td>
+                        <td class="games-cell">654</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill high" style="width: 85%"></div>
+                            </div>
+                            <span class="winrate-text">85%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge master">Master</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+5</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 4 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">4</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=100"
+                                    alt="ThunderBolt" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>ThunderBolt</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> India</p>
+                                </div>
+                                <div class="player-badges">
+                                    <span class="player-badge verified" title="Verified"><i
+                                            class="fas fa-check"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">875,500</td>
+                        <td class="games-cell">523</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill high" style="width: 82%"></div>
+                            </div>
+                            <span class="winrate-text">82%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge pro">Pro</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-minus trend-same"></i>
+                            <span class="trend-same">0</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 5 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">5</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100"
+                                    alt="CyberNinja" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>CyberNinja</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Japan</p>
+                                </div>
+                                <div class="player-badges">
+                                    <span class="player-badge streak" title="5 Day Streak"><i
+                                            class="fas fa-fire"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">756,200</td>
+                        <td class="games-cell">412</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill medium" style="width: 78%"></div>
+                            </div>
+                            <span class="winrate-text">78%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge pro">Pro</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+3</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 6 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">6</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+                                    alt="PixelQueen" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>PixelQueen</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Canada</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">698,400</td>
+                        <td class="games-cell">389</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill medium" style="width: 75%"></div>
+                            </div>
+                            <span class="winrate-text">75%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge expert">Expert</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+1</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 7 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">7</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100"
+                                    alt="GameMaster" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>GameMaster</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Australia</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">645,800</td>
+                        <td class="games-cell">356</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill medium" style="width: 72%"></div>
+                            </div>
+                            <span class="winrate-text">72%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge expert">Expert</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-down trend-down"></i>
+                            <span class="trend-down">-2</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 8 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">8</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+                                    alt="BlazeFury" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>BlazeFury</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Brazil</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">598,300</td>
+                        <td class="games-cell">298</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill medium" style="width: 70%"></div>
+                            </div>
+                            <span class="winrate-text">70%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge expert">Expert</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+4</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 9 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">9</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100"
+                                    alt="StormRider" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>StormRider</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> France</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">542,100</td>
+                        <td class="games-cell">267</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill medium" style="width: 68%"></div>
+                            </div>
+                            <span class="winrate-text">68%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge intermediate">Intermediate</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-minus trend-same"></i>
+                            <span class="trend-same">0</span>
+                        </td>
+                    </tr>
+
+                    <!-- Rank 10 -->
+                    <tr>
+                        <td class="rank-cell">
+                            <span class="rank-badge normal">10</span>
+                        </td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100"
+                                    alt="MysticWolf" class="player-avatar">
+                                <div class="player-info">
+                                    <h4>MysticWolf</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Spain</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="score-cell">498,700</td>
+                        <td class="games-cell">234</td>
+                        <td class="winrate-cell">
+                            <div class="winrate-bar">
+                                <div class="winrate-fill low" style="width: 65%"></div>
+                            </div>
+                            <span class="winrate-text">65%</span>
+                        </td>
+                        <td class="level-cell">
+                            <span class="level-badge intermediate">Intermediate</span>
+                        </td>
+                        <td class="trend-cell">
+                            <i class="fas fa-arrow-up trend-up"></i>
+                            <span class="trend-up">+6</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-btn nav-btn" onclick="changePage('prev')">
+                <i class="fas fa-chevron-left"></i> Prev
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn" onclick="changePage(2)">2</button>
+            <button class="page-btn" onclick="changePage(3)">3</button>
+            <button class="page-btn" onclick="changePage(4)">4</button>
+            <span style="color: #666;">...</span>
+            <button class="page-btn" onclick="changePage(50)">50</button>
+            <button class="page-btn nav-btn" onclick="changePage('next')">
+                Next <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Ad Banner -->
+        <div class="ad-banner">
+            <p>📢 Advertisement - 728x90 Leaderboard</p>
+        </div>
+
+        <!-- Your Rank Section -->
+        <section class="your-rank-section">
+            <div class="your-rank-content">
+                <div class="your-rank-left">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=200" alt="Your Avatar"
+                        class="your-avatar">
+                    <div class="your-info">
+                        <h3>Welcome, Player! 👋</h3>
+                        <p>Login to see your rank and compete globally</p>
+                        <div class="your-stats">
+                            <div class="your-stat">
+                                <h4>--</h4>
+                                <p>Games</p>
+                            </div>
+                            <div class="your-stat">
+                                <h4>--</h4>
+                                <p>Wins</p>
+                            </div>
+                            <div class="your-stat">
+                                <h4>--%</h4>
+                                <p>Win Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="your-rank-right">
+                    <div class="your-rank-number">#--</div>
+                    <p class="your-rank-label">Your Global Rank</p>
+                    <div class="rank-progress">
+                        <p>Login to track your progress</p>
+                        <a href="login.html" class="btn btn-primary" style="margin-top: 15px;">
+                            <i class="fas fa-sign-in-alt"></i> Login Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements-section">
+            <div class="section-header">
+                <h2>🏅 <span>Achievements</span></h2>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon gold">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h4>Champion</h4>
+                    <p>Reach #1 on the leaderboard</p>
+                    <span class="achievement-progress">0/1 completed</span>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon purple">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h4>On Fire</h4>
+                    <p>Win 10 games in a row</p>
+                    <span class="achievement-progress">3/10 completed</span>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon cyan">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h4>Dedicated</h4>
+                    <p>Play 100 games</p>
+                    <span class="achievement-progress">45/100 completed</span>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon red">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Speed Demon</h4>
+                    <p>Complete a game in under 1 minute</p>
+                    <span class="achievement-progress">Completed ✓</span>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon green">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Rising Star</h4>
+                    <p>Reach top 100 on any leaderboard</p>
+                    <span class="achievement-progress">Completed ✓</span>
+                </div>
+
+                <div class="achievement-card locked">
+                    <div class="achievement-icon locked">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>???</h4>
+                    <p>Complete all other achievements</p>
+                    <span class="achievement-progress">Locked</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="games.html">All Games</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Top Games</h4>
+                <ul>
+                    <li><a href="game-play.html?game=snake">Snake Game</a></li>
+                    <li><a href="game-play.html?game=tetris">Tetris</a></li>
+                    <li><a href="game-play.html?game=2048">2048</a></li>
+                    <li><a href="game-play.html?game=pacman">Pac-Man</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Add this JavaScript at the end of the leaderboard.html, before </body> -->
+    
+    <script>
+        // ========== MOBILE MENU TOGGLE ==========
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('mobile-active');
+        }
+
+        // ========== FILTER LEADERBOARD BY TIME PERIOD ==========
+        function filterLeaderboard(period) {
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show loading animation
+            showLoadingAnimation();
+
+            // Simulate API call delay
+            setTimeout(() => {
+                hideLoadingAnimation();
+
+                // Update leaderboard data based on period
+                switch (period) {
+                    case 'all':
+                        showNotification('Showing All Time rankings', 'info');
+                        break;
+                    case 'weekly':
+                        showNotification('Showing This Week rankings', 'info');
+                        break;
+                    case 'daily':
+                        showNotification('Showing Today rankings', 'info');
+                        break;
+                    case 'monthly':
+                        showNotification('Showing This Month rankings', 'info');
+                        break;
+                }
+
+                // Animate table rows
+                animateTableRows();
+            }, 500);
+        }
+
+        // ========== FILTER BY GAME ==========
+        function filterByGame(game) {
+            showLoadingAnimation();
+
+            setTimeout(() => {
+                hideLoadingAnimation();
+
+                if (game === 'all') {
+                    showNotification('Showing rankings for All Games', 'info');
+                } else {
+                    showNotification(`Showing rankings for ${game.charAt(0).toUpperCase() + game.slice(1)}`, 'info');
+                }
+
+                animateTableRows();
+            }, 500);
+        }
+
+        // ========== FILTER BY REGION ==========
+        function filterByRegion(region) {
+            showLoadingAnimation();
+
+            setTimeout(() => {
+                hideLoadingAnimation();
+
+                const regionNames = {
+                    'global': 'Global',
+                    'us': 'United States',
+                    'uk': 'United Kingdom',
+                    'in': 'India',
+                    'de': 'Germany',
+                    'jp': 'Japan'
+                };
+
+                showNotification(`Showing rankings for ${regionNames[region] || region}`, 'info');
+                animateTableRows();
+            }, 500);
+        }
+
+        // ========== CHANGE PAGE ==========
+        function changePage(page) {
+            // Handle prev/next
+            if (page === 'prev') {
+                showNotification('Loading previous page...', 'info');
+                return;
+            }
+            if (page === 'next') {
+                showNotification('Loading next page...', 'info');
+                return;
+            }
+
+            // Update active page button
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+
+            showLoadingAnimation();
+
+            setTimeout(() => {
+                hideLoadingAnimation();
+                showNotification(`Page ${page} loaded`, 'success');
+                animateTableRows();
+
+                // Scroll to table
+                document.querySelector('.leaderboard-table-container').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 500);
+        }
+
+        // ========== SHOW LOADING ANIMATION ==========
+        function showLoadingAnimation() {
+            const tableContainer = document.querySelector('.leaderboard-table-container');
+
+            // Create loading overlay
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.id = 'loadingOverlay';
+            loadingOverlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 15, 35, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 100;
+                border-radius: 25px;
+            `;
+            loadingOverlay.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="
+                        width: 50px;
+                        height: 50px;
+                        border: 4px solid rgba(255,255,255,0.1);
+                        border-top-color: #00d4ff;
+                        border-radius: 50%;
+                        animation: spin 1s linear infinite;
+                        margin: 0 auto 15px;
+                    "></div>
+                    <p style="color: #888;">Loading rankings...</p>
+                </div>
+            `;
+
+            // Make container relative for overlay
+            tableContainer.style.position = 'relative';
+            tableContainer.appendChild(loadingOverlay);
+        }
+
+        // ========== HIDE LOADING ANIMATION ==========
+        function hideLoadingAnimation() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.remove();
+            }
+        }
+
+        // ========== ANIMATE TABLE ROWS ==========
+        function animateTableRows() {
+            const rows = document.querySelectorAll('.leaderboard-table tbody tr');
+
+            rows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-20px)';
+
+                setTimeout(() => {
+                    row.style.transition = 'all 0.3s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 50);
+            });
+        }
+
+        // ========== SHOW NOTIFICATION ==========
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                padding: 18px 28px;
+                border-radius: 15px;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                z-index: 9999;
+                animation: slideIn 0.4s ease;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                max-width: 350px;
+            `;
+
+            // Set color based on type
+            switch (type) {
+                case 'success':
+                    notification.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                    notification.innerHTML = `<i class="fas fa-check-circle" style="font-size: 1.2rem;"></i> ${message}`;
+                    break;
+                case 'error':
+                    notification.style.background = 'linear-gradient(135deg, #d63031, #e17055)';
+                    notification.innerHTML = `<i class="fas fa-exclamation-circle" style="font-size: 1.2rem;"></i> ${message}`;
+                    break;
+                case 'warning':
+                    notification.style.background = 'linear-gradient(135deg, #fdcb6e, #f39c12)';
+                    notification.style.color = '#000';
+                    notification.innerHTML = `<i class="fas fa-exclamation-triangle" style="font-size: 1.2rem;"></i> ${message}`;
+                    break;
+                default:
+                    notification.style.background = 'linear-gradient(135deg, #0984e3, #6c5ce7)';
+                    notification.innerHTML = `<i class="fas fa-info-circle" style="font-size: 1.2rem;"></i> ${message}`;
+            }
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.4s ease forwards';
+                setTimeout(() => notification.remove(), 400);
+            }, 3000);
+        }
+
+        // ========== BACK TO TOP ==========
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // ========== COUNTER ANIMATION ==========
+        function animateCounters() {
+            const statCards = document.querySelectorAll('.stat-card h3');
+
+            statCards.forEach(counter => {
+                const target = counter.textContent;
+                const isK = target.includes('K');
+                const isM = target.includes('M');
+                let numericValue = parseFloat(target.replace(/[^0-9.]/g, ''));
+
+                if (isK) numericValue *= 1000;
+                if (isM) numericValue *= 1000000;
+
+                let current = 0;
+                const increment = numericValue / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        if (isM) {
+                            counter.textContent = (current / 1000000).toFixed(0) + 'M+';
+                        } else if (isK) {
+                            counter.textContent = (current / 1000).toFixed(0) + 'K+';
+                        } else {
+                            counter.textContent = Math.floor(current) + '+';
+                        }
+                    }
+                }, 30);
+            });
+        }
+
+        // ========== PODIUM ANIMATION ==========
+        function animatePodium() {
+            const podiumPlayers = document.querySelectorAll('.podium-player');
+
+            podiumPlayers.forEach((player, index) => {
+                player.style.opacity = '0';
+                player.style.transform = 'translateY(50px)';
+
+                setTimeout(() => {
+                    player.style.transition = 'all 0.6s ease';
+                    player.style.opacity = '1';
+                    player.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }
+
+        // ========== SCORE ANIMATION ==========
+        function animateScores() {
+            const scores = document.querySelectorAll('.score-cell');
+
+            scores.forEach(score => {
+                const originalText = score.textContent;
+                const numericValue = parseInt(originalText.replace(/,/g, ''));
+                let current = 0;
+                const increment = numericValue / 30;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        score.textContent = numericValue.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        score.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 30);
+            });
+        }
+
+        // ========== WIN RATE BAR ANIMATION ==========
+        function animateWinRateBars() {
+            const winRateBars = document.querySelectorAll('.winrate-fill');
+
+            winRateBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease';
+                    bar.style.width = targetWidth;
+                }, 500);
+            });
+        }
+
+        // ========== ROW HOVER EFFECT ==========
+        function initRowHoverEffects() {
+            const rows = document.querySelectorAll('.leaderboard-table tbody tr');
+
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', function () {
+                    this.style.transform = 'scale(1.01)';
+                    this.style.boxShadow = '0 5px 20px rgba(0, 212, 255, 0.1)';
+                });
+
+                row.addEventListener('mouseleave', function () {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }
+
+        // ========== PLAYER PROFILE MODAL ==========
+        function showPlayerProfile(playerId) {
+            // Create modal overlay
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'playerModal';
+            modalOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+
+            modalOverlay.innerHTML = `
+                <div style="
+                    background: linear-gradient(135deg, #1a1a2e, #16213e);
+                    border-radius: 25px;
+                    padding: 40px;
+                    max-width: 500px;
+                    width: 90%;
+                    text-align: center;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    animation: scaleIn 0.3s ease;
+                ">
+                    <button onclick="closePlayerModal()" style="
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        background: rgba(255, 255, 255, 0.1);
+                        border: none;
+                        color: #fff;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                    ">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" 
+                         alt="Player" 
+                         style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid #00d4ff; margin-bottom: 20px;">
+                    
+                    <h2 style="margin-bottom: 5px;">ProGamer99</h2>
+                    <p style="color: #888; margin-bottom: 20px;"><i class="fas fa-map-marker-alt"></i> United States</p>
+                    
+                    <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 25px;">
+                        <div>
+                            <h3 style="color: #00d4ff; font-size: 1.5rem;">2,450,000</h3>
+                            <p style="color: #888; font-size: 0.85rem;">Total Score</p>
+                        </div>
+                        <div>
+                            <h3 style="color: #00d4ff; font-size: 1.5rem;">1,205</h3>
+                            <p style="color: #888; font-size: 0.85rem;">Games</p>
+                        </div>
+                        <div>
+                            <h3 style="color: #00d4ff; font-size: 1.5rem;">92%</h3>
+                            <p style="color: #888; font-size: 0.85rem;">Win Rate</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button style="
+                            padding: 12px 25px;
+                            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+                            border: none;
+                            border-radius: 50px;
+                            color: #fff;
+                            font-weight: 600;
+                            cursor: pointer;
+                            font-family: 'Poppins', sans-serif;
+                        ">
+                            <i class="fas fa-user-plus"></i> Follow
+                        </button>
+                        <button style="
+                            padding: 12px 25px;
+                            background: rgba(255, 255, 255, 0.1);
+                            border: 2px solid #00d4ff;
+                            border-radius: 50px;
+                            color: #00d4ff;
+                            font-weight: 600;
+                            cursor: pointer;
+                            font-family: 'Poppins', sans-serif;
+                        ">
+                            <i class="fas fa-gamepad"></i> Challenge
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalOverlay);
+            document.body.style.overflow = 'hidden';
+
+            // Close on overlay click
+            modalOverlay.addEventListener('click', function (e) {
+                if (e.target === modalOverlay) {
+                    closePlayerModal();
+                }
+            });
+        }
+
+        function closePlayerModal() {
+            const modal = document.getElementById('playerModal');
+            if (modal) {
+                modal.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // ========== ADD CLICK EVENTS TO PLAYER ROWS ==========
+        function initPlayerRowClicks() {
+            const playerCells = document.querySelectorAll('.player-cell');
+
+            playerCells.forEach(cell => {
+                cell.style.cursor = 'pointer';
+                cell.addEventListener('click', function () {
+                    showPlayerProfile();
+                });
+            });
+        }
+
+        // ========== SEARCH FUNCTIONALITY ==========
+        function initSearch() {
+            // Create search input in filter section if needed
+            const filterSection = document.querySelector('.filter-section');
+
+            // Add search functionality
+            document.addEventListener('keydown', function (e) {
+                if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                    showSearchModal();
+                }
+
+                if (e.key === 'Escape') {
+                    closeSearchModal();
+                    closePlayerModal();
+                }
+            });
+        }
+
+        function showSearchModal() {
+            const searchModal = document.createElement('div');
+            searchModal.id = 'searchModal';
+            searchModal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                padding-top: 150px;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+
+            searchModal.innerHTML = `
+                <div style="width: 100%; max-width: 600px; padding: 0 20px;">
+                    <div style="
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 20px;
+                        padding: 5px;
+                        display: flex;
+                        align-items: center;
+                        border: 2px solid #00d4ff;
+                    ">
+                        <i class="fas fa-search" style="padding: 15px 20px; color: #888;"></i>
+                        <input type="text" 
+                               id="searchInput" 
+                               placeholder="Search players..." 
+                               style="
+                                   flex: 1;
+                                   background: transparent;
+                                   border: none;
+                                   color: #fff;
+                                   font-size: 1.2rem;
+                                   padding: 15px 0;
+                                   outline: none;
+                                   font-family: 'Poppins', sans-serif;
+                               "
+                               oninput="searchPlayers(this.value)">
+                        <button onclick="closeSearchModal()" style="
+                            padding: 15px 20px;
+                            background: transparent;
+                            border: none;
+                            color: #888;
+                            cursor: pointer;
+                            font-size: 1rem;
+                        ">
+                            ESC
+                        </button>
+                    </div>
+                    <div id="searchResults" style="
+                        margin-top: 20px;
+                        max-height: 400px;
+                        overflow-y: auto;
+                    "></div>
+                    <p style="text-align: center; color: #666; margin-top: 20px; font-size: 0.85rem;">
+                        Press <kbd style="background: rgba(255,255,255,0.1); padding: 3px 8px; border-radius: 5px;">/</kbd> to search anytime
+                    </p>
+                </div>
+            `;
+
+            document.body.appendChild(searchModal);
+            document.body.style.overflow = 'hidden';
+
+            // Focus input
+            setTimeout(() => {
+                document.getElementById('searchInput').focus();
+            }, 100);
+
+            // Close on overlay click
+            searchModal.addEventListener('click', function (e) {
+                if (e.target === searchModal) {
+                    closeSearchModal();
+                }
+            });
+        }
+
+        function closeSearchModal() {
+            const modal = document.getElementById('searchModal');
+            if (modal) {
+                modal.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        function searchPlayers(query) {
+            const resultsContainer = document.getElementById('searchResults');
+
+            if (query.length < 2) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            // Simulated search results
+            const players = [
+                { name: 'ProGamer99', rank: 1, score: '2,450,000', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100' },
+                { name: 'NightHawk', rank: 2, score: '1,250,000', avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100' },
+                { name: 'ShadowQueen', rank: 3, score: '985,000', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100' },
+            ];
+
+            const filteredPlayers = players.filter(p =>
+                p.name.toLowerCase().includes(query.toLowerCase())
+            );
+
+            if (filteredPlayers.length === 0) {
+                resultsContainer.innerHTML = `
+                    <p style="text-align: center; color: #888; padding: 30px;">
+                        No players found for "${query}"
+                    </p>
+                `;
+                return;
+            }
+
+            resultsContainer.innerHTML = filteredPlayers.map(player => `
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    padding: 15px 20px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 15px;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.background='rgba(0, 212, 255, 0.1)'" 
+                   onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'"
+                   onclick="closeSearchModal(); showPlayerProfile()">
+                    <img src="${player.avatar}" alt="${player.name}" style="
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 12px;
+                        object-fit: cover;
+                    ">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 3px 0;">${player.name}</h4>
+                        <p style="margin: 0; color: #888; font-size: 0.85rem;">Rank #${player.rank} • ${player.score} pts</p>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: #888;"></i>
+                </div>
+            `).join('');
+        }
+
+        // ========== LIVE UPDATE SIMULATION ==========
+        function simulateLiveUpdates() {
+            setInterval(() => {
+                // Randomly update a score
+                const scores = document.querySelectorAll('.score-cell');
+                const randomIndex = Math.floor(Math.random() * scores.length);
+                const score = scores[randomIndex];
+
+                // Flash effect
+                score.style.transition = 'all 0.3s ease';
+                score.style.color = '#26de81';
+                score.style.textShadow = '0 0 20px rgba(38, 222, 129, 0.5)';
+
+                setTimeout(() => {
+                    score.style.color = '';
+                    score.style.textShadow = '';
+                }, 1000);
+            }, 10000); // Every 10 seconds
+        }
+
+        // ========== ACHIEVEMENT UNLOCK ANIMATION ==========
+        function showAchievementUnlock(achievementName) {
+            const achievement = document.createElement('div');
+            achievement.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 30px;
+                background: linear-gradient(135deg, #feca57, #f39c12);
+                padding: 20px 30px;
+                border-radius: 15px;
+                color: #000;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                z-index: 9999;
+                animation: slideInRight 0.5s ease, shake 0.5s ease 0.5s;
+                box-shadow: 0 10px 40px rgba(254, 202, 87, 0.5);
+            `;
+
+            achievement.innerHTML = `
+                <i class="fas fa-trophy" style="font-size: 2rem;"></i>
+                <div>
+                    <h4 style="margin: 0 0 3px 0; font-size: 1rem;">Achievement Unlocked!</h4>
+                    <p style="margin: 0; font-size: 0.85rem; opacity: 0.8;">${achievementName}</p>
+                </div>
+            `;
+
+            document.body.appendChild(achievement);
+
+            setTimeout(() => {
+                achievement.style.animation = 'slideOutRight 0.5s ease forwards';
+                setTimeout(() => achievement.remove(), 500);
+            }, 4000);
+        }
+
+        // ========== SHARE RANK ==========
+        function shareRank() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My GameZone Ranking',
+                    text: 'Check out my ranking on GameZone! Can you beat my score?',
+                    url: window.location.href
+                }).then(() => {
+                    showNotification('Shared successfully!', 'success');
+                }).catch(() => {
+                    copyRankLink();
+                });
+            } else {
+                copyRankLink();
+            }
+        }
+
+        function copyRankLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showNotification('Link copied to clipboard!', 'success');
+            });
+        }
+
+        // ========== INTERSECTION OBSERVER FOR ANIMATIONS ==========
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            document.querySelectorAll('.achievement-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                observer.observe(el);
+            });
+
+            // Add animation class styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-in {
+                    animation: fadeInUp 0.6s ease forwards;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // ========== KEYBOARD SHORTCUTS ==========
+        function initKeyboardShortcuts() {
+            document.addEventListener('keydown', function (e) {
+                // Don't trigger if typing in input
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                    return;
+                }
+
+                switch (e.key) {
+                    case 'h':
+                    case 'H':
+                        // Go to home
+                        showNotification('Press confirmed - Going to Home', 'info');
+                        break;
+                    case 'g':
+                    case 'G':
+                        // Go to games
+                        showNotification('Press G - Going to Games', 'info');
+                        break;
+                    case 'r':
+                    case 'R':
+                        // Refresh leaderboard
+                        location.reload();
+                        break;
+                    case 't':
+                    case 'T':
+                        // Scroll to top
+                        scrollToTop();
+                        break;
+                }
+            });
+        }
+
+        // ========== ADD CSS ANIMATIONS ==========
+        function addAnimationStyles() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+                
+                @keyframes slideIn {
+                    from { 
+                        transform: translateX(100%); 
+                        opacity: 0; 
+                    }
+                    to { 
+                        transform: translateX(0); 
+                        opacity: 1; 
+                    }
+                }
+                
+                @keyframes slideOut {
+                    from { 
+                        transform: translateX(0); 
+                        opacity: 1; 
+                    }
+                    to { 
+                        transform: translateX(100%); 
+                        opacity: 0; 
+                    }
+                }
+                
+                @keyframes slideInRight {
+                    from { 
+                        transform: translateX(100%); 
+                        opacity: 0; 
+                    }
+                    to { 
+                        transform: translateX(0); 
+                        opacity: 1; 
+                    }
+                }
+                
+                @keyframes slideOutRight {
+                    from { 
+                        transform: translateX(0); 
+                        opacity: 1; 
+                    }
+                    to { 
+                        transform: translateX(100%); 
+                        opacity: 0; 
+                    }
+                }
+                
+                @keyframes scaleIn {
+                    from { 
+                        transform: scale(0.8); 
+                        opacity: 0; 
+                    }
+                    to { 
+                        transform: scale(1); 
+                        opacity: 1; 
+                    }
+                }
+                
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
+                }
+                
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                /* Smooth transitions for table rows */
+                .leaderboard-table tbody tr {
+                    transition: all 0.3s ease;
+                }
+                
+                /* Hover effect for podium */
+                .podium-player:hover .podium-avatar {
+                    transform: scale(1.05);
+                    transition: transform 0.3s ease;
+                }
+                
+                /* Pulsing effect for live indicator */
+                .live-indicator {
+                    animation: pulse 2s infinite;
+                }
+                
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // ========== TOOLTIP FUNCTIONALITY ==========
+        function initTooltips() {
+            const badgeElements = document.querySelectorAll('.player-badge');
+
+            badgeElements.forEach(badge => {
+                badge.addEventListener('mouseenter', function (e) {
+                    const title = this.getAttribute('title');
+                    if (!title) return;
+
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'custom-tooltip';
+                    tooltip.textContent = title;
+                    tooltip.style.cssText = `
+                        position: fixed;
+                        background: rgba(0, 0, 0, 0.9);
+                        color: #fff;
+                        padding: 8px 15px;
+                        border-radius: 8px;
+                        font-size: 0.8rem;
+                        z-index: 10000;
+                        pointer-events: none;
+                        white-space: nowrap;
+                    `;
+
+                    document.body.appendChild(tooltip);
+
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+                    tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+                });
+
+                badge.addEventListener('mouseleave', function () {
+                    const tooltip = document.querySelector('.custom-tooltip');
+                    if (tooltip) tooltip.remove();
+                });
+            });
+        }
+
+        // ========== INITIALIZE EVERYTHING ON PAGE LOAD ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add animation styles
+            addAnimationStyles();
+
+            // Initialize all features
+            initRowHoverEffects();
+            initPlayerRowClicks();
+            initSearch();
+            initScrollAnimations();
+            initKeyboardShortcuts();
+            initTooltips();
+
+            // Run animations
+            setTimeout(() => {
+                animatePodium();
+                animateCounters();
+                animateTableRows();
+                animateWinRateBars();
+            }, 300);
+
+            // Start live updates simulation
+            simulateLiveUpdates();
+
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to the Leaderboard! 🏆', 'success');
+            }, 1000);
+
+            console.log('%c🎮 GameZone Leaderboard Loaded!', 'color: #00d4ff; font-size: 20px; font-weight: bold;');
+            console.log('%cKeyboard Shortcuts:', 'color: #feca57; font-weight: bold;');
+            console.log('%c/ - Search players', 'color: #888;');
+            console.log('%cT - Scroll to top', 'color: #888;');
+            console.log('%cR - Refresh leaderboard', 'color: #888;');
+            console.log('%cESC - Close modals', 'color: #888;');
+        });
+
+        // ========== HANDLE VISIBILITY CHANGE ==========
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'visible') {
+                // Refresh data when user comes back to tab
+                console.log('Tab is active - checking for updates...');
+            }
+        });
+
+        // ========== HANDLE ONLINE/OFFLINE ==========
+        window.addEventListener('online', function () {
+            showNotification('You are back online!', 'success');
+        });
+
+        window.addEventListener('offline', function () {
+            showNotification('You are offline. Some features may not work.', 'warning');
+        });
+    </script>
+
+</body>
+
+</html>

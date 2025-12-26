@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Games - GameZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .page-header {
+            padding: 120px 50px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #00d4ff;
+            color: #0f0f23;
+            border-color: #00d4ff;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #00d4ff;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 50px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .game-card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .game-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-card-image img {
+            transform: scale(1.1);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .game-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-rating i {
+            color: #feca57;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 212, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay i {
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .game-card-content {
+            padding: 20px;
+        }
+
+        .game-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .game-card-content p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-plays {
+            color: #666;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-plays i {
+            color: #00d4ff;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 50px;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .page-header {
+                padding: 100px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .games-grid {
+                padding: 20px;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo"><i class="fas fa-gamepad"></i><span>GameZone</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>🎮 All <span>Games</span></h1>
+        <p>Browse and play our collection of free online games</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Search games..." onkeyup="searchGames()">
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterGames('all')">All Games</button>
+        <button class="filter-btn" onclick="filterGames('action')">Action</button>
+        <button class="filter-btn" onclick="filterGames('puzzle')">Puzzle</button>
+        <button class="filter-btn" onclick="filterGames('arcade')">Arcade</button>
+        <button class="filter-btn" onclick="filterGames('racing')">Racing</button>
+        <button class="filter-btn" onclick="filterGames('sports')">Sports</button>
+    </div>
+
+    <div class="games-grid" id="gamesGrid"></div>
+
+    <footer class="footer">
+        <p>&copy; 2025 GameZone. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const games = [
+            { id: 1, title: "Snake Game", desc: "Classic snake game with modern graphics", category: "arcade", img: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400", rating: 4.8, plays: "250K", badge: "HOT 🔥", url: "games/snake.html" },
+            { id: 2, title: "Tetris Classic", desc: "The legendary puzzle game", category: "puzzle", img: "https://images.unsplash.com/photo-1553481187-be93c21490a9?w=400", rating: 4.9, plays: "180K", badge: "TRENDING", url: "games/tetris.html" },
+            { id: 3, title: "Memory Match", desc: "Test your memory skills", category: "puzzle", img: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400", rating: 4.7, plays: "95K", badge: "NEW", url: "games/memory.html" },
+            { id: 4, title: "2048 Puzzle", desc: "Addictive number puzzle game", category: "puzzle", img: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400", rating: 4.6, plays: "320K", badge: "POPULAR", url: "games/2048.html" },
+            { id: 5, title: "Flappy Bird", desc: "The infamous flying bird game", category: "arcade", img: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400", rating: 4.5, plays: "410K", badge: "CLASSIC", url: "games/flappy.html" },
+            { id: 6, title: "Speed Racer", desc: "High-speed racing adventure", category: "racing", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400", rating: 4.8, plays: "275K", badge: "ACTION", url: "games/racing.html" },
+            { id: 7, title: "Pong", desc: "Classic 2-player pong game", category: "arcade", img: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=400", rating: 4.4, plays: "150K", badge: "RETRO", url: "games/pong.html" },
+            { id: 8, title: "Breakout", desc: "Break all the bricks!", category: "arcade", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400", rating: 4.6, plays: "180K", badge: "FUN", url: "games/breakout.html" },
+            { id: 9, title: "Minesweeper", desc: "Classic minesweeper puzzle", category: "puzzle", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400", rating: 4.5, plays: "120K", badge: "BRAIN", url: "games/minesweeper.html" },
+            { id: 10, title: "Typing Speed", desc: "Test your typing speed", category: "action", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400", rating: 4.7, plays: "95K", badge: "SKILL", url: "games/typing.html" }
+        ];
+
+        function renderGames(gamesToRender) {
+            const grid = document.getElementById('gamesGrid');
+            grid.innerHTML = gamesToRender.map(game => `
+                <div class="game-card" data-category="${game.category}" onclick="window.location.href='${game.url}'">
+                    <div class="game-card-image">
+                        <img src="${game.img}" alt="${game.title}">
+                        <span class="game-badge">${game.badge}</span>
+                        <span class="game-rating"><i class="fas fa-star"></i> ${game.rating}</span>
+                        <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="game-card-content">
+                        <h3>${game.title}</h3>
+                        <p>${game.desc}</p>
+                        <div class="game-meta">
+                            <span class="game-plays"><i class="fas fa-users"></i> ${game.plays} plays</span>
+                            <a href="${game.url}" class="play-btn">Play</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGames(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const filtered = category === 'all' ? games : games.filter(g => g.category === category);
+            renderGames(filtered);
+        }
+
+        function searchGames() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = games.filter(g => g.title.toLowerCase().includes(query) || g.desc.toLowerCase().includes(query));
+            renderGames(filtered);
+        }
+
+        renderGames(games);
+    </script>
+</body>
+
+</html>

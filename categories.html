@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Categories - GameZone | Browse 50+ Game Types</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Browse 50+ game categories at GameZone. Action, Puzzle, Racing, Sports, Adventure and more. Find your perfect game!">
+    <meta name="keywords"
+        content="game categories, action games, puzzle games, racing games, sports games, arcade games">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding: 120px 50px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1600') center/cover;
+            opacity: 0.05;
+        }
+
+        /* Floating Icons */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.2;
+            animation: floatAround 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            color: #ff6b6b;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            left: 5%;
+            animation-delay: 1s;
+            color: #00d4ff;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            color: #feca57;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 0.5s;
+            color: #a55eea;
+        }
+
+        .floating-icon:nth-child(5) {
+            top: 15%;
+            right: 25%;
+            animation-delay: 1.5s;
+            color: #26de81;
+        }
+
+        .floating-icon:nth-child(6) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 2.5s;
+            color: #fd79a8;
+        }
+
+        @keyframes floatAround {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(10px, -15px) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(-5px, -25px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(-15px, -10px) rotate(3deg);
+            }
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            color: #aaa;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .breadcrumb a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #666;
+        }
+
+        /* Category Stats */
+        .category-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 25px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            color: #888;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header .view-all {
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .section-header .view-all:hover {
+            gap: 10px;
+        }
+
+        /* ========== FEATURED CATEGORIES ========== */
+        .featured-categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .featured-category {
+            position: relative;
+            height: 300px;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .featured-category:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        .featured-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .featured-category img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-category:hover img {
+            transform: scale(1.1);
+        }
+
+        .featured-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .featured-category:hover .featured-overlay {
+            background: linear-gradient(transparent 20%, rgba(0, 212, 255, 0.9));
+        }
+
+        .featured-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .featured-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .play-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* ========== ALL CATEGORIES GRID ========== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--card-color, #00d4ff), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--card-color, #00d4ff);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .category-games-count {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .category-card:hover h3 {
+            color: var(--card-color, #00d4ff);
+        }
+
+        .category-card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .category-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+
+        .category-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-stats-mini {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .category-stats-mini span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .category-stats-mini i {
+            color: var(--card-color, #00d4ff);
+        }
+
+        .explore-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid var(--card-color, #00d4ff);
+            border-radius: 25px;
+            color: var(--card-color, #00d4ff);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .explore-btn:hover {
+            background: var(--card-color, #00d4ff);
+            color: #0f0f23;
+        }
+
+        /* Category Colors */
+        .category-card[data-category="action"] {
+            --card-color: #ff6b6b;
+        }
+
+        .category-card[data-category="puzzle"] {
+            --card-color: #00d4ff;
+        }
+
+        .category-card[data-category="racing"] {
+            --card-color: #feca57;
+        }
+
+        .category-card[data-category="sports"] {
+            --card-color: #26de81;
+        }
+
+        .category-card[data-category="adventure"] {
+            --card-color: #a55eea;
+        }
+
+        .category-card[data-category="arcade"] {
+            --card-color: #fd79a8;
+        }
+
+        .category-card[data-category="strategy"] {
+            --card-color: #0984e3;
+        }
+
+        .category-card[data-category="multiplayer"] {
+            --card-color: #00cec9;
+        }
+
+        .category-card[data-category="shooter"] {
+            --card-color: #e17055;
+        }
+
+        .category-card[data-category="simulation"] {
+            --card-color: #6c5ce7;
+        }
+
+        .category-card[data-category="rpg"] {
+            --card-color: #fdcb6e;
+        }
+
+        .category-card[data-category="horror"] {
+            --card-color: #b71540;
+        }
+
+        .category-icon.action {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.1));
+            color: #ff6b6b;
+        }
+
+        .category-icon.puzzle {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 212, 255, 0.1));
+            color: #00d4ff;
+        }
+
+        .category-icon.racing {
+            background: linear-gradient(135deg, rgba(254, 202, 87, 0.2), rgba(254, 202, 87, 0.1));
+            color: #feca57;
+        }
+
+        .category-icon.sports {
+            background: linear-gradient(135deg, rgba(38, 222, 129, 0.2), rgba(38, 222, 129, 0.1));
+            color: #26de81;
+        }
+
+        .category-icon.adventure {
+            background: linear-gradient(135deg, rgba(165, 94, 234, 0.2), rgba(165, 94, 234, 0.1));
+            color: #a55eea;
+        }
+
+        .category-icon.arcade {
+            background: linear-gradient(135deg, rgba(253, 121, 168, 0.2), rgba(253, 121, 168, 0.1));
+            color: #fd79a8;
+        }
+
+        .category-icon.strategy {
+            background: linear-gradient(135deg, rgba(9, 132, 227, 0.2), rgba(9, 132, 227, 0.1));
+            color: #0984e3;
+        }
+
+        .category-icon.multiplayer {
+            background: linear-gradient(135deg, rgba(0, 206, 201, 0.2), rgba(0, 206, 201, 0.1));
+            color: #00cec9;
+        }
+
+        .category-icon.shooter {
+            background: linear-gradient(135deg, rgba(225, 112, 85, 0.2), rgba(225, 112, 85, 0.1));
+            color: #e17055;
+        }
+
+        .category-icon.simulation {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(108, 92, 231, 0.1));
+            color: #6c5ce7;
+        }
+
+        .category-icon.rpg {
+            background: linear-gradient(135deg, rgba(253, 203, 110, 0.2), rgba(253, 203, 110, 0.1));
+            color: #fdcb6e;
+        }
+
+        .category-icon.horror {
+            background: linear-gradient(135deg, rgba(183, 21, 64, 0.2), rgba(183, 21, 64, 0.1));
+            color: #b71540;
+        }
+
+        /* ========== POPULAR IN CATEGORIES ========== */
+        .popular-section {
+            margin-top: 80px;
+        }
+
+        .popular-games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .popular-game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .popular-game-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .popular-game-image {
+            position: relative;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .popular-game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .popular-game-card:hover .popular-game-image img {
+            transform: scale(1.1);
+        }
+
+        .popular-game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 212, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .popular-game-card:hover .popular-game-overlay {
+            opacity: 1;
+        }
+
+        .popular-game-overlay i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .popular-game-info {
+            padding: 15px;
+        }
+
+        .popular-game-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .popular-game-info p {
+            color: #888;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .popular-game-info p i {
+            color: #feca57;
+        }
+
+        /* ========== AD BANNER ========== */
+        .ad-banner {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 25px;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin: 50px 0;
+        }
+
+        .ad-banner p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* ========== CATEGORY QUICK ACCESS ========== */
+        .quick-access {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-access h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .quick-access h3 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .quick-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #aaa;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            color: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .quick-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+            border-radius: 30px;
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            padding: 15px 35px;
+            font-size: 1rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* ========== BACK TO TOP ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1200px) {
+            .featured-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-category:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .category-stats {
+                gap: 30px;
+            }
+
+            .stat-box {
+                padding: 20px 30px;
+            }
+
+            .stat-box h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 100px 20px 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .stat-box {
+                flex: 1;
+                min-width: 140px;
+            }
+
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .featured-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-category:first-child {
+                grid-column: span 1;
+                height: 250px;
+            }
+
+            .featured-category {
+                height: 200px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-access {
+                padding: 30px 20px;
+            }
+
+            .quick-buttons {
+                gap: 10px;
+            }
+
+            .quick-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+
+            .cta-section {
+                padding: 50px 20px;
+                border-radius: 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .popular-games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .category-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-box {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+        }
+
+        /* Mobile Nav */
+        .nav-links.mobile-active {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.98);
+            flex-direction: column;
+            padding: 20px;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="categories.html" class="active">Categories</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <!-- Floating Icons -->
+        <div class="floating-icons">
+            <i class="fas fa-crosshairs floating-icon"></i>
+            <i class="fas fa-puzzle-piece floating-icon"></i>
+            <i class="fas fa-car floating-icon"></i>
+            <i class="fas fa-futbol floating-icon"></i>
+            <i class="fas fa-ghost floating-icon"></i>
+            <i class="fas fa-chess floating-icon"></i>
+        </div>
+
+        <div class="page-header-content">
+            <h1>🎯 Game <span>Categories</span></h1>
+            <p>Explore 50+ game categories and find your perfect gaming experience. From action-packed shooters to
+                brain-teasing puzzles!</p>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span>/</span>
+                <span>Categories</span>
+            </div>
+
+            <!-- Category Stats -->
+            <div class="category-stats">
+                <div class="stat-box">
+                    <h3>50+</h3>
+                    <p>Categories</p>
+                </div>
+                <div class="stat-box">
+                    <h3>500+</h3>
+                    <p>Total Games</p>
+                </div>
+                <div class="stat-box">
+                    <h3>1M+</h3>
+                    <p>Daily Players</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+
+        <!-- Featured Categories -->
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>🔥 <span>Featured</span> Categories</h2>
+                <a href="#all-categories" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="featured-categories">
+                <!-- Featured Category 1 (Large) -->
+                <a href="games.html?category=action" class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800" alt="Action Games">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">🎯</div>
+                        <h3>Action Games</h3>
+                        <p>
+                            <span class="play-count">85 Games</span>
+                            <span><i class="fas fa-users"></i> 2.5M plays</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Featured Category 2 -->
+                <a href="games.html?category=puzzle" class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400" alt="Puzzle Games">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">🧩</div>
+                        <h3>Puzzle Games</h3>
+                        <p>
+                            <span class="play-count">120 Games</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Featured Category 3 -->
+                <a href="games.html?category=racing" class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400" alt="Racing Games">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">🏎️</div>
+                        <h3>Racing Games</h3>
+                        <p>
+                            <span class="play-count">65 Games</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Featured Category 4 -->
+                <a href="games.html?category=sports" class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400" alt="Sports Games">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">⚽</div>
+                        <h3>Sports Games</h3>
+                        <p>
+                            <span class="play-count">45 Games</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Featured Category 5 -->
+                <a href="games.html?category=arcade" class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1579309401389-a2476dddf3d4?w=400" alt="Arcade Games">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">👾</div>
+                        <h3>Arcade Games</h3>
+                        <p>
+                            <span class="play-count">110 Games</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Ad Banner -->
+        <div class="ad-banner">
+            <p>📢 Advertisement - 728x90 Leaderboard</p>
+        </div>
+
+        <!-- All Categories -->
+        <section id="all-categories">
+            <div class="section-header">
+                <h2>📂 All <span>Categories</span></h2>
+            </div>
+
+            <div class="categories-grid">
+
+                <!-- Action -->
+                <div class="category-card" data-category="action">
+                    <div class="category-card-header">
+                        <div class="category-icon action">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <span class="category-games-count">85 Games</span>
+                    </div>
+                    <h3>Action</h3>
+                    <p>Fast-paced games with intense combat, shooting, and explosive gameplay.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Combat</span>
+                        <span class="category-tag">Shooting</span>
+                        <span class="category-tag">Fighting</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 2.5M</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="games.html?category=action" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Puzzle -->
+                <div class="category-card" data-category="puzzle">
+                    <div class="category-card-header">
+                        <div class="category-icon puzzle">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <span class="category-games-count">120 Games</span>
+                    </div>
+                    <h3>Puzzle</h3>
+                    <p>Brain-teasing games that challenge your logic and problem-solving skills.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Logic</span>
+                        <span class="category-tag">Match-3</span>
+                        <span class="category-tag">Brain</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 3.2M</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="games.html?category=puzzle" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Racing -->
+                <div class="category-card" data-category="racing">
+                    <div class="category-card-header">
+                        <div class="category-icon racing">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span class="category-games-count">65 Games</span>
+                    </div>
+                    <h3>Racing</h3>
+                    <p>High-speed racing games with cars, bikes, and thrilling tracks.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Cars</span>
+                        <span class="category-tag">Bikes</span>
+                        <span class="category-tag">Drift</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 1.8M</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="games.html?category=racing" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Sports -->
+                <div class="category-card" data-category="sports">
+                    <div class="category-card-header">
+                        <div class="category-icon sports">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <span class="category-games-count">45 Games</span>
+                    </div>
+                    <h3>Sports</h3>
+                    <p>Football, basketball, tennis and more sports simulation games.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Football</span>
+                        <span class="category-tag">Basketball</span>
+                        <span class="category-tag">Tennis</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 1.5M</span>
+                            <span><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                        <a href="games.html?category=sports" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Adventure -->
+                <div class="category-card" data-category="adventure">
+                    <div class="category-card-header">
+                        <div class="category-icon adventure">
+                            <i class="fas fa-hiking"></i>
+                        </div>
+                        <span class="category-games-count">75 Games</span>
+                    </div>
+                    <h3>Adventure</h3>
+                    <p>Epic journey games with exploration, quests, and storytelling.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Exploration</span>
+                        <span class="category-tag">Story</span>
+                        <span class="category-tag">Quest</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 2.1M</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="games.html?category=adventure" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Arcade -->
+                <div class="category-card" data-category="arcade">
+                    <div class="category-card-header">
+                        <div class="category-icon arcade">
+                            <i class="fas fa-ghost"></i>
+                        </div>
+                        <span class="category-games-count">110 Games</span>
+                    </div>
+                    <h3>Arcade</h3>
+                    <p>Classic arcade-style games with simple controls and addictive gameplay.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Classic</span>
+                        <span class="category-tag">Retro</span>
+                        <span class="category-tag">Casual</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 4.2M</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="games.html?category=arcade" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Strategy -->
+                <div class="category-card" data-category="strategy">
+                    <div class="category-card-header">
+                        <div class="category-icon strategy">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <span class="category-games-count">40 Games</span>
+                    </div>
+                    <h3>Strategy</h3>
+                    <p>Plan, build, and conquer in these tactical and strategic games.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Tactics</span>
+                        <span class="category-tag">Building</span>
+                        <span class="category-tag">War</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 980K</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="games.html?category=strategy" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Multiplayer -->
+                <div class="category-card" data-category="multiplayer">
+                    <div class="category-card-header">
+                        <div class="category-icon multiplayer">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="category-games-count">55 Games</span>
+                    </div>
+                    <h3>Multiplayer</h3>
+                    <p>Play with friends or compete against players worldwide.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Co-op</span>
+                        <span class="category-tag">PvP</span>
+                        <span class="category-tag">Online</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 1.9M</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="games.html?category=multiplayer" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Shooter -->
+                <div class="category-card" data-category="shooter">
+                    <div class="category-card-header">
+                        <div class="category-icon shooter">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <span class="category-games-count">50 Games</span>
+                    </div>
+                    <h3>Shooter</h3>
+                    <p>First-person and third-person shooting games with intense action.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">FPS</span>
+                        <span class="category-tag">TPS</span>
+                        <span class="category-tag">Battle</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 2.8M</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="games.html?category=shooter" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div class="category-card" data-category="simulation">
+                    <div class="category-card-header">
+                        <div class="category-icon simulation">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <span class="category-games-count">35 Games</span>
+                    </div>
+                    <h3>Simulation</h3>
+                    <p>Realistic simulation games - fly planes, drive trucks, build cities.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Flying</span>
+                        <span class="category-tag">Driving</span>
+                        <span class="category-tag">Life Sim</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 750K</span>
+                            <span><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                        <a href="games.html?category=simulation" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- RPG -->
+                <div class="category-card" data-category="rpg">
+                    <div class="category-card-header">
+                        <div class="category-icon rpg">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <span class="category-games-count">30 Games</span>
+                    </div>
+                    <h3>RPG</h3>
+                    <p>Role-playing games with character development and epic stories.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Fantasy</span>
+                        <span class="category-tag">Turn-based</span>
+                        <span class="category-tag">MMORPG</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 1.2M</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="games.html?category=rpg" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+                <!-- Horror -->
+                <div class="category-card" data-category="horror">
+                    <div class="category-card-header">
+                        <div class="category-icon horror">
+                            <i class="fas fa-skull"></i>
+                        </div>
+                        <span class="category-games-count">25 Games</span>
+                    </div>
+                    <h3>Horror</h3>
+                    <p>Scary and thrilling games that will keep you on the edge of your seat.</p>
+                    <div class="category-tags">
+                        <span class="category-tag">Scary</span>
+                        <span class="category-tag">Survival</span>
+                        <span class="category-tag">Thriller</span>
+                    </div>
+                    <div class="category-card-footer">
+                        <div class="category-stats-mini">
+                            <span><i class="fas fa-users"></i> 680K</span>
+                            <span><i class="fas fa-star"></i> 4.5</span>
+                        </div>
+                        <a href="games.html?category=horror" class="explore-btn">Explore</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Quick Access -->
+        <div class="quick-access">
+            <h3>⚡ Quick <span>Access</span></h3>
+            <div class="quick-buttons">
+                <a href="games.html?filter=new" class="quick-btn">
+                    <i class="fas fa-sparkles"></i> New Games
+                </a>
+                <a href="games.html?filter=popular" class="quick-btn">
+                    <i class="fas fa-fire"></i> Most Popular
+                </a>
+                <a href="games.html?filter=trending" class="quick-btn">
+                    <i class="fas fa-chart-line"></i> Trending
+                </a>
+                <a href="games.html?filter=top-rated" class="quick-btn">
+                    <i class="fas fa-star"></i> Top Rated
+                </a>
+                <a href="games.html?filter=multiplayer" class="quick-btn">
+                    <i class="fas fa-users"></i> Multiplayer
+                </a>
+                <a href="games.html?filter=mobile" class="quick-btn">
+                    <i class="fas fa-mobile-alt"></i> Mobile Friendly
+                </a>
+                <a href="games.html?filter=kids" class="quick-btn">
+                    <i class="fas fa-child"></i> Kids Games
+                </a>
+                <a href="games.html?filter=io" class="quick-btn">
+                    <i class="fas fa-globe"></i> .io Games
+                </a>
+            </div>
+        </div>
+
+        <!-- Popular Games in Categories -->
+        <section class="popular-section">
+            <div class="section-header">
+                <h2>🏆 <span>Popular</span> Games Across Categories</h2>
+                <a href="games.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="popular-games-grid">
+                <a href="game-play.html?game=snake" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=300" alt="Snake">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Snake Game</h4>
+                        <p><i class="fas fa-star"></i> 4.8 • Arcade</p>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=tetris" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=300" alt="Tetris">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Tetris Classic</h4>
+                        <p><i class="fas fa-star"></i> 4.9 • Puzzle</p>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=racing" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" alt="Racing">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Speed Racer</h4>
+                        <p><i class="fas fa-star"></i> 4.7 • Racing</p>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=chess" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=300" alt="Chess">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Chess Master</h4>
+                        <p><i class="fas fa-star"></i> 4.9 • Strategy</p>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=basketball" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300" alt="Basketball">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Basketball Stars</h4>
+                        <p><i class="fas fa-star"></i> 4.6 • Sports</p>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=pacman" class="popular-game-card">
+                    <div class="popular-game-image">
+                        <img src="https://images.unsplash.com/photo-1579309401389-a2476dddf3d4?w=300" alt="Pacman">
+                        <div class="popular-game-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="popular-game-info">
+                        <h4>Pac-Man</h4>
+                        <p><i class="fas fa-star"></i> 4.8 • Arcade</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>🎮 Can't Find Your Game?</h2>
+                <p>Request a game and we'll add it to our collection! Or browse all 500+ games to find your perfect
+                    match.</p>
+                <div class="cta-buttons">
+                    <a href="games.html" class="btn btn-primary">
+                        <i class="fas fa-gamepad"></i> Browse All Games
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-paper-plane"></i> Request a Game
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="games.html">All Games</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Top Categories</h4>
+                <ul>
+                    <li><a href="games.html?category=action">Action Games</a></li>
+                    <li><a href="games.html?category=puzzle">Puzzle Games</a></li>
+                    <li><a href="games.html?category=racing">Racing Games</a></li>
+                    <li><a href="games.html?category=arcade">Arcade Games</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('mobile-active');
+        }
+
+        // Back to Top
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Category Card Hover Effects
+        const categoryCards = document.querySelectorAll('.category-card');
+        categoryCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, target) {
+            let count = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(count) + '+';
+                }
+            }, 20);
+        }
+
+        // Intersection Observer for Animation
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all category cards
+        document.querySelectorAll('.category-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Show Notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                padding: 15px 25px;
+                border-radius: 10px;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.9rem;
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #0984e3, #6c5ce7)';
+                notification.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+            }
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+
+</html>

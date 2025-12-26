@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game - GameZone</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Play free online games at GameZone. No downloads required - just click and play!">
+    <meta name="keywords" content="play games, free games, online games, browser games">
+
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Play Game - GameZone">
+    <meta property="og:description" content="Play this amazing game for free at GameZone!">
+    <meta property="og:image" content="img/game-thumbnail.jpg">
+    <meta property="og:url" content="https://gamezone.com/game-play.html">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== MAIN LAYOUT ========== */
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 30px 50px;
+        }
+
+        /* ========== GAME SECTION ========== */
+        .game-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Game Header */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-title-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .game-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .game-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .game-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .game-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-meta i {
+            color: #00d4ff;
+        }
+
+        .game-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .action-btn:hover {
+            background: #00d4ff;
+            transform: scale(1.1);
+        }
+
+        .action-btn.liked {
+            background: #ff6b6b;
+        }
+
+        /* Game Container */
+        .game-container {
+            position: relative;
+            width: 100%;
+            background: #000;
+            aspect-ratio: 16/9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Game Loading */
+        .game-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e, #0f0f23);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .game-loading.hidden {
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .game-loading p {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        /* Play Overlay */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(15, 15, 35, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-overlay-content {
+            text-align: center;
+        }
+
+        .game-thumbnail {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .play-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .play-overlay p {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
+        }
+
+        .play-button i {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 10px 60px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .fullscreen-btn:hover {
+            background: #00d4ff;
+            transform: scale(1.1);
+        }
+
+        /* Game Controls Bar */
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .control-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        .control-btn.active {
+            background: #00d4ff;
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 5px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #00d4ff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Game Info Tabs */
+        .game-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: #00d4ff;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-content {
+            padding: 25px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Description Tab */
+        .game-description h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .game-description p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .game-tag {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #00d4ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .game-tag:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        /* How to Play Tab */
+        .how-to-play h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .controls-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .control-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .control-key {
+            min-width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .control-item span {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Comments Tab */
+        .comments-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .comment-form input {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .comment-form input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .comment-form button {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .comment-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .comment {
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .comment-time {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .comment-text {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .comment-actions button {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .comment-actions button:hover {
+            color: #00d4ff;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-widget {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .widget-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-header h3 i {
+            color: #00d4ff;
+        }
+
+        .widget-header a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        /* Ad Widget */
+        .ad-widget {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .ad-widget p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .ad-widget .ad-label {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        /* Game Stats Widget */
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .stat-row .label {
+            color: #888;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-row .label i {
+            color: #00d4ff;
+            width: 20px;
+        }
+
+        .stat-row .value {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Rating Widget */
+        .rating-widget {
+            text-align: center;
+        }
+
+        .big-rating {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rating-stars {
+            color: #feca57;
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .rating-count {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .rate-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .rate-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rate-btn.like {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+        }
+
+        .rate-btn.like:hover {
+            background: #2ed573;
+            color: #fff;
+        }
+
+        .rate-btn.dislike {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .rate-btn.dislike:hover {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        /* Related Games */
+        .related-game {
+            display: flex;
+            gap: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .related-game:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .related-game:last-child {
+            margin-bottom: 0;
+        }
+
+        .related-game-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .related-game-info {
+            flex: 1;
+        }
+
+        .related-game-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .related-game-info p {
+            color: #888;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .related-game-info p i {
+            color: #feca57;
+        }
+
+        .play-mini-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .related-game:hover .play-mini-btn {
+            opacity: 1;
+        }
+
+        .play-mini-btn i {
+            font-size: 0.8rem;
+            margin-left: 2px;
+        }
+
+        /* Share Widget */
+        .share-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .share-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+
+        .share-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .share-btn.copy {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .share-btn.copy:hover {
+            background: #00d4ff;
+        }
+
+        /* ========== MORE GAMES SECTION ========== */
+        .more-games-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        .more-games-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .more-games-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .more-games-header h2 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .more-games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card-mini {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .game-card-mini:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .game-card-mini-img {
+            position: relative;
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .game-card-mini-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card-mini:hover .game-card-mini-img img {
+            transform: scale(1.1);
+        }
+
+        .game-card-mini-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 212, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card-mini:hover .game-card-mini-overlay {
+            opacity: 1;
+        }
+
+        .game-card-mini-overlay i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .game-card-mini-info {
+            padding: 15px;
+        }
+
+        .game-card-mini-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-card-mini-info p {
+            color: #888;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-card-mini-info p i {
+            color: #feca57;
+        }
+
+        /* ========== AD BANNER ========== */
+        .ad-banner-horizontal {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 728px;
+        }
+
+        .ad-banner-horizontal p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-container {
+                padding: 80px 15px 30px;
+            }
+
+            .game-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .game-title-section {
+                flex-direction: column;
+            }
+
+            .game-meta {
+                justify-content: center;
+            }
+
+            .game-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .control-group {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .controls-list {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .share-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .more-games-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .comment-form {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                font-size: 0.8rem;
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-container {
+                aspect-ratio: 4/3;
+            }
+
+            .play-button {
+                width: 80px;
+                height: 80px;
+            }
+
+            .play-button i {
+                font-size: 2rem;
+            }
+
+            .game-thumbnail {
+                width: 150px;
+                height: 150px;
+            }
+
+            .more-games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-container">
+
+        <!-- Game Section -->
+        <div class="game-section">
+
+            <!-- Game Header -->
+            <div class="game-header">
+                <div class="game-title-section">
+                    <div class="game-icon">🐍</div>
+                    <div class="game-title">
+                        <h1>Snake Game</h1>
+                        <div class="game-meta">
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                            <span><i class="fas fa-gamepad"></i> Arcade</span>
+                            <span><i class="fas fa-users"></i> 250K plays</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-actions">
+                    <button class="action-btn" id="likeBtn" onclick="toggleLike()" title="Like">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="action-btn" onclick="addToFavorites()" title="Add to Favorites">
+                        <i class="far fa-bookmark"></i>
+                    </button>
+                    <button class="action-btn" onclick="shareGame()" title="Share">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="action-btn" onclick="reportGame()" title="Report">
+                        <i class="fas fa-flag"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Container -->
+            <div class="game-container" id="gameContainer">
+
+                <!-- Play Overlay -->
+                <div class="play-overlay" id="playOverlay" onclick="startGame()">
+                    <div class="play-overlay-content">
+                        <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400" alt="Snake Game"
+                            class="game-thumbnail">
+                        <h2>Snake Game</h2>
+                        <p>Click to Play</p>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #666;">No download required</p>
+                    </div>
+                </div>
+
+                <!-- Loading Screen -->
+                <div class="game-loading hidden" id="gameLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading game...</p>
+                </div>
+
+                <!-- Game iframe (loads after clicking play) -->
+                <iframe id="gameIframe" class="game-iframe" style="display: none;"></iframe>
+
+                <!-- Fullscreen Button -->
+                <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <div class="control-group">
+                    <button class="control-btn" onclick="restartGame()">
+                        <i class="fas fa-redo"></i> Restart
+                    </button>
+                    <button class="control-btn" onclick="pauseGame()">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button class="control-btn" id="muteBtn" onclick="toggleMute()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" class="volume-slider" min="0" max="100" value="80"
+                        onchange="setVolume(this.value)">
+                </div>
+                <div class="control-group">
+                    <button class="control-btn" onclick="toggleFullscreen()">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Info Tabs -->
+            <div class="game-tabs">
+                <button class="tab-btn active" onclick="showTab('description')">
+                    <i class="fas fa-info-circle"></i> Description
+                </button>
+                <button class="tab-btn" onclick="showTab('howtoplay')">
+                    <i class="fas fa-keyboard"></i> How to Play
+                </button>
+                <button class="tab-btn" onclick="showTab('comments')">
+                    <i class="fas fa-comments"></i> Comments (24)
+                </button>
+            </div>
+
+            <!-- Description Tab -->
+            <div class="tab-content active" id="tab-description">
+                <div class="game-description">
+                    <h3>About This Game</h3>
+                    <p>
+                        Snake Game is a classic arcade game that has entertained players for decades. Control a snake as
+                        it moves around the screen, eating food to grow longer while avoiding collisions with walls and
+                        its own tail.
+                    </p>
+                    <p>
+                        This modern version features smooth graphics, responsive controls, and a competitive
+                        leaderboard. Challenge yourself to beat your high score or compete with players worldwide!
+                    </p>
+                    <div class="game-tags">
+                        <a href="#" class="game-tag">Arcade</a>
+                        <a href="#" class="game-tag">Classic</a>
+                        <a href="#" class="game-tag">Single Player</a>
+                        <a href="#" class="game-tag">Casual</a>
+                        <a href="#" class="game-tag">Retro</a>
+                        <a href="#" class="game-tag">Snake</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Play Tab -->
+            <div class="tab-content" id="tab-howtoplay">
+                <div class="how-to-play">
+                    <h3>Game Controls</h3>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <div class="control-key">↑</div>
+                            <span>Move Up</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">↓</div>
+                            <span>Move Down</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">←</div>
+                            <span>Move Left</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">→</div>
+                            <span>Move Right</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">W</div>
+                            <span>Move Up (Alt)</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">S</div>
+                            <span>Move Down (Alt)</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">A</div>
+                            <span>Move Left (Alt)</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">D</div>
+                            <span>Move Right (Alt)</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">Space</div>
+                            <span>Pause Game</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">R</div>
+                            <span>Restart Game</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments Tab -->
+            <div class="tab-content" id="tab-comments">
+                <div class="comments-section">
+                    <h3>Player Comments</h3>
+
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <input type="text" placeholder="Write a comment..." id="commentInput">
+                        <button onclick="postComment()">
+                            <i class="fas fa-paper-plane"></i> Post
+                        </button>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div class="comments-list">
+                        <div class="comment">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" alt="User"
+                                class="comment-avatar">
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Alex Gaming</span>
+                                    <span class="comment-time">2 hours ago</span>
+                                </div>
+                                <p class="comment-text">This game is so addictive! I've been playing for hours trying to
+                                    beat my high score of 150. Love the smooth controls!</p>
+                                <div class="comment-actions">
+                                    <button><i class="fas fa-thumbs-up"></i> 24</button>
+                                    <button><i class="fas fa-reply"></i> Reply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="User"
+                                class="comment-avatar">
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Sarah Player</span>
+                                    <span class="comment-time">5 hours ago</span>
+                                </div>
+                                <p class="comment-text">Classic game with modern graphics! The mobile controls work
+                                    great too. 5 stars!</p>
+                                <div class="comment-actions">
+                                    <button><i class="fas fa-thumbs-up"></i> 18</button>
+                                    <button><i class="fas fa-reply"></i> Reply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=100" alt="User"
+                                class="comment-avatar">
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">ProGamer99</span>
+                                    <span class="comment-time">1 day ago</span>
+                                </div>
+                                <p class="comment-text">Just hit 500 points! 🎉 The key is to stay near the edges and
+                                    plan your moves ahead. Good luck everyone!</p>
+                                <div class="comment-actions">
+                                    <button><i class="fas fa-thumbs-up"></i> 45</button>
+                                    <button><i class="fas fa-reply"></i> Reply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <!-- Ad Widget -->
+            <div class="sidebar-widget ad-widget">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <p>📢 300x250 Ad Space</p>
+                <!-- Replace with actual ad code -->
+            </div>
+
+            <!-- Rating Widget -->
+            <div class="sidebar-widget rating-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-star"></i> Rate This Game</h3>
+                </div>
+                <div class="big-rating">4.8</div>
+                <div class="rating-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="rating-count">Based on 1,250 ratings</p>
+                <div class="rate-buttons">
+                    <button class="rate-btn like" onclick="rateGame('like')">
+                        <i class="fas fa-thumbs-up"></i>
+                    </button>
+                    <button class="rate-btn dislike" onclick="rateGame('dislike')">
+                        <i class="fas fa-thumbs-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Stats -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-chart-bar"></i> Game Stats</h3>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-row">
+                        <span class="label"><i class="fas fa-gamepad"></i> Total Plays</span>
+                        <span class="value">250,432</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="label"><i class="fas fa-heart"></i> Likes</span>
+                        <span class="value">18,520</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="label"><i class="fas fa-calendar"></i> Added</span>
+                        <span class="value">Jan 2024</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="label"><i class="fas fa-sync"></i> Updated</span>
+                        <span class="value">Mar 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Widget -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-share-alt"></i> Share Game</h3>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-btn facebook" onclick="shareOn('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="share-btn twitter" onclick="shareOn('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="share-btn whatsapp" onclick="shareOn('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="share-btn copy" onclick="copyLink()">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Related Games -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-fire"></i> Related Games</h3>
+                    <a href="games.html">View All</a>
+                </div>
+
+                <a href="game-play.html?game=tetris" class="related-game">
+                    <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=100" alt="Tetris"
+                        class="related-game-img">
+                    <div class="related-game-info">
+                        <h4>Tetris Classic</h4>
+                        <p><i class="fas fa-star"></i> 4.9 • 180K plays</p>
+                    </div>
+                    <div class="play-mini-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=2048" class="related-game">
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=100" alt="2048"
+                        class="related-game-img">
+                    <div class="related-game-info">
+                        <h4>2048 Puzzle</h4>
+                        <p><i class="fas fa-star"></i> 4.7 • 320K plays</p>
+                    </div>
+                    <div class="play-mini-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=pacman" class="related-game">
+                    <img src="https://images.unsplash.com/photo-1579309401389-a2476dddf3d4?w=100" alt="Pacman"
+                        class="related-game-img">
+                    <div class="related-game-info">
+                        <h4>Pacman</h4>
+                        <p><i class="fas fa-star"></i> 4.8 • 420K plays</p>
+                    </div>
+                    <div class="play-mini-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+
+                <a href="game-play.html?game=flappy" class="related-game">
+                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=100" alt="Flappy Bird"
+                        class="related-game-img">
+                    <div class="related-game-info">
+                        <h4>Flappy Bird</h4>
+                        <p><i class="fas fa-star"></i> 4.5 • 510K plays</p>
+                    </div>
+                    <div class="play-mini-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Another Ad Widget -->
+            <div class="sidebar-widget ad-widget">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <p>📢 300x250 Ad Space</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Horizontal Ad Banner -->
+    <div class="ad-banner-horizontal">
+        <p>📢 Advertisement - 728x90 Leaderboard</p>
+    </div>
+
+    <!-- More Games Section -->
+    <section class="more-games-section">
+        <div class="more-games-header">
+            <h2>🎮 More <span>Games</span> You'll Love</h2>
+            <a href="games.html" class="btn btn-outline">
+                View All Games <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="more-games-grid">
+            <a href="game-play.html?game=memory" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=300" alt="Memory Game">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Memory Match</h4>
+                    <p><i class="fas fa-star"></i> 4.7 • Puzzle</p>
+                </div>
+            </a>
+
+            <a href="game-play.html?game=racing" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" alt="Racing Game">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Speed Racer</h4>
+                    <p><i class="fas fa-star"></i> 4.6 • Racing</p>
+                </div>
+            </a>
+
+            <a href="game-play.html?game=chess" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=300" alt="Chess">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Chess Master</h4>
+                    <p><i class="fas fa-star"></i> 4.9 • Strategy</p>
+                </div>
+            </a>
+
+            <a href="game-play.html?game=bubble" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=300" alt="Bubble Shooter">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Bubble Shooter</h4>
+                    <p><i class="fas fa-star"></i> 4.5 • Arcade</p>
+                </div>
+            </a>
+
+            <a href="game-play.html?game=sudoku" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1580541832626-2a7131ee809f?w=300" alt="Sudoku">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Sudoku</h4>
+                    <p><i class="fas fa-star"></i> 4.8 • Puzzle</p>
+                </div>
+            </a>
+
+            <a href="game-play.html?game=minesweeper" class="game-card-mini">
+                <div class="game-card-mini-img">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300" alt="Minesweeper">
+                    <div class="game-card-mini-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="game-card-mini-info">
+                    <h4>Minesweeper</h4>
+                    <p><i class="fas fa-star"></i> 4.4 • Classic</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p style="color: #888; font-size: 0.9rem;">The ultimate destination for free online games. Play anytime,
+                    anywhere!</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="games.html">All Games</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Action Games</a></li>
+                    <li><a href="#">Puzzle Games</a></li>
+                    <li><a href="#">Racing Games</a></li>
+                    <li><a href="#">Sports Games</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Start Game
+        function startGame() {
+            const overlay = document.getElementById('playOverlay');
+            const loading = document.getElementById('gameLoading');
+            const iframe = document.getElementById('gameIframe');
+
+            // Hide overlay, show loading
+            overlay.classList.add('hidden');
+            loading.classList.remove('hidden');
+
+            // Simulate loading time (replace with actual game URL)
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                iframe.style.display = 'block';
+                // Load actual game - replace with your game URL or embed
+                iframe.src = 'games/snake.html';
+            }, 2000);
+
+            // Track game play (for analytics)
+            trackGamePlay('snake');
+        }
+
+        // Toggle Fullscreen
+        function toggleFullscreen() {
+            const gameContainer = document.getElementById('gameContainer');
+
+            if (!document.fullscreenElement) {
+                if (gameContainer.requestFullscreen) {
+                    gameContainer.requestFullscreen();
+                } else if (gameContainer.webkitRequestFullscreen) {
+                    gameContainer.webkitRequestFullscreen();
+                } else if (gameContainer.msRequestFullscreen) {
+                    gameContainer.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Toggle Like
+        function toggleLike() {
+            const likeBtn = document.getElementById('likeBtn');
+            likeBtn.classList.toggle('liked');
+
+            if (likeBtn.classList.contains('liked')) {
+                likeBtn.innerHTML = '<i class="fas fa-heart"></i>';
+                showNotification('Added to favorites!', 'success');
+            } else {
+                likeBtn.innerHTML = '<i class="far fa-heart"></i>';
+                showNotification('Removed from favorites', 'info');
+            }
+        }
+
+        // Add to Favorites
+        function addToFavorites() {
+            showNotification('Game added to your favorites!', 'success');
+        }
+
+        // Share Game
+        function shareGame() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Snake Game - GameZone',
+                    text: 'Check out this awesome game!',
+                    url: window.location.href
+                });
+            } else {
+                copyLink();
+            }
+        }
+
+        // Report Game
+        function reportGame() {
+            showNotification('Report submitted. Thank you!', 'info');
+        }
+
+        // Rate Game
+        function rateGame(type) {
+            if (type === 'like') {
+                showNotification('Thanks for your positive rating!', 'success');
+            } else {
+                showNotification('Thanks for your feedback!', 'info');
+            }
+        }
+
+        // Share on Social Media
+        function shareOn(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out this awesome game on GameZone!');
+
+            let shareUrl;
+
+            switch (platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // Copy Link
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showNotification('Link copied to clipboard!', 'success');
+            });
+        }
+
+        // Tab Switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Post Comment
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            if (input.value.trim()) {
+                showNotification('Comment posted!', 'success');
+                input.value = '';
+            } else {
+                showNotification('Please write a comment', 'error');
+            }
+        }
+
+        // Game Controls
+        function restartGame() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe.src) {
+                iframe.src = iframe.src;
+            }
+            showNotification('Game restarted', 'info');
+        }
+
+        function pauseGame() {
+            showNotification('Game paused', 'info');
+        }
+
+        let isMuted = false;
+        function toggleMute() {
+            isMuted = !isMuted;
+            const muteBtn = document.getElementById('muteBtn');
+
+            if (isMuted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+        }
+
+        function setVolume(value) {
+            console.log('Volume:', value);
+        }
+
+        // Show Notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                padding: 15px 25px;
+                border-radius: 10px;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.9rem;
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(135deg, #d63031, #e17055)';
+                notification.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #0984e3, #6c5ce7)';
+                notification.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+            }
+
+            document.body.appendChild(notification);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Track Game Play (for analytics)
+        function trackGamePlay(gameName) {
+            console.log(`Game played: ${gameName}`);
+            // Add your analytics code here (Google Analytics, etc.)
+        }
+
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
