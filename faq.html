@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - GameZone Help Center</title>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7337515965983452"
+        crossorigin="anonymous"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="GameZone FAQ - Find answers to frequently asked questions about our gaming platform, accounts, games, and more.">
+    <meta name="keywords" content="FAQ, help, support, questions, answers, gamezone help, gaming help">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7337515965983452"
+        crossorigin="anonymous"></script>
+    <!-- games -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7337515965983452" data-ad-slot="5576367440"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00d4ff;
+        }
+
+        .btn-outline:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding: 150px 50px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .page-header h1 i {
+            color: #00d4ff;
+            margin-right: 15px;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== SEARCH BAR ========== */
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto 0;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 60px 18px 25px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .search-box input::placeholder {
+            color: #666;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .search-results-count {
+            text-align: center;
+            margin-top: 15px;
+            color: #888;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .search-results-count.visible {
+            display: block;
+        }
+
+        .search-results-count span {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        /* ========== QUICK STATS ========== */
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stat-item .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ========== FAQ CONTAINER ========== */
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 50px 100px;
+        }
+
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: #fff;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .category-btn i {
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 50px;
+            display: none;
+        }
+
+        .faq-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .faq-section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .faq-section-icon i {
+            font-size: 1.3rem;
+            color: #00d4ff;
+        }
+
+        .faq-section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .faq-section-header span {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* FAQ Items */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .faq-item.active {
+            border-color: #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-item.active .faq-question {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .faq-question h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-question h3 .q-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .faq-question .toggle-icon {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-question .toggle-icon i {
+            color: #00d4ff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question .toggle-icon {
+            background: #00d4ff;
+        }
+
+        .faq-item.active .faq-question .toggle-icon i {
+            color: #0f0f23;
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .faq-answer-content p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer-content ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .faq-answer-content ul li {
+            color: #aaa;
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .faq-answer-content ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-size: 0.8rem;
+        }
+
+        .faq-answer-content ol {
+            list-style: none;
+            counter-reset: step;
+            margin: 15px 0;
+        }
+
+        .faq-answer-content ol li {
+            color: #aaa;
+            padding: 8px 0 8px 35px;
+            position: relative;
+            line-height: 1.6;
+            counter-increment: step;
+        }
+
+        .faq-answer-content ol li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .faq-answer-content a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-answer-content a:hover {
+            color: #7c3aed;
+            text-decoration: underline;
+        }
+
+        .faq-answer-content code {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #00d4ff;
+        }
+
+        .faq-answer-content .highlight {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-left: 3px solid #00d4ff;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .faq-answer-content .highlight p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .faq-answer-content .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 3px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .faq-answer-content .warning p {
+            color: #ffc107;
+            margin: 0;
+        }
+
+        /* Helpful Buttons */
+        .helpful-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .helpful-section span {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .helpful-btn {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .helpful-btn:hover {
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .helpful-btn.yes:hover {
+            background: rgba(29, 209, 161, 0.1);
+            border-color: #1dd1a1;
+            color: #1dd1a1;
+        }
+
+        .helpful-btn.no:hover {
+            background: rgba(255, 107, 107, 0.1);
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        .helpful-btn.clicked {
+            pointer-events: none;
+        }
+
+        .helpful-btn.yes.clicked {
+            background: rgba(29, 209, 161, 0.2);
+            border-color: #1dd1a1;
+            color: #1dd1a1;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .no-results i {
+            font-size: 4rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        /* ========== POPULAR QUESTIONS ========== */
+        .popular-questions {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .popular-questions h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .popular-questions h3 i {
+            color: #ffc107;
+        }
+
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .popular-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .popular-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .popular-item i {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00d4ff;
+            flex-shrink: 0;
+        }
+
+        .popular-item span {
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        /* ========== STILL NEED HELP ========== */
+        .help-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            margin-top: 50px;
+        }
+
+        .help-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .help-section p {
+            color: #aaa;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .help-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .help-option {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 200px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .help-option:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            transform: translateY(-5px);
+        }
+
+        .help-option i {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .help-option h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .help-option p {
+            color: #888;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* ========== FEEDBACK MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .modal p {
+            color: #888;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            resize: vertical;
+            min-height: 120px;
+            margin-bottom: 20px;
+        }
+
+        .modal textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+        }
+
+        .modal-btn.cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .modal-btn.cancel:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-btn.submit {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: #fff;
+        }
+
+        .modal-btn.submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #0f0f23;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 120px 20px 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .quick-stats {
+                gap: 25px;
+            }
+
+            .faq-container {
+                padding: 40px 20px 60px;
+            }
+
+            .category-nav {
+                gap: 10px;
+            }
+
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+
+            .faq-question h3 {
+                font-size: 0.95rem;
+            }
+
+            .popular-questions {
+                padding: 25px;
+            }
+
+            .popular-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .help-section {
+                padding: 30px 20px;
+            }
+
+            .help-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .help-option {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="login.html" class="btn btn-primary">Sign Up</a>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1><i class="fas fa-question-circle"></i> Help <span>Center</span></h1>
+            <p>Find answers to frequently asked questions about GameZone. Can't find what you're looking for? Contact
+                our support team!</p>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="faqSearch" placeholder="Search for answers..." onkeyup="searchFAQ()">
+                    <button onclick="searchFAQ()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-results-count" id="searchResults">
+                    Found <span id="resultCount">0</span> results
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Questions Answered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ CONTENT ========== -->
+    <div class="faq-container">
+
+        <!-- Popular Questions -->
+        <div class="popular-questions">
+            <h3><i class="fas fa-fire"></i> Popular Questions</h3>
+            <div class="popular-grid">
+                <div class="popular-item" onclick="showQuestion('general', 0)">
+                    <i class="fas fa-play-circle"></i>
+                    <span>How do I start playing games?</span>
+                </div>
+                <div class="popular-item" onclick="showQuestion('account', 0)">
+                    <i class="fas fa-user-plus"></i>
+                    <span>How do I create an account?</span>
+                </div>
+                <div class="popular-item" onclick="showQuestion('games', 1)">
+                    <i class="fas fa-save"></i>
+                    <span>Can I save my game progress?</span>
+                </div>
+                <div class="popular-item" onclick="showQuestion('technical', 0)">
+                    <i class="fas fa-desktop"></i>
+                    <span>What browsers are supported?</span>
+                </div>
+                <div class="popular-item" onclick="showQuestion('account', 3)">
+                    <i class="fas fa-key"></i>
+                    <span>How do I reset my password?</span>
+                </div>
+                <div class="popular-item" onclick="showQuestion('general', 2)">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Are the games really free?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Navigation -->
+        <div class="category-nav">
+            <button class="category-btn active" onclick="showCategory('all')">
+                <i class="fas fa-th-large"></i> All
+            </button>
+            <button class="category-btn" onclick="showCategory('general')">
+                <i class="fas fa-info-circle"></i> General
+            </button>
+            <button class="category-btn" onclick="showCategory('account')">
+                <i class="fas fa-user"></i> Account
+            </button>
+            <button class="category-btn" onclick="showCategory('games')">
+                <i class="fas fa-gamepad"></i> Games
+            </button>
+            <button class="category-btn" onclick="showCategory('technical')">
+                <i class="fas fa-cog"></i> Technical
+            </button>
+            <button class="category-btn" onclick="showCategory('safety')">
+                <i class="fas fa-shield-alt"></i> Safety
+            </button>
+            <button class="category-btn" onclick="showCategory('billing')">
+                <i class="fas fa-credit-card"></i> Billing
+            </button>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No results found</h3>
+            <p>We couldn't find any questions matching your search. Try different keywords or browse by category.</p>
+            <button class="btn btn-primary" onclick="clearSearch()">Clear Search</button>
+        </div>
+
+        <!-- ========== GENERAL FAQ ========== -->
+        <div class="faq-section active" id="faq-general" data-category="general">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h2>General Questions</h2>
+                <span>8 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <!-- Question 1 -->
+                <div class="faq-item" data-question="how do i start playing games begin">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I start playing games on GameZone?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Getting started with GameZone is super easy! Here's how:</p>
+                            <ol>
+                                <li>Browse our game library on the <a href="games.html">Games page</a></li>
+                                <li>Click on any game that interests you</li>
+                                <li>The game will load directly in your browser</li>
+                                <li>Follow the on-screen instructions to play!</li>
+                            </ol>
+                            <div class="highlight">
+                                <p><i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Create a free account to
+                                    save your progress and compete on leaderboards!</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item" data-question="what is gamezone about platform">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            What is GameZone?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>GameZone is a free online gaming platform that offers hundreds of browser-based games. We
+                                provide:</p>
+                            <ul>
+                                <li>500+ free games across 50+ categories</li>
+                                <li>No downloads or installations required</li>
+                                <li>Cross-device compatibility (PC, tablet, mobile)</li>
+                                <li>Leaderboards and achievements</li>
+                                <li>Regular new game additions</li>
+                            </ul>
+                            <p>Our mission is to provide high-quality, accessible gaming entertainment for everyone!</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item" data-question="are games free cost money pay">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Are the games really free?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>Yes, all games on GameZone are 100% free to play!</strong></p>
+                            <p>We sustain our platform through advertisements displayed on the site. This allows us to
+                                offer all our games completely free of charge.</p>
+                            <ul>
+                                <li>No hidden fees or paywalls</li>
+                                <li>No credit card required</li>
+                                <li>No premium "pay-to-win" content</li>
+                                <li>Full game access for all users</li>
+                            </ul>
+                            <div class="highlight">
+                                <p><i class="fas fa-heart"></i> We believe gaming should be accessible to everyone,
+                                    regardless of their financial situation.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item" data-question="do i need download install anything">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Do I need to download anything?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>No downloads required!</strong> All our games run directly in your web browser
+                                using modern web technologies like HTML5, JavaScript, and WebGL.</p>
+                            <p>This means:</p>
+                            <ul>
+                                <li>Instant play - no waiting for downloads</li>
+                                <li>No storage space needed on your device</li>
+                                <li>No installation or setup required</li>
+                                <li>Always play the latest version automatically</li>
+                            </ul>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="faq-item" data-question="how often new games added updates">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How often are new games added?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We add new games to GameZone regularly! Here's our update schedule:</p>
+                            <ul>
+                                <li><strong>Weekly:</strong> 5-10 new games added every week</li>
+                                <li><strong>Monthly:</strong> Special themed game collections</li>
+                                <li><strong>Seasonal:</strong> Holiday-themed games and events</li>
+                            </ul>
+                            <p>Stay updated by:</p>
+                            <ul>
+                                <li>Following us on social media</li>
+                                <li>Subscribing to our newsletter</li>
+                                <li>Checking the "New Games" section regularly</li>
+                            </ul>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="faq-item" data-question="can i play mobile phone tablet device">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Can I play games on my mobile phone?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>Absolutely!</strong> GameZone is fully responsive and works on all devices:</p>
+                            <ul>
+                                <li><i class="fas fa-desktop"></i> Desktop computers</li>
+                                <li><i class="fas fa-laptop"></i> Laptops</li>
+                                <li><i class="fas fa-tablet-alt"></i> Tablets (iPad, Android tablets)</li>
+                                <li><i class="fas fa-mobile-alt"></i> Mobile phones (iPhone, Android)</li>
+                            </ul>
+                            <p>Many of our games feature touch controls optimized for mobile devices. Look for the
+                                <code>Mobile Friendly</code> badge on game cards!
+                            </p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="faq-item" data-question="how contact support help">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I contact customer support?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We offer multiple ways to get help:</p>
+                            <ul>
+                                <li><strong>Email:</strong> <a
+                                        href="mailto:support@gamezone.com">support@gamezone.com</a></li>
+                                <li><strong>Contact Form:</strong> <a href="contact.html">Submit a request</a></li>
+                                <li><strong>Social Media:</strong> DM us on Twitter or Facebook</li>
+                                <li><strong>FAQ:</strong> You're already here! 😊</li>
+                            </ul>
+                            <p>Our support team typically responds within 24-48 hours.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="faq-item" data-question="what languages available supported">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            What languages is GameZone available in?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Currently, GameZone is available in English. However, we're working on adding more
+                                languages:</p>
+                            <ul>
+                                <li>Spanish (Coming Soon)</li>
+                                <li>French (Coming Soon)</li>
+                                <li>German (Coming Soon)</li>
+                                <li>Portuguese (Planned)</li>
+                                <li>Japanese (Planned)</li>
+                            </ul>
+                            <p>Many of our games are language-independent with intuitive visual gameplay!</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ACCOUNT FAQ ========== -->
+        <div class="faq-section" id="faq-account" data-category="account">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>Account & Profile</h2>
+                <span>10 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <!-- Question 1 -->
+                <div class="faq-item" data-question="how create account register sign up">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I create an account?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Creating a GameZone account is quick and free! Follow these steps:</p>
+                            <ol>
+                                <li>Click the <strong>"Sign Up"</strong> button in the top navigation</li>
+                                <li>Enter your email address</li>
+                                <li>Create a username (this will be displayed publicly)</li>
+                                <li>Choose a secure password</li>
+                                <li>Verify your email address</li>
+                                <li>Start playing and tracking your progress!</li>
+                            </ol>
+                            <p>You can also sign up using your Google or Facebook account for faster registration.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item" data-question="do i need account required play games">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Do I need an account to play games?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>No, an account is not required to play games.</strong> You can enjoy all our
+                                games as a guest user.</p>
+                            <p>However, creating a free account gives you these benefits:</p>
+                            <ul>
+                                <li>Save your game progress across devices</li>
+                                <li>Compete on global leaderboards</li>
+                                <li>Earn achievements and badges</li>
+                                <li>Track your gaming statistics</li>
+                                <li>Create a personalized game library</li>
+                                <li>Connect with other players</li>
+                            </ul>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item" data-question="how change username profile picture">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I change my username or profile picture?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>To update your profile:</p>
+                            <ol>
+                                <li>Log in to your account</li>
+                                <li>Click on your profile icon in the top right</li>
+                                <li>Select <strong>"Account Settings"</strong></li>
+                                <li>Click on <strong>"Edit Profile"</strong></li>
+                                <li>Update your username or upload a new picture</li>
+                                <li>Click <strong>"Save Changes"</strong></li>
+                            </ol>
+                            <div class="warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Note:</strong> You can only
+                                    change your username once every 30 days. Choose wisely!</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item" data-question="forgot password reset recover">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            I forgot my password. How do I reset it?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Don't worry! Resetting your password is easy:</p>
+                            <ol>
+                                <li>Go to the <a href="login.html">Login page</a></li>
+                                <li>Click <strong>"Forgot Password?"</strong></li>
+                                <li>Enter your registered email address</li>
+                                <li>Check your email for a reset link</li>
+                                <li>Click the link and create a new password</li>
+                                <li>Log in with your new password</li>
+                            </ol>
+                            <div class="highlight">
+                                <p><i class="fas fa-envelope"></i> <strong>Didn't receive the email?</strong> Check your
+                                    spam folder or try again. Reset links expire after 24 hours.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="faq-item" data-question="how delete account remove">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I delete my account?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We're sorry to see you go! To delete your account:</p>
+                            <ol>
+                                <li>Log in to your account</li>
+                                <li>Go to <strong>"Account Settings"</strong></li>
+                                <li>Scroll down to <strong>"Delete Account"</strong></li>
+                                <li>Enter your password to confirm</li>
+                                <li>Click <strong>"Permanently Delete Account"</strong></li>
+                            </ol>
+                            <div class="warning">
+                                <p><i class="fas fa-exclamation-circle"></i> <strong>Warning:</strong> This action is
+                                    permanent and cannot be undone. All your game progress, achievements, and data will
+                                    be lost.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More account questions... -->
+                <div class="faq-item" data-question="change email address update">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I change my email address?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>To change your email address:</p>
+                            <ol>
+                                <li>Go to <strong>"Account Settings"</strong></li>
+                                <li>Click on <strong>"Email"</strong> section</li>
+                                <li>Enter your new email address</li>
+                                <li>Enter your password to confirm</li>
+                                <li>Verify the new email address via the confirmation link</li>
+                            </ol>
+                            <p>Your old email will remain active until the new one is verified.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="account hacked stolen security">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            I think my account has been hacked. What should I do?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If you suspect unauthorized access to your account, act immediately:</p>
+                            <ol>
+                                <li>Reset your password immediately</li>
+                                <li>Check your email for any unauthorized changes</li>
+                                <li>Review your recent account activity</li>
+                                <li>Contact our support team at <a
+                                        href="mailto:security@gamezone.com">security@gamezone.com</a></li>
+                                <li>Enable two-factor authentication if available</li>
+                            </ol>
+                            <div class="warning">
+                                <p><i class="fas fa-shield-alt"></i> <strong>Prevention Tips:</strong> Use a unique,
+                                    strong password and never share your login credentials with anyone.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== GAMES FAQ ========== -->
+        <div class="faq-section" id="faq-games" data-category="games">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h2>Games & Gameplay</h2>
+                <span>8 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item" data-question="game not loading working broken">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            A game isn't loading. What should I do?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If a game isn't loading, try these troubleshooting steps:</p>
+                            <ol>
+                                <li><strong>Refresh the page</strong> - Sometimes a simple refresh helps</li>
+                                <li><strong>Clear your browser cache</strong> - Old data can cause issues</li>
+                                <li><strong>Disable browser extensions</strong> - Ad blockers can interfere</li>
+                                <li><strong>Try a different browser</strong> - Chrome or Firefox work best</li>
+                                <li><strong>Check your internet connection</strong> - Ensure stable connection</li>
+                                <li><strong>Update your browser</strong> - Use the latest version</li>
+                            </ol>
+                            <p>If the problem persists, please <a href="contact.html">report the issue</a> with the game
+                                name and your browser details.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="save game progress data">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Can I save my game progress?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>Yes!</strong> If you have a GameZone account, your game progress is automatically
+                                saved.</p>
+                            <p>Here's how it works:</p>
+                            <ul>
+                                <li><strong>With an account:</strong> Progress syncs to our servers and is accessible
+                                    from any device</li>
+                                <li><strong>Without an account:</strong> Progress is saved locally in your browser (may
+                                    be lost if you clear cookies)</li>
+                            </ul>
+                            <div class="highlight">
+                                <p><i class="fas fa-cloud"></i> <strong>Pro Tip:</strong> Create a free account to
+                                    ensure your progress is never lost!</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="how controls keyboard work play">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            What are the game controls?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Controls vary by game, but common controls include:</p>
+                            <ul>
+                                <li><strong>Arrow Keys / WASD:</strong> Movement</li>
+                                <li><strong>Space:</strong> Jump / Action</li>
+                                <li><strong>Enter:</strong> Start / Confirm</li>
+                                <li><strong>Escape:</strong> Pause / Menu</li>
+                                <li><strong>Mouse:</strong> Aim / Click</li>
+                            </ul>
+                            <p>Each game has a <strong>"How to Play"</strong> or <strong>"Controls"</strong> section -
+                                look for the <i class="fas fa-question-circle"></i> icon in the game.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="leaderboard score ranking high">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do leaderboards work?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Leaderboards track and display the highest scores for each game:</p>
+                            <ul>
+                                <li><strong>Global Leaderboard:</strong> Compete with players worldwide</li>
+                                <li><strong>Daily/Weekly:</strong> Time-limited competitions</li>
+                                <li><strong>Friends:</strong> Compare scores with your friends</li>
+                            </ul>
+                            <p>To appear on leaderboards, you must:</p>
+                            <ol>
+                                <li>Be logged in to your account</li>
+                                <li>Complete a game with a qualifying score</li>
+                                <li>Play fairly (no cheats or exploits)</li>
+                            </ol>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="request suggest new game add">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Can I request a new game to be added?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>Absolutely!</strong> We love hearing game suggestions from our community.</p>
+                            <p>To submit a game request:</p>
+                            <ol>
+                                <li>Visit our <a href="contact.html">Contact page</a></li>
+                                <li>Select "Game Request" as the topic</li>
+                                <li>Describe the game you'd like to see</li>
+                                <li>Submit your request</li>
+                            </ol>
+                            <p>While we can't add every game, we do review all suggestions and prioritize popular
+                                requests!</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="multiplayer online friends play together">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Are there multiplayer games?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Yes! We offer several types of multiplayer experiences:</p>
+                            <ul>
+                                <li><strong>Local Multiplayer:</strong> Play with friends on the same device</li>
+                                <li><strong>Online Multiplayer:</strong> Compete against players worldwide</li>
+                                <li><strong>Leaderboard Competition:</strong> Compare high scores globally</li>
+                            </ul>
+                            <p>Look for the <code>Multiplayer</code> tag when browsing games!</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TECHNICAL FAQ ========== -->
+        <div class="faq-section" id="faq-technical" data-category="technical">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h2>Technical Support</h2>
+                <span>6 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item" data-question="browser supported chrome firefox safari edge">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            What browsers are supported?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>GameZone works best on modern, updated browsers:</p>
+                            <ul>
+                                <li><strong>Google Chrome</strong> (Recommended) - Latest version</li>
+                                <li><strong>Mozilla Firefox</strong> - Latest version</li>
+                                <li><strong>Microsoft Edge</strong> - Latest version</li>
+                                <li><strong>Safari</strong> - Version 12 or later</li>
+                                <li><strong>Opera</strong> - Latest version</li>
+                            </ul>
+                            <div class="warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Note:</strong> Internet Explorer
+                                    is NOT supported. Please use a modern browser for the best experience.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="game slow lag performance fps">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Games are running slowly. How can I improve performance?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Try these tips to improve game performance:</p>
+                            <ol>
+                                <li><strong>Close other browser tabs</strong> - Free up memory</li>
+                                <li><strong>Disable browser extensions</strong> - Especially ad blockers</li>
+                                <li><strong>Clear browser cache</strong> - Remove old data</li>
+                                <li><strong>Close other applications</strong> - Free up system resources</li>
+                                <li><strong>Use hardware acceleration</strong> - Enable in browser settings</li>
+                                <li><strong>Lower in-game graphics settings</strong> - If available</li>
+                                <li><strong>Check your internet speed</strong> - Ensure stable connection</li>
+                            </ol>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="no sound audio music mute">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            There's no sound in the games. How do I fix it?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>If you're not hearing audio, check these settings:</p>
+                            <ol>
+                                <li><strong>Check in-game volume</strong> - Look for sound/music settings in the game
+                                </li>
+                                <li><strong>Check browser tab mute</strong> - Right-click the tab and ensure it's not
+                                    muted</li>
+                                <li><strong>Check system volume</strong> - Ensure your device isn't muted</li>
+                                <li><strong>Check browser permissions</strong> - Allow audio playback for our site</li>
+                                <li><strong>Click on the game</strong> - Some browsers require interaction before
+                                    playing audio</li>
+                            </ol>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="fullscreen mode expand screen">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I play in fullscreen mode?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>To enter fullscreen mode:</p>
+                            <ul>
+                                <li><strong>In-game button:</strong> Look for the fullscreen icon (usually in the
+                                    corner)</li>
+                                <li><strong>Keyboard shortcut:</strong> Press <code>F11</code> on your keyboard</li>
+                                <li><strong>Right-click menu:</strong> Some games offer fullscreen in the context menu
+                                </li>
+                            </ul>
+                            <p>To exit fullscreen, press <code>Escape</code> or <code>F11</code> again.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="cookies clear cache data">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I clear my browser cache?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Here's how to clear cache in popular browsers:</p>
+                            <p><strong>Chrome:</strong></p>
+                            <ol>
+                                <li>Press <code>Ctrl + Shift + Delete</code></li>
+                                <li>Select "Cached images and files"</li>
+                                <li>Click "Clear data"</li>
+                            </ol>
+                            <p><strong>Firefox:</strong></p>
+                            <ol>
+                                <li>Press <code>Ctrl + Shift + Delete</code></li>
+                                <li>Select "Cache"</li>
+                                <li>Click "Clear Now"</li>
+                            </ol>
+                            <p><strong>Safari:</strong></p>
+                            <ol>
+                                <li>Go to Safari > Preferences > Advanced</li>
+                                <li>Enable "Show Develop menu"</li>
+                                <li>Go to Develop > Empty Caches</li>
+                            </ol>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SAFETY FAQ ========== -->
+        <div class="faq-section" id="faq-safety" data-category="safety">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Safety & Privacy</h2>
+                <span>5 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item" data-question="safe children kids family friendly">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Is GameZone safe for children?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Yes! GameZone is designed to be family-friendly:</p>
+                            <ul>
+                                <li>All games are reviewed for appropriate content</li>
+                                <li>We do not feature violent or adult content</li>
+                                <li>Age ratings are displayed on game pages</li>
+                                <li>We comply with COPPA regulations</li>
+                                <li>Chat features (where available) are moderated</li>
+                            </ul>
+                            <p>However, we recommend parental supervision for younger children, especially for online
+                                features.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="data privacy information collect personal">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            What data do you collect about me?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We collect minimal data to provide our services:</p>
+                            <ul>
+                                <li><strong>Account info:</strong> Email, username (if you register)</li>
+                                <li><strong>Game data:</strong> Scores, progress, achievements</li>
+                                <li><strong>Usage data:</strong> Games played, visit frequency</li>
+                                <li><strong>Technical data:</strong> Browser type, device info (for optimization)</li>
+                            </ul>
+                            <p>We do NOT sell your personal data. For full details, see our <a
+                                    href="privacy.html">Privacy Policy</a>.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="report player cheating abuse harassment">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            How do I report a player for cheating or harassment?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>To report a player:</p>
+                            <ol>
+                                <li>Note the player's username</li>
+                                <li>Go to our <a href="contact.html">Contact page</a></li>
+                                <li>Select "Report Player" as the topic</li>
+                                <li>Provide details about the incident</li>
+                                <li>Include screenshots if possible</li>
+                            </ol>
+                            <p>Our moderation team reviews all reports and takes appropriate action.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="ads advertisements safe secure">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Are the advertisements on GameZone safe?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We work with reputable advertising partners (including Google AdSense) to ensure ads are
+                                safe and appropriate:</p>
+                            <ul>
+                                <li>All ads are scanned for malware</li>
+                                <li>Adult content is blocked</li>
+                                <li>Deceptive ads are prohibited</li>
+                                <li>We review ad quality regularly</li>
+                            </ul>
+                            <div class="warning">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Warning:</strong> Never download
+                                    software from ads or provide personal information. If you see a suspicious ad,
+                                    please report it to us.</p>
+                            </div>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== BILLING FAQ ========== -->
+        <div class="faq-section" id="faq-billing" data-category="billing">
+            <div class="faq-section-header">
+                <div class="faq-section-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h2>Billing & Payments</h2>
+                <span>4 Questions</span>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item" data-question="pay money subscription cost price">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Do I have to pay for anything?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p><strong>No!</strong> GameZone is completely free to use. There are:</p>
+                            <ul>
+                                <li>No subscription fees</li>
+                                <li>No hidden charges</li>
+                                <li>No in-app purchases required</li>
+                                <li>No "premium" content behind paywalls</li>
+                            </ul>
+                            <p>We may introduce optional premium features in the future, but all current games will
+                                remain free forever.</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="donate support contribute">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Can I donate to support GameZone?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We appreciate your support! While we don't currently have a donation system, you can help
+                                us in other ways:</p>
+                            <ul>
+                                <li><strong>Share with friends:</strong> Tell others about GameZone</li>
+                                <li><strong>Disable ad blocker:</strong> Ads help us keep games free</li>
+                                <li><strong>Leave feedback:</strong> Help us improve</li>
+                                <li><strong>Follow us on social media:</strong> Stay connected</li>
+                            </ul>
+                            <p>Thank you for your support! ❤️</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-question="why ads advertising see display">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>
+                            <span class="q-icon">Q</span>
+                            Why do I see ads on GameZone?
+                        </h3>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Advertisements allow us to:</p>
+                            <ul>
+                                <li>Keep all games 100% free for everyone</li>
+                                <li>Pay for server hosting and maintenance</li>
+                                <li>Develop new games and features</li>
+                                <li>Maintain a full-time support team</li>
+                            </ul>
+                            <p>We try to keep ads non-intrusive and ensure they don't disrupt your gameplay experience.
+                                Thank you for understanding!</p>
+                            <div class="helpful-section">
+                                <span>Was this helpful?</span>
+                                <button class="helpful-btn yes" onclick="markHelpful(this, true)">
+                                    <i class="fas fa-thumbs-up"></i> Yes
+                                </button>
+                                <button class="helpful-btn no" onclick="markHelpful(this, false)">
+                                    <i class="fas fa-thumbs-down"></i> No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still Need Help -->
+        <div class="help-section">
+            <h2>🤔 Still Need Help?</h2>
+            <p>Can't find the answer you're looking for? Our support team is here to help!</p>
+            <div class="help-options">
+                <a href="contact.html" class="help-option">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Support</h4>
+                    <p>Get a response within 24 hours</p>
+                </a>
+                <a href="#" class="help-option">
+                    <i class="fas fa-comments"></i>
+                    <h4>Live Chat</h4>
+                    <p>Chat with us in real-time</p>
+                </a>
+                <a href="#" class="help-option">
+                    <i class="fas fa-book"></i>
+                    <h4>Documentation</h4>
+                    <p>Browse our help guides</p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal">
+            <h3>😔 We're Sorry!</h3>
+            <p>Help us improve by telling us what was missing or unclear.</p>
+            <textarea placeholder="What information were you looking for?"></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn submit" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p style="color: #888; font-size: 0.9rem;">The ultimate destination for free online games. Play anytime,
+                    anywhere!</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="games.html">All Games</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Action Games</a></li>
+                    <li><a href="#">Puzzle Games</a></li>
+                    <li><a href="#">Racing Games</a></li>
+                    <li><a href="#">Sports Games</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // ========== MOBILE MENU TOGGLE ==========
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function (e) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // ========== FAQ ACCORDION TOGGLE ==========
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const wasActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items in the same section (optional - remove if you want multiple open)
+            // const allFaqItems = faqItem.parentElement.querySelectorAll('.faq-item');
+            // allFaqItems.forEach(item => item.classList.remove('active'));
+
+            // Toggle the clicked item
+            if (wasActive) {
+                faqItem.classList.remove('active');
+            } else {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // ========== CATEGORY NAVIGATION ==========
+        let currentCategory = 'all';
+
+        function showCategory(category) {
+            currentCategory = category;
+
+            // Update active button
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.category-btn').classList.add('active');
+
+            // Get all FAQ sections
+            const faqSections = document.querySelectorAll('.faq-section');
+
+            // Show/hide sections based on category
+            if (category === 'all') {
+                faqSections.forEach(section => {
+                    section.classList.add('active');
+                });
+            } else {
+                faqSections.forEach(section => {
+                    if (section.dataset.category === category) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+            }
+
+            // Clear search when switching categories
+            document.getElementById('faqSearch').value = '';
+            document.getElementById('searchResults').classList.remove('visible');
+            document.getElementById('noResults').classList.remove('visible');
+
+            // Show all FAQ items within visible sections
+            const visibleSections = document.querySelectorAll('.faq-section.active');
+            visibleSections.forEach(section => {
+                const items = section.querySelectorAll('.faq-item');
+                items.forEach(item => {
+                    item.style.display = 'block';
+                });
+            });
+
+            // Scroll to FAQ container
+            document.querySelector('.category-nav').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ========== SEARCH FUNCTIONALITY ==========
+        function searchFAQ() {
+            const searchInput = document.getElementById('faqSearch');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const searchResults = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+            const resultCount = document.getElementById('resultCount');
+
+            // Get all FAQ items
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            const allSections = document.querySelectorAll('.faq-section');
+
+            if (searchTerm === '') {
+                // Reset to show all based on current category
+                searchResults.classList.remove('visible');
+                noResults.classList.remove('visible');
+
+                allFaqItems.forEach(item => {
+                    item.style.display = 'block';
+                    removeHighlight(item);
+                });
+
+                // Reset category visibility
+                if (currentCategory === 'all') {
+                    allSections.forEach(section => section.classList.add('active'));
+                } else {
+                    allSections.forEach(section => {
+                        section.classList.toggle('active', section.dataset.category === currentCategory);
+                    });
+                }
+                return;
+            }
+
+            // Show all sections during search
+            allSections.forEach(section => section.classList.add('active'));
+
+            let matchCount = 0;
+
+            allFaqItems.forEach(item => {
+                const questionText = item.querySelector('h3').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                const dataQuestion = item.dataset.question.toLowerCase();
+
+                const matches = questionText.includes(searchTerm) ||
+                    answerText.includes(searchTerm) ||
+                    dataQuestion.includes(searchTerm);
+
+                if (matches) {
+                    item.style.display = 'block';
+                    highlightMatch(item, searchTerm);
+                    matchCount++;
+                } else {
+                    item.style.display = 'none';
+                    removeHighlight(item);
+                }
+            });
+
+            // Update results count
+            resultCount.textContent = matchCount;
+            searchResults.classList.add('visible');
+
+            // Show/hide no results message
+            if (matchCount === 0) {
+                noResults.classList.add('visible');
+                allSections.forEach(section => section.classList.remove('active'));
+            } else {
+                noResults.classList.remove('visible');
+
+                // Hide sections with no visible items
+                allSections.forEach(section => {
+                    const visibleItems = section.querySelectorAll('.faq-item[style="display: block"]');
+                    if (visibleItems.length === 0) {
+                        section.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Highlight matching text
+        function highlightMatch(item, term) {
+            const questionH3 = item.querySelector('h3');
+            const textSpan = questionH3.childNodes[questionH3.childNodes.length - 1];
+
+            if (textSpan && textSpan.nodeType === Node.TEXT_NODE) {
+                const text = textSpan.textContent;
+                const regex = new RegExp(`(${escapeRegex(term)})`, 'gi');
+
+                if (regex.test(text)) {
+                    const highlightedText = text.replace(regex, '<mark style="background: rgba(0, 212, 255, 0.3); padding: 0 2px; border-radius: 3px;">$1</mark>');
+                    const span = document.createElement('span');
+                    span.innerHTML = highlightedText;
+                    questionH3.replaceChild(span, textSpan);
+                }
+            }
+        }
+
+        // Remove highlight
+        function removeHighlight(item) {
+            const questionH3 = item.querySelector('h3');
+            const marks = questionH3.querySelectorAll('mark');
+            marks.forEach(mark => {
+                const text = document.createTextNode(mark.textContent);
+                mark.parentNode.replaceChild(text, mark);
+            });
+
+            // Clean up any wrapper spans
+            const spans = questionH3.querySelectorAll('span:not(.q-icon)');
+            spans.forEach(span => {
+                if (span.parentNode === questionH3) {
+                    const text = document.createTextNode(span.textContent);
+                    questionH3.replaceChild(text, span);
+                }
+            });
+        }
+
+        // Escape special regex characters
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Clear search
+        function clearSearch() {
+            document.getElementById('faqSearch').value = '';
+            searchFAQ();
+
+            // Reset to "All" category
+            const allBtn = document.querySelector('.category-btn');
+            allBtn.click();
+        }
+
+        // Search on Enter key
+        document.getElementById('faqSearch').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchFAQ();
+            }
+        });
+
+        // ========== SHOW SPECIFIC QUESTION (Popular Questions) ==========
+        function showQuestion(category, questionIndex) {
+            // First, show the category
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) ||
+                    (category === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Show the section
+            const allSections = document.querySelectorAll('.faq-section');
+            allSections.forEach(section => {
+                if (category === 'all' || section.dataset.category === category) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+
+            // Find and open the specific question
+            const targetSection = document.getElementById(`faq-${category}`);
+            if (targetSection) {
+                const faqItems = targetSection.querySelectorAll('.faq-item');
+
+                // Close all items first
+                faqItems.forEach(item => item.classList.remove('active'));
+
+                // Open the target item
+                if (faqItems[questionIndex]) {
+                    faqItems[questionIndex].classList.add('active');
+
+                    // Scroll to the question
+                    setTimeout(() => {
+                        faqItems[questionIndex].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 100);
+                }
+            }
+
+            currentCategory = category;
+        }
+
+        // ========== HELPFUL FEEDBACK ==========
+        function markHelpful(button, isHelpful) {
+            const helpfulSection = button.parentElement;
+            const buttons = helpfulSection.querySelectorAll('.helpful-btn');
+
+            // Disable all buttons
+            buttons.forEach(btn => {
+                btn.classList.add('clicked');
+                btn.disabled = true;
+            });
+
+            if (isHelpful) {
+                button.classList.add('yes', 'clicked');
+                button.innerHTML = '<i class="fas fa-check"></i> Thanks!';
+
+                // Show thank you message
+                showToast('Thank you for your feedback! 😊', 'success');
+            } else {
+                // Open feedback modal
+                openFeedbackModal();
+            }
+        }
+
+        // ========== FEEDBACK MODAL ==========
+        function openFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Clear textarea
+            modal.querySelector('textarea').value = '';
+        }
+
+        function submitFeedback() {
+            const modal = document.getElementById('feedbackModal');
+            const feedback = modal.querySelector('textarea').value.trim();
+
+            if (feedback === '') {
+                showToast('Please enter your feedback before submitting.', 'warning');
+                return;
+            }
+
+            // Here you would typically send the feedback to your server
+            console.log('Feedback submitted:', feedback);
+
+            closeModal();
+            showToast('Thank you for your feedback! We\'ll use it to improve our FAQ.', 'success');
+        }
+
+        // Close modal on outside click
+        document.getElementById('feedbackModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ========== TOAST NOTIFICATIONS ==========
+        function showToast(message, type = 'info') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'warning' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                        <span>${message}</span>
+                    `;
+
+            // Add styles
+            toast.style.cssText = `
+                        position: fixed;
+                        bottom: 100px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: ${type === 'success' ? 'rgba(29, 209, 161, 0.95)' : type === 'warning' ? 'rgba(255, 193, 7, 0.95)' : 'rgba(0, 212, 255, 0.95)'};
+                        color: ${type === 'warning' ? '#000' : '#fff'};
+                        padding: 15px 30px;
+                        border-radius: 50px;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 0.95rem;
+                        font-weight: 500;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        z-index: 3000;
+                        animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+                    `;
+
+            document.body.appendChild(toast);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Add toast animation styles
+        const toastStyles = document.createElement('style');
+        toastStyles.textContent = `
+                    @keyframes toastIn {
+                        from {
+                            opacity: 0;
+                            transform: translateX(-50%) translateY(20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(-50%) translateY(0);
+                        }
+                    }
+                    @keyframes toastOut {
+                        from {
+                            opacity: 1;
+                            transform: translateX(-50%) translateY(0);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: translateX(-50%) translateY(-20px);
+                        }
+                    }
+                `;
+        document.head.appendChild(toastStyles);
+
+        // ========== SCROLL TO TOP ==========
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // ========== NAVBAR SCROLL EFFECT ==========
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.pageYOffset > 50) {
+                navbar.style.padding = '10px 50px';
+                navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+            } else {
+                navbar.style.padding = '15px 50px';
+                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+            }
+        });
+
+        // ========== KEYBOARD NAVIGATION FOR FAQ ==========
+        document.querySelectorAll('.faq-question').forEach((question, index) => {
+            question.setAttribute('tabindex', '0');
+            question.setAttribute('role', 'button');
+            question.setAttribute('aria-expanded', 'false');
+
+            question.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFaq(this);
+                    this.setAttribute('aria-expanded',
+                        this.parentElement.classList.contains('active') ? 'true' : 'false'
+                    );
+                }
+            });
+        });
+
+        // ========== ANIMATE FAQ ITEMS ON SCROLL ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initial state for animation
+        document.querySelectorAll('.faq-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s, border-color 0.3s ease, box-shadow 0.3s ease`;
+            observer.observe(item);
+        });
+
+        // ========== EXPAND/COLLAPSE ALL (Bonus Feature) ==========
+        function expandAll() {
+            document.querySelectorAll('.faq-section.active .faq-item').forEach(item => {
+                item.classList.add('active');
+            });
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        // ========== COPY LINK TO QUESTION (Bonus Feature) ==========
+        function copyQuestionLink(questionId) {
+            const url = `${window.location.origin}${window.location.pathname}#${questionId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('Link copied to clipboard!', 'success');
+            });
+        }
+
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show all FAQ sections initially (for "All" category)
+            document.querySelectorAll('.faq-section').forEach(section => {
+                section.classList.add('active');
+            });
+
+            // Check for hash in URL to open specific question
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+            }
+
+            console.log('FAQ Page initialized successfully! 🎮');
+        });
+    </script>
+
+</body>
+
+</html>

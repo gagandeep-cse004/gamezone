@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Master - GameZone</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Play Typing Master online for free. Improve your typing speed and accuracy with fun game modes!">
+    <meta name="keywords" content="typing game, typing test, wpm test, keyboard game, free games">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a1a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            animation: backgroundPulse 10s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Scanlines effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 2px);
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1001;
+            background: rgba(10, 10, 26, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00ff88;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00ff88, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #00ff88;
+            border-color: #00ff88;
+            color: #0a0a1a;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ========== GAME CONTAINER ========== */
+        .game-page {
+            padding: 100px 20px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00ff88, #ffd700, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            animation: neonFlicker 2s ease-in-out infinite;
+        }
+
+        @keyframes neonFlicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            92% {
+                opacity: 1;
+            }
+
+            93% {
+                opacity: 0.8;
+            }
+
+            94% {
+                opacity: 1;
+            }
+
+            95% {
+                opacity: 0.9;
+            }
+
+            96% {
+                opacity: 1;
+            }
+        }
+
+        .game-header p {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        /* Stats Display */
+        .stats-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            min-width: 100px;
+        }
+
+        .stat-box.wpm {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: rgba(0, 255, 136, 0.4);
+        }
+
+        .stat-box.accuracy {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .stat-box.combo {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .stat-box.time {
+            background: rgba(255, 0, 128, 0.1);
+            border-color: rgba(255, 0, 128, 0.4);
+        }
+
+        .stat-box h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-box.wpm h3 {
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .stat-box.accuracy h3 {
+            color: #00d4ff;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .stat-box.combo h3 {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .stat-box.time h3 {
+            color: #ff0080;
+            text-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+        }
+
+        .stat-box p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Game Container */
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            overflow: hidden;
+            box-shadow:
+                0 0 50px rgba(0, 255, 136, 0.1),
+                0 0 100px rgba(0, 212, 255, 0.05);
+        }
+
+        /* Typing Area */
+        .typing-area {
+            padding: 40px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Word Display */
+        .word-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            line-height: 1.4;
+        }
+
+        .word-display .char {
+            display: inline-block;
+            transition: all 0.1s ease;
+        }
+
+        .word-display .char.correct {
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .word-display .char.incorrect {
+            color: #ff4757;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+            background: rgba(255, 71, 87, 0.2);
+            border-radius: 3px;
+        }
+
+        .word-display .char.current {
+            border-bottom: 3px solid #ffd700;
+            animation: cursorBlink 0.8s ease infinite;
+        }
+
+        @keyframes cursorBlink {
+
+            0%,
+            50% {
+                border-color: #ffd700;
+            }
+
+            51%,
+            100% {
+                border-color: transparent;
+            }
+        }
+
+        .word-display .char.pending {
+            color: #666;
+        }
+
+        /* Input Field */
+        .typing-input-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .typing-input {
+            width: 100%;
+            padding: 20px 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            outline: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .typing-input:focus {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .typing-input.error {
+            border-color: #ff4757;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.3);
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .typing-input::placeholder {
+            color: #555;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Words Queue (for word mode) */
+        .words-queue {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .queue-word {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .queue-word.current {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .queue-word.completed {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            text-decoration: line-through;
+        }
+
+        /* Falling Words Mode */
+        .falling-words-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .falling-word {
+            position: absolute;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.8), rgba(0, 212, 255, 0.8));
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #fff;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .falling-word.targeted {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 107, 0, 0.9));
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .falling-word.matched {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.9), rgba(0, 200, 100, 0.9));
+        }
+
+        .danger-zone {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255, 0, 0, 0.3), transparent);
+            border-top: 2px dashed rgba(255, 0, 0, 0.5);
+        }
+
+        /* Game Overlays */
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-overlay.hidden {
+            display: none;
+        }
+
+        .overlay-content {
+            text-align: center;
+            padding: 30px;
+            animation: slideIn 0.5s ease;
+            max-width: 100%;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .overlay-content h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ff88, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .overlay-content .icon-preview {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Mode Selection */
+        .mode-selector {
+            margin: 20px 0;
+        }
+
+        .mode-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .mode-btn .icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .mode-btn small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 3px;
+        }
+
+        .mode-btn.words:hover,
+        .mode-btn.words.selected {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            border-color: #00ff88;
+        }
+
+        .mode-btn.sentences:hover,
+        .mode-btn.sentences.selected {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-color: #00d4ff;
+        }
+
+        .mode-btn.timed:hover,
+        .mode-btn.timed.selected {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border-color: #ffd700;
+            color: #000;
+        }
+
+        .mode-btn.falling:hover,
+        .mode-btn.falling.selected {
+            background: linear-gradient(135deg, #ff0080, #8a2be2);
+            border-color: #ff0080;
+        }
+
+        /* Difficulty / Time Selection */
+        .option-selector {
+            margin: 20px 0;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .option-btn:hover,
+        .option-btn.selected {
+            background: #00ff88;
+            border-color: #00ff88;
+            color: #0a0a1a;
+        }
+
+        /* Category Selection */
+        .category-selector {
+            margin: 15px 0;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.selected {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        /* Game Buttons */
+        .game-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: #0a0a1a;
+        }
+
+        .btn-play:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Results Display */
+        .results-container {
+            margin: 20px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            min-width: 300px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .result-item .value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .result-item.wpm .value {
+            color: #00ff88;
+        }
+
+        .result-item.accuracy .value {
+            color: #00d4ff;
+        }
+
+        .result-item.words .value {
+            color: #ffd700;
+        }
+
+        .result-item.chars .value {
+            color: #ff0080;
+        }
+
+        .result-item.time .value {
+            color: #8a2be2;
+        }
+
+        .result-item.score .value {
+            color: #ff6b00;
+        }
+
+        .result-item .label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .new-record {
+            color: #00ff88 !important;
+            animation: pulse 0.5s ease infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Performance Rating */
+        .performance-rating {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .performance-rating.excellent {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+        }
+
+        .performance-rating.good {
+            background: rgba(0, 212, 255, 0.2);
+            border: 2px solid #00d4ff;
+        }
+
+        .performance-rating.average {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .performance-rating.needspractice {
+            background: rgba(255, 107, 0, 0.2);
+            border: 2px solid #ff6b00;
+        }
+
+        .performance-rating h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .performance-rating p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Game Controls */
+        .game-controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .control-btn:hover {
+            background: #00ff88;
+            border-color: #00ff88;
+            color: #0a0a1a;
+        }
+
+        /* Combo Popup */
+        .combo-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 200;
+            opacity: 0;
+            text-align: center;
+        }
+
+        .combo-popup.show {
+            animation: comboPop 0.8s ease forwards;
+        }
+
+        @keyframes comboPop {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1) translateY(-50px);
+            }
+        }
+
+        /* Keyboard Heatmap */
+        .keyboard-display {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .keyboard-row {
+            display: flex;
+            gap: 5px;
+        }
+
+        .keyboard-key {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #888;
+            transition: all 0.1s ease;
+        }
+
+        .keyboard-key.pressed {
+            background: #00ff88;
+            border-color: #00ff88;
+            color: #0a0a1a;
+            transform: scale(0.95);
+        }
+
+        .keyboard-key.error {
+            background: #ff4757;
+            border-color: #ff4757;
+            color: #fff;
+        }
+
+        .keyboard-key.space {
+            width: 200px;
+        }
+
+        /* Instructions */
+        .game-instructions {
+            margin-top: 30px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px 35px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .game-instructions h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ff88, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .instruction-item {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .instruction-item i {
+            font-size: 1.5rem;
+            color: #00ff88;
+            width: 30px;
+        }
+
+        .instruction-item span {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Game Modes Info */
+        .modes-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .modes-info h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .mode-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .mode-info-item {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .mode-info-item h5 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mode-info-item p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Tips */
+        .tips-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .tips-section h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        .tips-section li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-section li i {
+            color: #00ff88;
+        }
+
+        /* Footer */
+        .game-footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .game-footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .game-footer a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+
+        /* Sound toggle */
+        .sound-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sound-toggle:hover {
+            background: #00ff88;
+            color: #0a0a1a;
+        }
+
+        /* Lives Display */
+        .lives-display {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .game-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .word-display {
+                font-size: 1.8rem;
+            }
+
+            .typing-input {
+                font-size: 1.2rem;
+                padding: 15px 20px;
+            }
+
+            .stats-display {
+                gap: 10px;
+            }
+
+            .stat-box {
+                padding: 10px 15px;
+                min-width: 80px;
+            }
+
+            .stat-box h3 {
+                font-size: 1rem;
+            }
+
+            .mode-btn {
+                min-width: 120px;
+                padding: 12px 15px;
+            }
+
+            .keyboard-display {
+                display: none;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .word-display {
+                font-size: 1.4rem;
+            }
+
+            .typing-area {
+                padding: 20px;
+            }
+
+            .overlay-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .mode-btn {
+                min-width: 100px;
+            }
+
+            .falling-words-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>GameZone</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html">Games</a></li>
+            <li><a href="../categories.html">Categories</a></li>
+            <li><a href="../leaderboard.html">Leaderboard</a></li>
+        </ul>
+
+        <a href="../games.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            All Games
+        </a>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- ========== GAME PAGE ========== -->
+    <main class="game-page">
+
+        <div class="game-header">
+            <h1>⌨️ TYPING MASTER</h1>
+            <p>Test your typing speed and accuracy with fun challenges!</p>
+        </div>
+
+        <!-- Stats Display -->
+        <div class="stats-display">
+            <div class="stat-box wpm">
+                <h3 id="wpmDisplay">0</h3>
+                <p>WPM</p>
+            </div>
+            <div class="stat-box accuracy">
+                <h3 id="accuracyDisplay">100%</h3>
+                <p>Accuracy</p>
+            </div>
+            <div class="stat-box combo">
+                <h3 id="comboDisplay">0</h3>
+                <p>Combo</p>
+            </div>
+            <div class="stat-box time">
+                <h3 id="timeDisplay">0:00</h3>
+                <p id="timeLabel">Time</p>
+            </div>
+        </div>
+
+        <!-- Combo Popup -->
+        <div class="combo-popup" id="comboPopup">🔥 COMBO!</div>
+
+        <!-- Game Container -->
+        <div class="game-container">
+
+            <!-- Typing Area -->
+            <div class="typing-area" id="typingArea">
+                <!-- Words Queue (for word mode) -->
+                <div class="words-queue" id="wordsQueue"></div>
+
+                <!-- Falling Words Container -->
+                <div class="falling-words-container" id="fallingContainer" style="display: none;">
+                    <div class="danger-zone"></div>
+                    <div class="lives-display" id="livesDisplay">❤️❤️❤️</div>
+                </div>
+
+                <!-- Word Display -->
+                <div class="word-display" id="wordDisplay">
+                    Click Start to begin...
+                </div>
+
+                <!-- Input -->
+                <div class="typing-input-wrapper">
+                    <input type="text" class="typing-input" id="typingInput" placeholder="Type here..."
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <!-- Start Overlay -->
+            <div class="game-overlay" id="startOverlay">
+                <div class="overlay-content">
+                    <h2>⌨️ TYPING MASTER</h2>
+                    <div class="icon-preview">🚀</div>
+
+                    <div class="mode-selector">
+                        <h3 style="font-size: 1rem; color: #888; margin-bottom: 15px;">Select Mode</h3>
+                        <div class="mode-buttons">
+                            <button class="mode-btn words selected" onclick="setMode('words')">
+                                <span class="icon">📝</span>
+                                Words
+                                <small>Type random words</small>
+                            </button>
+                            <button class="mode-btn sentences" onclick="setMode('sentences')">
+                                <span class="icon">📖</span>
+                                Sentences
+                                <small>Type full quotes</small>
+                            </button>
+                            <button class="mode-btn timed" onclick="setMode('timed')">
+                                <span class="icon">⏱️</span>
+                                Time Attack
+                                <small>Race against time</small>
+                            </button>
+                            <button class="mode-btn falling" onclick="setMode('falling')">
+                                <span class="icon">🌧️</span>
+                                Falling Words
+                                <small>Survival mode</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="option-selector" id="timeSelector" style="display: none;">
+                        <h3 style="font-size: 1rem; color: #888; margin-bottom: 10px;">Time Limit</h3>
+                        <div class="option-buttons">
+                            <button class="option-btn" onclick="setTimeLimit(15)">15s</button>
+                            <button class="option-btn" onclick="setTimeLimit(30)">30s</button>
+                            <button class="option-btn selected" onclick="setTimeLimit(60)">60s</button>
+                            <button class="option-btn" onclick="setTimeLimit(120)">120s</button>
+                        </div>
+                    </div>
+
+                    <div class="option-selector" id="wordCountSelector">
+                        <h3 style="font-size: 1rem; color: #888; margin-bottom: 10px;">Word Count</h3>
+                        <div class="option-buttons">
+                            <button class="option-btn" onclick="setWordCount(10)">10</button>
+                            <button class="option-btn selected" onclick="setWordCount(25)">25</button>
+                            <button class="option-btn" onclick="setWordCount(50)">50</button>
+                            <button class="option-btn" onclick="setWordCount(100)">100</button>
+                        </div>
+                    </div>
+
+                    <div class="category-selector" id="categorySelector">
+                        <h3 style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Word Category</h3>
+                        <div class="category-buttons">
+                            <button class="category-btn selected" onclick="setCategory('common')">Common</button>
+                            <button class="category-btn" onclick="setCategory('programming')">Programming</button>
+                            <button class="category-btn" onclick="setCategory('animals')">Animals</button>
+                            <button class="category-btn" onclick="setCategory('countries')">Countries</button>
+                            <button class="category-btn" onclick="setCategory('mixed')">Mixed</button>
+                        </div>
+                    </div>
+
+                    <button class="game-btn btn-play" onclick="startGame()">
+                        <i class="fas fa-play"></i> Start Typing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pause Overlay -->
+            <div class="game-overlay hidden" id="pauseOverlay">
+                <div class="overlay-content">
+                    <h2>⏸️ PAUSED</h2>
+                    <p style="color: #888; margin: 20px 0;">Press ESC to continue</p>
+                    <button class="game-btn btn-play" onclick="resumeGame()">
+                        <i class="fas fa-play"></i> Resume
+                    </button>
+                    <button class="game-btn btn-secondary" onclick="restartGame()">
+                        <i class="fas fa-redo"></i> Restart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Over / Results Overlay -->
+            <div class="game-overlay hidden" id="resultsOverlay">
+                <div class="overlay-content">
+                    <h2>🎉 RESULTS</h2>
+
+                    <div class="results-container">
+                        <div class="results-grid">
+                            <div class="result-item wpm">
+                                <div class="value" id="resultWpm">0</div>
+                                <div class="label">Words Per Minute</div>
+                            </div>
+                            <div class="result-item accuracy">
+                                <div class="value" id="resultAccuracy">0%</div>
+                                <div class="label">Accuracy</div>
+                            </div>
+                            <div class="result-item words">
+                                <div class="value" id="resultWords">0</div>
+                                <div class="label">Words Typed</div>
+                            </div>
+                            <div class="result-item chars">
+                                <div class="value" id="resultChars">0</div>
+                                <div class="label">Characters</div>
+                            </div>
+                            <div class="result-item time">
+                                <div class="value" id="resultTime">0:00</div>
+                                <div class="label">Time</div>
+                            </div>
+                            <div class="result-item score">
+                                <div class="value" id="resultScore">0</div>
+                                <div class="label">Score</div>
+                            </div>
+                        </div>
+
+                        <div class="performance-rating" id="performanceRating">
+                            <h3>🌟 Excellent!</h3>
+                            <p>You're a typing master!</p>
+                        </div>
+                    </div>
+
+                    <p style="color: #888; margin: 10px 0;">
+                        Best WPM: <span id="bestWpmDisplay" style="color: #00ff88;">0</span>
+                    </p>
+
+                    <button class="game-btn btn-play" onclick="restartGame()">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                    <button class="game-btn btn-secondary" onclick="showMenu()">
+                        <i class="fas fa-cog"></i> Change Mode
+                    </button>
+                </div>
+            </div>
+
+            <!-- Countdown Overlay -->
+            <div class="game-overlay hidden" id="countdownOverlay">
+                <div class="overlay-content">
+                    <h2 id="countdownText" style="font-size: 5rem;">3</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Controls -->
+        <div class="game-controls">
+            <button class="control-btn" onclick="togglePause()" title="Pause (ESC)">
+                <i class="fas fa-pause" id="pauseIcon"></i>
+            </button>
+            <button class="control-btn" onclick="restartGame()" title="Restart">
+                <i class="fas fa-redo"></i>
+            </button>
+            <button class="control-btn" onclick="showMenu()" title="Menu">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button class="control-btn" onclick="toggleSound()" title="Sound">
+                <i class="fas fa-volume-up" id="soundIcon"></i>
+            </button>
+        </div>
+
+        <!-- Virtual Keyboard Display -->
+        <div class="keyboard-display" id="keyboardDisplay">
+            <div class="keyboard-row">
+                <div class="keyboard-key" data-key="q">Q</div>
+                <div class="keyboard-key" data-key="w">W</div>
+                <div class="keyboard-key" data-key="e">E</div>
+                <div class="keyboard-key" data-key="r">R</div>
+                <div class="keyboard-key" data-key="t">T</div>
+                <div class="keyboard-key" data-key="y">Y</div>
+                <div class="keyboard-key" data-key="u">U</div>
+                <div class="keyboard-key" data-key="i">I</div>
+                <div class="keyboard-key" data-key="o">O</div>
+                <div class="keyboard-key" data-key="p">P</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="keyboard-key" data-key="a">A</div>
+                <div class="keyboard-key" data-key="s">S</div>
+                <div class="keyboard-key" data-key="d">D</div>
+                <div class="keyboard-key" data-key="f">F</div>
+                <div class="keyboard-key" data-key="g">G</div>
+                <div class="keyboard-key" data-key="h">H</div>
+                <div class="keyboard-key" data-key="j">J</div>
+                <div class="keyboard-key" data-key="k">K</div>
+                <div class="keyboard-key" data-key="l">L</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="keyboard-key" data-key="z">Z</div>
+                <div class="keyboard-key" data-key="x">X</div>
+                <div class="keyboard-key" data-key="c">C</div>
+                <div class="keyboard-key" data-key="v">V</div>
+                <div class="keyboard-key" data-key="b">B</div>
+                <div class="keyboard-key" data-key="n">N</div>
+                <div class="keyboard-key" data-key="m">M</div>
+            </div>
+            <div class="keyboard-row">
+                <div class="keyboard-key space" data-key=" ">SPACE</div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="game-instructions">
+            <h3><i class="fas fa-keyboard"></i> How to Play</h3>
+
+            <div class="instructions-grid">
+                <div class="instruction-item">
+                    <i class="fas fa-keyboard"></i>
+                    <span>Type the displayed words or sentences accurately</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Your WPM (Words Per Minute) is calculated in real-time</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Accuracy matters! Mistakes lower your score</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-fire"></i>
+                    <span>Build combos by typing words correctly in a row</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-pause"></i>
+                    <span>Press <strong>ESC</strong> to pause the game</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Beat your high score and become a typing master!</span>
+                </div>
+            </div>
+
+            <div class="modes-info">
+                <h4>🎮 Game Modes</h4>
+                <div class="mode-info-grid">
+                    <div class="mode-info-item">
+                        <h5>📝 Words Mode</h5>
+                        <p>Type a set number of random words. Perfect for practice!</p>
+                    </div>
+                    <div class="mode-info-item">
+                        <h5>📖 Sentences Mode</h5>
+                        <p>Type famous quotes and sentences for a challenge.</p>
+                    </div>
+                    <div class="mode-info-item">
+                        <h5>⏱️ Time Attack</h5>
+                        <p>Type as many words as possible before time runs out!</p>
+                    </div>
+                    <div class="mode-info-item">
+                        <h5>🌧️ Falling Words</h5>
+                        <p>Words fall from the sky - type them before they reach the bottom!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>💡 Pro Tips</h4>
+                <ul>
+                    <li><i class="fas fa-lightbulb"></i> Keep your fingers on the home row (ASDF JKL;)</li>
+                    <li><i class="fas fa-lightbulb"></i> Don't look at the keyboard - trust your muscle memory</li>
+                    <li><i class="fas fa-lightbulb"></i> Focus on accuracy first, speed will come naturally</li>
+                    <li><i class="fas fa-lightbulb"></i> Take breaks to avoid fatigue</li>
+                    <li><i class="fas fa-lightbulb"></i> Practice regularly for best improvement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="game-footer">
+            <p>© 2025 <a href="../index.html">GameZone</a>. All Rights Reserved.</p>
+        </div>
+
+    </main>
+
+    <!-- Sound Toggle Button -->
+    <button class="sound-toggle" onclick="toggleSound()" title="Toggle Sound">
+        <i class="fas fa-volume-up" id="soundToggleIcon"></i>
+    </button>
+
+    <script>
+        // ==================== WORD DATABASES ====================
+        const wordLists = {
+            common: [
+                'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I',
+                'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
+                'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
+                'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what',
+                'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me',
+                'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take',
+                'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other',
+                'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over', 'think', 'also',
+                'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 'way',
+                'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us',
+                'great', 'world', 'life', 'hand', 'part', 'child', 'place', 'case', 'week', 'company',
+                'system', 'program', 'question', 'government', 'number', 'night', 'point', 'home', 'water', 'room',
+                'mother', 'area', 'money', 'story', 'fact', 'month', 'lot', 'right', 'study', 'book'
+            ],
+            programming: [
+                'function', 'variable', 'const', 'let', 'var', 'return', 'if', 'else', 'for', 'while',
+                'class', 'object', 'array', 'string', 'number', 'boolean', 'null', 'undefined', 'true', 'false',
+                'import', 'export', 'default', 'async', 'await', 'promise', 'callback', 'event', 'listener', 'handler',
+                'component', 'props', 'state', 'render', 'effect', 'hook', 'context', 'provider', 'consumer', 'reducer',
+                'algorithm', 'data', 'structure', 'loop', 'condition', 'operator', 'expression', 'statement', 'block', 'scope',
+                'closure', 'prototype', 'inheritance', 'polymorphism', 'encapsulation', 'abstraction', 'interface', 'module', 'package', 'library',
+                'framework', 'runtime', 'compiler', 'interpreter', 'debug', 'error', 'exception', 'stack', 'heap', 'memory',
+                'thread', 'process', 'server', 'client', 'request', 'response', 'api', 'endpoint', 'database', 'query'
+            ],
+            animals: [
+                'dog', 'cat', 'elephant', 'lion', 'tiger', 'bear', 'wolf', 'fox', 'rabbit', 'deer',
+                'horse', 'cow', 'pig', 'sheep', 'goat', 'chicken', 'duck', 'goose', 'turkey', 'eagle',
+                'hawk', 'owl', 'penguin', 'dolphin', 'whale', 'shark', 'octopus', 'jellyfish', 'crab', 'lobster',
+                'butterfly', 'bee', 'ant', 'spider', 'snake', 'lizard', 'turtle', 'frog', 'crocodile', 'alligator',
+                'monkey', 'gorilla', 'chimpanzee', 'orangutan', 'panda', 'koala', 'kangaroo', 'zebra', 'giraffe', 'hippo',
+                'rhino', 'camel', 'llama', 'sloth', 'otter', 'beaver', 'squirrel', 'raccoon', 'skunk', 'hedgehog'
+            ],
+            countries: [
+                'usa', 'canada', 'mexico', 'brazil', 'argentina', 'chile', 'peru', 'colombia', 'venezuela', 'ecuador',
+                'uk', 'france', 'germany', 'italy', 'spain', 'portugal', 'netherlands', 'belgium', 'switzerland', 'austria',
+                'poland', 'ukraine', 'russia', 'sweden', 'norway', 'finland', 'denmark', 'ireland', 'scotland', 'greece',
+                'turkey', 'egypt', 'morocco', 'nigeria', 'kenya', 'ethiopia', 'tanzania', 'uganda', 'ghana', 'senegal',
+                'china', 'japan', 'korea', 'india', 'pakistan', 'bangladesh', 'thailand', 'vietnam', 'indonesia', 'philippines',
+                'australia', 'zealand', 'fiji', 'samoa', 'tonga', 'hawaii', 'alaska', 'greenland', 'iceland', 'cuba'
+            ],
+            mixed: []
+        };
+
+        // Populate mixed category
+        wordLists.mixed = [
+            ...wordLists.common.slice(0, 30),
+            ...wordLists.programming.slice(0, 20),
+            ...wordLists.animals.slice(0, 20),
+            ...wordLists.countries.slice(0, 20)
+        ];
+
+        const sentences = [
+            "The quick brown fox jumps over the lazy dog.",
+            "Pack my box with five dozen liquor jugs.",
+            "How vexingly quick daft zebras jump!",
+            "The five boxing wizards jump quickly.",
+            "Sphinx of black quartz, judge my vow.",
+            "Two driven jocks help fax my big quiz.",
+            "The early bird catches the worm.",
+            "Actions speak louder than words.",
+            "Practice makes perfect.",
+            "All that glitters is not gold.",
+            "A journey of a thousand miles begins with a single step.",
+            "To be or not to be, that is the question.",
+            "In the middle of difficulty lies opportunity.",
+            "The only way to do great work is to love what you do.",
+            "Life is what happens when you're busy making other plans.",
+            "Stay hungry, stay foolish.",
+            "Innovation distinguishes between a leader and a follower.",
+            "Your time is limited, don't waste it living someone else's life.",
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "It does not matter how slowly you go as long as you do not stop.",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            "The only thing we have to fear is fear itself.",
+            "Be the change you wish to see in the world.",
+            "In three words I can sum up everything I've learned about life: it goes on.",
+            "Twenty years from now you will be more disappointed by the things you didn't do.",
+            "Programming is the art of telling a computer what to do.",
+            "Code is like humor. When you have to explain it, it's bad.",
+            "First, solve the problem. Then, write the code.",
+            "Experience is the name everyone gives to their mistakes.",
+            "The best error message is the one that never shows up."
+        ];
+
+        // ==================== GAME VARIABLES ====================
+        let gameRunning = false;
+        let gamePaused = false;
+        let soundEnabled = true;
+        let audioContext = null;
+
+        // Game settings
+        let gameMode = 'words'; // 'words', 'sentences', 'timed', 'falling'
+        let wordCount = 25;
+        let timeLimit = 60;
+        let wordCategory = 'common';
+
+        // Game state
+        let currentWords = [];
+        let currentWordIndex = 0;
+        let currentCharIndex = 0;
+        let typedChars = 0;
+        let correctChars = 0;
+        let incorrectChars = 0;
+        let wordsCompleted = 0;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let combo = 0;
+        let maxCombo = 0;
+        let score = 0;
+        let lives = 3;
+
+        // Falling mode
+        let fallingWords = [];
+        let fallingSpawnTimer = 0;
+        let fallingAnimationId = null;
+
+        // Stats
+        let bestWpm = parseInt(localStorage.getItem('typingBestWpm')) || 0;
+
+        // Timers
+        let gameTimer = null;
+        let updateInterval = null;
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            // Event listeners
+            document.getElementById('typingInput').addEventListener('input', handleInput);
+            document.addEventListener('keydown', handleKeyDown);
+            document.addEventListener('keyup', handleKeyUp);
+
+            // Initialize audio on first interaction
+            document.addEventListener('click', initAudio, { once: true });
+            document.addEventListener('keydown', initAudio, { once: true });
+
+            // Load best WPM
+            document.getElementById('bestWpmDisplay').textContent = bestWpm;
+
+            // Initial display update
+            updateDisplay();
+        }
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // ==================== SETTINGS ====================
+        function setMode(mode) {
+            gameMode = mode;
+
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.querySelector(`.mode-btn.${mode}`).classList.add('selected');
+
+            // Show/hide relevant options
+            document.getElementById('timeSelector').style.display =
+                (mode === 'timed' || mode === 'falling') ? 'block' : 'none';
+            document.getElementById('wordCountSelector').style.display =
+                (mode === 'words') ? 'block' : 'none';
+            document.getElementById('categorySelector').style.display =
+                (mode !== 'sentences') ? 'block' : 'none';
+        }
+
+        function setTimeLimit(time) {
+            timeLimit = time;
+            document.querySelectorAll('#timeSelector .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        function setWordCount(count) {
+            wordCount = count;
+            document.querySelectorAll('#wordCountSelector .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        function setCategory(cat) {
+            wordCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        // ==================== GAME CONTROLS ====================
+        function startGame() {
+            document.getElementById('startOverlay').classList.add('hidden');
+            resetGame();
+            showCountdown();
+        }
+
+        function showCountdown() {
+            const countdownOverlay = document.getElementById('countdownOverlay');
+            const countdownText = document.getElementById('countdownText');
+            countdownOverlay.classList.remove('hidden');
+
+            let count = 3;
+            countdownText.textContent = count;
+            playSound('countdown');
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownText.textContent = count;
+                    playSound('countdown');
+                } else if (count === 0) {
+                    countdownText.textContent = 'GO!';
+                    playSound('start');
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownOverlay.classList.add('hidden');
+                    beginGame();
+                }
+            }, 800);
+        }
+
+        function resetGame() {
+            // Reset stats
+            typedChars = 0;
+            correctChars = 0;
+            incorrectChars = 0;
+            wordsCompleted = 0;
+            currentWordIndex = 0;
+            currentCharIndex = 0;
+            combo = 0;
+            maxCombo = 0;
+            score = 0;
+            elapsedTime = 0;
+            lives = 3;
+            fallingWords = [];
+
+            // Generate words based on mode
+            if (gameMode === 'sentences') {
+                currentWords = getRandomSentences(3);
+            } else if (gameMode === 'words' || gameMode === 'timed') {
+                currentWords = getRandomWords(gameMode === 'timed' ? 100 : wordCount);
+            } else if (gameMode === 'falling') {
+                currentWords = [];
+            }
+
+            // Setup UI based on mode
+            setupModeUI();
+
+            // Reset input
+            const input = document.getElementById('typingInput');
+            input.value = '';
+            input.disabled = true;
+            input.classList.remove('error');
+
+            // Update display
+            updateDisplay();
+            updateWordDisplay();
+        }
+
+        function setupModeUI() {
+            const wordsQueue = document.getElementById('wordsQueue');
+            const fallingContainer = document.getElementById('fallingContainer');
+            const progressContainer = document.getElementById('progressContainer');
+            const wordDisplay = document.getElementById('wordDisplay');
+
+            if (gameMode === 'falling') {
+                wordsQueue.style.display = 'none';
+                fallingContainer.style.display = 'block';
+                progressContainer.style.display = 'none';
+                wordDisplay.style.display = 'none';
+                document.getElementById('livesDisplay').textContent = '❤️'.repeat(lives);
+                document.getElementById('timeLabel').textContent = 'Time';
+            } else {
+                wordsQueue.style.display = gameMode === 'words' ? 'flex' : 'none';
+                fallingContainer.style.display = 'none';
+                progressContainer.style.display = gameMode === 'words' || gameMode === 'sentences' ? 'block' : 'none';
+                wordDisplay.style.display = 'block';
+                document.getElementById('timeLabel').textContent = gameMode === 'timed' ? 'Time Left' : 'Time';
+            }
+        }
+
+        function beginGame() {
+            gameRunning = true;
+            gamePaused = false;
+            startTime = Date.now();
+
+            const input = document.getElementById('typingInput');
+            input.disabled = false;
+            input.focus();
+
+            // Start update interval
+            updateInterval = setInterval(updateStats, 100);
+
+            // Start game timer for timed mode
+            if (gameMode === 'timed' || gameMode === 'falling') {
+                elapsedTime = timeLimit;
+                gameTimer = setInterval(() => {
+                    elapsedTime--;
+                    updateTimeDisplay();
+                    if (elapsedTime <= 0) {
+                        endGame();
+                    }
+                }, 1000);
+            }
+
+            // Start falling words animation
+            if (gameMode === 'falling') {
+                startFallingWords();
+            }
+
+            playSound('start');
+        }
+
+        function togglePause() {
+            if (!gameRunning) return;
+
+            gamePaused = !gamePaused;
+
+            if (gamePaused) {
+                document.getElementById('pauseOverlay').classList.remove('hidden');
+                document.getElementById('pauseIcon').className = 'fas fa-play';
+                clearInterval(updateInterval);
+                if (gameTimer) clearInterval(gameTimer);
+                if (fallingAnimationId) cancelAnimationFrame(fallingAnimationId);
+            } else {
+                resumeGame();
+            }
+        }
+
+        function resumeGame() {
+            gamePaused = false;
+            document.getElementById('pauseOverlay').classList.add('hidden');
+            document.getElementById('pauseIcon').className = 'fas fa-pause';
+
+            const input = document.getElementById('typingInput');
+            input.focus();
+
+            updateInterval = setInterval(updateStats, 100);
+
+            if (gameMode === 'timed' || gameMode === 'falling') {
+                gameTimer = setInterval(() => {
+                    elapsedTime--;
+                    updateTimeDisplay();
+                    if (elapsedTime <= 0) {
+                        endGame();
+                    }
+                }, 1000);
+            }
+
+            if (gameMode === 'falling') {
+                startFallingWords();
+            }
+        }
+
+        function restartGame() {
+            hideAllOverlays();
+            clearInterval(updateInterval);
+            if (gameTimer) clearInterval(gameTimer);
+            if (fallingAnimationId) cancelAnimationFrame(fallingAnimationId);
+            gameRunning = false;
+            resetGame();
+            showCountdown();
+        }
+
+        function showMenu() {
+            hideAllOverlays();
+            clearInterval(updateInterval);
+            if (gameTimer) clearInterval(gameTimer);
+            if (fallingAnimationId) cancelAnimationFrame(fallingAnimationId);
+            gameRunning = false;
+            document.getElementById('startOverlay').classList.remove('hidden');
+            document.getElementById('wordDisplay').textContent = 'Click Start to begin...';
+            document.getElementById('typingInput').disabled = true;
+        }
+
+        function endGame() {
+            gameRunning = false;
+            clearInterval(updateInterval);
+            if (gameTimer) clearInterval(gameTimer);
+            if (fallingAnimationId) cancelAnimationFrame(fallingAnimationId);
+
+            // Calculate final stats
+            const finalTime = gameMode === 'timed' || gameMode === 'falling'
+                ? timeLimit
+                : (Date.now() - startTime) / 1000;
+
+            const wpm = calculateWPM();
+            const accuracy = calculateAccuracy();
+
+            // Update best WPM
+            if (wpm > bestWpm) {
+                bestWpm = wpm;
+                localStorage.setItem('typingBestWpm', bestWpm);
+            }
+
+            // Calculate score
+            score = Math.floor(wpm * accuracy * (1 + maxCombo * 0.1));
+
+            // Show results
+            showResults(wpm, accuracy, finalTime);
+        }
+
+        function showResults(wpm, accuracy, time) {
+            document.getElementById('resultWpm').textContent = Math.round(wpm);
+            document.getElementById('resultAccuracy').textContent = Math.round(accuracy) + '%';
+            document.getElementById('resultWords').textContent = wordsCompleted;
+            document.getElementById('resultChars').textContent = correctChars;
+            document.getElementById('resultTime').textContent = formatTime(time);
+            document.getElementById('resultScore').textContent = score.toLocaleString();
+            document.getElementById('bestWpmDisplay').textContent = bestWpm;
+
+            // Performance rating
+            const rating = document.getElementById('performanceRating');
+            rating.className = 'performance-rating';
+
+            if (wpm >= 80 && accuracy >= 95) {
+                rating.classList.add('excellent');
+                rating.innerHTML = '<h3>🏆 Excellent!</h3><p>You\'re a typing master!</p>';
+            } else if (wpm >= 60 && accuracy >= 90) {
+                rating.classList.add('good');
+                rating.innerHTML = '<h3>⭐ Great Job!</h3><p>Very impressive typing skills!</p>';
+            } else if (wpm >= 40 && accuracy >= 80) {
+                rating.classList.add('average');
+                rating.innerHTML = '<h3>👍 Good!</h3><p>Keep practicing to improve!</p>';
+            } else {
+                rating.classList.add('needspractice');
+                rating.innerHTML = '<h3>💪 Keep Going!</h3><p>Practice makes perfect!</p>';
+            }
+
+            // Check for new record
+            if (wpm >= bestWpm && wpm > 0) {
+                document.getElementById('resultWpm').classList.add('new-record');
+            } else {
+                document.getElementById('resultWpm').classList.remove('new-record');
+            }
+
+            document.getElementById('resultsOverlay').classList.remove('hidden');
+            playSound('complete');
+        }
+
+        // ==================== WORD GENERATION ====================
+        function getRandomWords(count) {
+            const words = wordLists[wordCategory];
+            const result = [];
+            for (let i = 0; i < count; i++) {
+                result.push(words[Math.floor(Math.random() * words.length)]);
+            }
+            return result;
+        }
+
+        function getRandomSentences(count) {
+            const shuffled = [...sentences].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, count);
+        }
+
+        // ==================== INPUT HANDLING ====================
+        function handleInput(e) {
+            if (!gameRunning || gamePaused) return;
+
+            if (gameMode === 'falling') {
+                handleFallingInput(e);
+                return;
+            }
+
+            const input = e.target;
+            const typed = input.value;
+
+            if (gameMode === 'sentences') {
+                handleSentenceInput(typed);
+            } else {
+                handleWordInput(typed);
+            }
+        }
+
+        function handleWordInput(typed) {
+            const currentWord = currentWords[currentWordIndex];
+            const input = document.getElementById('typingInput');
+
+            // Check if word is complete
+            if (typed.endsWith(' ') || typed.endsWith('\n')) {
+                const typedWord = typed.trim();
+
+                if (typedWord === currentWord) {
+                    // Correct word
+                    wordComplete(true);
+                    input.value = '';
+                    playSound('correct');
+                } else {
+                    // Incorrect word - still move on but count as error
+                    incorrectChars += Math.abs(currentWord.length - typedWord.length) +
+                        countDifferences(currentWord, typedWord);
+                    wordComplete(false);
+                    input.value = '';
+                    playSound('error');
+                }
+            } else {
+                // Update character tracking
+                updateCharTracking(typed, currentWord);
+            }
+
+            updateWordDisplay();
+            updateWordsQueue();
+        }
+
+        function handleSentenceInput(typed) {
+            const currentSentence = currentWords[currentWordIndex];
+
+            // Track characters
+            currentCharIndex = typed.length;
+
+            let correct = 0;
+            let incorrect = 0;
+
+            for (let i = 0; i < typed.length; i++) {
+                if (i < currentSentence.length) {
+                    if (typed[i] === currentSentence[i]) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                }
+            }
+
+            correctChars = correct;
+            incorrectChars = incorrect;
+            typedChars = typed.length;
+
+            // Check if sentence is complete
+            if (typed === currentSentence) {
+                wordComplete(true);
+                document.getElementById('typingInput').value = '';
+                wordsCompleted += currentSentence.split(' ').length;
+                playSound('correct');
+            }
+
+            // Update display
+            updateWordDisplay();
+            updateProgress();
+        }
+
+        function handleFallingInput(e) {
+            const input = e.target;
+            const typed = input.value.trim().toLowerCase();
+
+            if (!typed) return;
+
+            // Find matching falling word
+            const matchIndex = fallingWords.findIndex(w =>
+                w.word.toLowerCase().startsWith(typed)
+            );
+
+            // Update targeted word
+            fallingWords.forEach((w, i) => {
+                w.targeted = i === matchIndex;
+                w.matched = i === matchIndex && w.word.toLowerCase() === typed;
+            });
+
+            // Check for complete match
+            if (matchIndex !== -1 && fallingWords[matchIndex].word.toLowerCase() === typed) {
+                const word = fallingWords[matchIndex];
+
+                // Remove word
+                const element = document.querySelector(`[data-word-id="${word.id}"]`);
+                if (element) {
+                    element.style.transform = 'scale(1.5)';
+                    element.style.opacity = '0';
+                    setTimeout(() => element.remove(), 200);
+                }
+
+                fallingWords.splice(matchIndex, 1);
+
+                // Score
+                combo++;
+                if (combo > maxCombo) maxCombo = combo;
+                wordsCompleted++;
+                correctChars += typed.length;
+                score += typed.length * 10 * combo;
+
+                input.value = '';
+                playSound('correct');
+
+                if (combo > 0 && combo % 5 === 0) {
+                    showComboPopup(combo);
+                }
+            }
+
+            updateFallingDisplay();
+        }
+
+        function updateCharTracking(typed, target) {
+            let correct = 0;
+            let incorrect = 0;
+
+            for (let i = 0; i < typed.length; i++) {
+                if (i < target.length) {
+                    if (typed[i] === target[i]) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                }
+            }
+
+            // Only update if this is new typing
+            if (typed.length > currentCharIndex) {
+                const newChars = typed.length - currentCharIndex;
+                typedChars += newChars;
+            }
+
+            currentCharIndex = typed.length;
+        }
+
+        function countDifferences(str1, str2) {
+            let diff = 0;
+            const maxLen = Math.max(str1.length, str2.length);
+            for (let i = 0; i < maxLen; i++) {
+                if (str1[i] !== str2[i]) diff++;
+            }
+            return diff;
+        }
+
+        function wordComplete(isCorrect) {
+            if (isCorrect) {
+                combo++;
+                if (combo > maxCombo) maxCombo = combo;
+                correctChars += currentWords[currentWordIndex].length;
+                wordsCompleted++;
+                score += currentWords[currentWordIndex].length * 10 * (1 + combo * 0.1);
+
+                if (combo > 0 && combo % 5 === 0) {
+                    showComboPopup(combo);
+                }
+            } else {
+                combo = 0;
+            }
+
+            currentWordIndex++;
+            currentCharIndex = 0;
+
+            // Check for game end
+            if (gameMode === 'words' || gameMode === 'sentences') {
+                if (currentWordIndex >= currentWords.length) {
+                    endGame();
+                }
+            }
+
+            updateProgress();
+        }
+
+        function handleKeyDown(e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                togglePause();
+                return;
+            }
+
+            // Highlight keyboard key
+            const key = e.key.toLowerCase();
+            const keyElement = document.querySelector(`.keyboard-key[data-key="${key}"]`);
+            if (keyElement) {
+                keyElement.classList.add('pressed');
+            }
+
+            // Focus input if typing and game is running
+            if (gameRunning && !gamePaused && e.key.length === 1) {
+                document.getElementById('typingInput').focus();
+            }
+        }
+
+        function handleKeyUp(e) {
+            const key = e.key.toLowerCase();
+            const keyElement = document.querySelector(`.keyboard-key[data-key="${key}"]`);
+            if (keyElement) {
+                keyElement.classList.remove('pressed');
+                keyElement.classList.remove('error');
+            }
+        }
+
+        // ==================== FALLING WORDS ====================
+        function startFallingWords() {
+            const container = document.getElementById('fallingContainer');
+            fallingSpawnTimer = 0;
+
+            function animate() {
+                if (!gameRunning || gamePaused) return;
+
+                // Spawn new words
+                fallingSpawnTimer++;
+                const spawnRate = Math.max(60, 120 - elapsedTime); // Faster as time goes on
+
+                if (fallingSpawnTimer >= spawnRate && fallingWords.length < 8) {
+                    spawnFallingWord();
+                    fallingSpawnTimer = 0;
+                }
+
+                // Update falling words
+                fallingWords.forEach(word => {
+                    word.y += word.speed;
+
+                    // Update DOM element
+                    const element = document.querySelector(`[data-word-id="${word.id}"]`);
+                    if (element) {
+                        element.style.top = word.y + 'px';
+                        element.classList.toggle('targeted', word.targeted);
+                        element.classList.toggle('matched', word.matched);
+                    }
+
+                    // Check if word reached danger zone
+                    if (word.y > container.clientHeight - 60) {
+                        lives--;
+                        document.getElementById('livesDisplay').textContent = '❤️'.repeat(Math.max(0, lives));
+                        combo = 0;
+
+                        // Remove word
+                        const el = document.querySelector(`[data-word-id="${word.id}"]`);
+                        if (el) el.remove();
+                        word.remove = true;
+
+                        playSound('error');
+
+                        if (lives <= 0) {
+                            endGame();
+                            return;
+                        }
+                    }
+                });
+
+                // Remove marked words
+                fallingWords = fallingWords.filter(w => !w.remove);
+
+                fallingAnimationId = requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        function spawnFallingWord() {
+            const container = document.getElementById('fallingContainer');
+            const words = wordLists[wordCategory];
+            const word = words[Math.floor(Math.random() * words.length)];
+            const id = Date.now() + Math.random();
+
+            const wordObj = {
+                id: id,
+                word: word,
+                x: Math.random() * (container.clientWidth - 100) + 20,
+                y: -30,
+                speed: 0.5 + Math.random() * 0.5,
+                targeted: false,
+                matched: false,
+                remove: false
+            };
+
+            fallingWords.push(wordObj);
+
+            // Create DOM element
+            const element = document.createElement('div');
+            element.className = 'falling-word';
+            element.textContent = word;
+            element.dataset.wordId = id;
+            element.style.left = wordObj.x + 'px';
+            element.style.top = wordObj.y + 'px';
+            container.appendChild(element);
+        }
+
+        function updateFallingDisplay() {
+            fallingWords.forEach(word => {
+                const element = document.querySelector(`[data-word-id="${word.id}"]`);
+                if (element) {
+                    element.classList.toggle('targeted', word.targeted);
+                    element.classList.toggle('matched', word.matched);
+                }
+            });
+        }
+
+        // ==================== DISPLAY UPDATES ====================
+        function updateWordDisplay() {
+            const display = document.getElementById('wordDisplay');
+
+            if (gameMode === 'falling') return;
+
+            if (gameMode === 'sentences') {
+                const sentence = currentWords[currentWordIndex] || '';
+                const input = document.getElementById('typingInput').value;
+
+                let html = '';
+                for (let i = 0; i < sentence.length; i++) {
+                    let className = 'char ';
+                    if (i < input.length) {
+                        className += input[i] === sentence[i] ? 'correct' : 'incorrect';
+                    } else if (i === input.length) {
+                        className += 'current pending';
+                    } else {
+                        className += 'pending';
+                    }
+                    html += `<span class="${className}">${sentence[i]}</span>`;
+                }
+
+                display.innerHTML = html;
+            } else {
+                // Words mode
+                const word = currentWords[currentWordIndex] || '';
+                const input = document.getElementById('typingInput').value;
+
+                let html = '';
+                for (let i = 0; i < word.length; i++) {
+                    let className = 'char ';
+                    if (i < input.length) {
+                        className += input[i] === word[i] ? 'correct' : 'incorrect';
+                    } else if (i === input.length) {
+                        className += 'current pending';
+                    } else {
+                        className += 'pending';
+                    }
+                    html += `<span class="${className}">${word[i]}</span>`;
+                }
+
+                // Show extra typed characters as errors
+                if (input.length > word.length) {
+                    for (let i = word.length; i < input.length; i++) {
+                        html += `<span class="char incorrect">${input[i]}</span>`;
+                    }
+                }
+
+                display.innerHTML = html;
+            }
+        }
+
+        function updateWordsQueue() {
+            if (gameMode !== 'words' && gameMode !== 'timed') return;
+
+            const queue = document.getElementById('wordsQueue');
+            queue.innerHTML = '';
+
+            // Show a few words before and after current
+            const start = Math.max(0, currentWordIndex - 1);
+            const end = Math.min(currentWords.length, currentWordIndex + 5);
+
+            for (let i = start; i < end; i++) {
+                const wordEl = document.createElement('div');
+                wordEl.className = 'queue-word';
+                wordEl.textContent = currentWords[i];
+
+                if (i < currentWordIndex) {
+                    wordEl.classList.add('completed');
+                } else if (i === currentWordIndex) {
+                    wordEl.classList.add('current');
+                }
+
+                queue.appendChild(wordEl);
+            }
+        }
+
+        function updateProgress() {
+            if (gameMode === 'words') {
+                const progress = (currentWordIndex / currentWords.length) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            } else if (gameMode === 'sentences') {
+                const progress = (currentWordIndex / currentWords.length) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        }
+
+        function updateStats() {
+            if (!gameRunning || gamePaused) return;
+
+            // Update time
+            if (gameMode !== 'timed' && gameMode !== 'falling') {
+                elapsedTime = (Date.now() - startTime) / 1000;
+            }
+
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('wpmDisplay').textContent = Math.round(calculateWPM());
+            document.getElementById('accuracyDisplay').textContent = Math.round(calculateAccuracy()) + '%';
+            document.getElementById('comboDisplay').textContent = combo;
+            updateTimeDisplay();
+        }
+
+        function updateTimeDisplay() {
+            const display = document.getElementById('timeDisplay');
+
+            if (gameMode === 'timed' || gameMode === 'falling') {
+                display.textContent = formatTime(elapsedTime);
+            } else {
+                display.textContent = formatTime(elapsedTime);
+            }
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function calculateWPM() {
+            if (elapsedTime < 1) return 0;
+
+            const timeInMinutes = (gameMode === 'timed' || gameMode === 'falling')
+                ? (timeLimit - elapsedTime) / 60
+                : elapsedTime / 60;
+
+            if (timeInMinutes < 0.01) return 0;
+
+            // WPM = (characters / 5) / time in minutes
+            return (correctChars / 5) / timeInMinutes;
+        }
+
+        function calculateAccuracy() {
+            const total = correctChars + incorrectChars;
+            if (total === 0) return 100;
+            return (correctChars / total) * 100;
+        }
+
+        function showComboPopup(comboCount) {
+            const popup = document.getElementById('comboPopup');
+            popup.textContent = `🔥 ${comboCount} COMBO!`;
+            popup.style.color = comboCount >= 20 ? '#ff0080' : comboCount >= 10 ? '#ffd700' : '#00ff88';
+            popup.classList.remove('show');
+            void popup.offsetWidth;
+            popup.classList.add('show');
+            playSound('combo');
+        }
+
+        function hideAllOverlays() {
+            document.querySelectorAll('.game-overlay').forEach(overlay => {
+                overlay.classList.add('hidden');
+            });
+        }
+
+        // ==================== SOUND ====================
+        function playSound(type) {
+            if (!soundEnabled || !audioContext) return;
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            switch (type) {
+                case 'correct':
+                    oscillator.frequency.value = 600;
+                    oscillator.type = 'sine';
+                    gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                    break;
+
+                case 'error':
+                    oscillator.frequency.value = 200;
+                    oscillator.type = 'sawtooth';
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                    break;
+
+                case 'combo':
+                    const comboNotes = [523, 659, 784];
+                    comboNotes.forEach((freq, i) => {
+                        setTimeout(() => {
+                            if (!soundEnabled) return;
+                            const osc = audioContext.createOscillator();
+                            const gain = audioContext.createGain();
+                            osc.connect(gain);
+                            gain.connect(audioContext.destination);
+                            osc.frequency.value = freq;
+                            osc.type = 'sine';
+                            gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
+                            osc.start();
+                            osc.stop(audioContext.currentTime + 0.12);
+                        }, i * 50);
+                    });
+                    return;
+
+                case 'countdown':
+                    oscillator.frequency.value = 440;
+                    oscillator.type = 'sine';
+                    gainNode.gain.setValueAtTime(0.12, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                    break;
+
+                case 'start':
+                    oscillator.frequency.value = 880;
+                    oscillator.type = 'sine';
+                    gainNode.gain.setValueAtTime(0.12, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                    break;
+
+                case 'complete':
+                    const completeNotes = [523, 659, 784, 1047];
+                    completeNotes.forEach((freq, i) => {
+                        setTimeout(() => {
+                            if (!soundEnabled) return;
+                            const osc = audioContext.createOscillator();
+                            const gain = audioContext.createGain();
+                            osc.connect(gain);
+                            gain.connect(audioContext.destination);
+                            osc.frequency.value = freq;
+                            osc.type = 'sine';
+                            gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                            osc.start();
+                            osc.stop(audioContext.currentTime + 0.3);
+                        }, i * 100);
+                    });
+                    return;
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icons = [document.getElementById('soundIcon'), document.getElementById('soundToggleIcon')];
+
+            icons.forEach(icon => {
+                if (icon) {
+                    icon.className = soundEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+                }
+            });
+        }
+
+        function toggleMenu() {
+            // Mobile menu toggle
+        }
+
+        // ==================== START ====================
+        init();
+    </script>
+
+</body>
+
+</html>
