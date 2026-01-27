@@ -1,0 +1,47 @@
+User-agent: *
+Allow: /
+
+# Allow all pages (home, games, categories, etc.)
+Disallow: /admin/
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /profile.html
+Disallow: /search-results.html
+Disallow: /*?*page=     # blocks pagination spam
+Disallow: /*?*sort=
+Disallow: /*?*ref=
+
+# Block duplicate/thin content
+Disallow: /category.html
+Disallow: /tag/
+
+# Allow important bots full access
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Sitemap (update when you create it)
+Sitemap: https://gagandeep-cse004.github.io/gamezone/sitemap.xml
+
+# Extra protection against bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: Dotbot
+Disallow: /
