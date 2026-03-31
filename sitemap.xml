@@ -4,42 +4,42 @@
 
   <!-- ========== MAIN PAGES ========== -->
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/</loc>
+    <loc>https://gamezone-six-mu.vercel.app/</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/index.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/index.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/categories.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/categories.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/leaderboard.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/leaderboard.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/about.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/about.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -47,42 +47,42 @@
 
   <!-- ========== INDIVIDUAL GAME PAGES (Most Important for Traffic!) ========== -->
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/snake.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/snake.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/tetris.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/tetris.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/2048.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/2048.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/flappy.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/flappy.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/memory.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/memory.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/racing.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/racing.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -90,42 +90,42 @@
 
   <!-- ========== LEGAL PAGES ========== -->
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/privacy.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/privacy.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/terms.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/terms.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/contact.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/contact.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/faq.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/faq.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/cookies.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/cookies.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/disclaimer.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/disclaimer.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -133,42 +133,42 @@
 
   <!-- Individual Game Pages -->
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/space-shooter.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/space-shooter.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/bubble-shooter.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/bubble-shooter.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/chess.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/chess.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/sudoku.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/sudoku.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/runner.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/runner.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://gagandeep-cse004.github.io/gamezone/games/word-search.html</loc>
+    <loc>https://gamezone-six-mu.vercel.app/games/word-search.html</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

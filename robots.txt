@@ -31,7 +31,7 @@ User-agent: Googlebot-Video
 Allow: /
 
 # Sitemap (update when you create it)
-Sitemap: https://gagandeep-cse004.github.io/gamezone/sitemap.xml
+Sitemap: https://gamezone-six-mu.vercel.app/sitemap.xml
 
 # Extra protection against bad bots
 User-agent: MJ12bot
