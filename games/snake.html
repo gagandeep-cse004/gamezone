@@ -509,6 +509,98 @@
             text-decoration: none;
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info i {
+            width: 16px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
         /* Related Games */
         .related-games {
             margin-top: 50px;
@@ -898,10 +990,78 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="game-footer">
-            <p>© 2025 <a href="../index.html">GameZone</a>. All Rights Reserved.</p>
+        <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="../index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="contact-info" style="margin: 15px 0;">
+                    <p style="color: #00d4ff; margin: 5px 0;">
+                        <i class="fas fa-phone"></i> +91 8264819037
+                    </p>
+                    <p style="color: #888; margin: 5px 0;">
+                        <i class="fas fa-envelope"></i> support@gamezone.com
+                    </p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/gamezone" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.twitter.com/gamezone" target="_blank" rel="noopener noreferrer" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gamezone" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@gamezone" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/gamezone" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918264819037" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../games.html">All Games</a></li>
+                    <li><a href="../categories.html">Categories</a></li>
+                    <li><a href="../leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../privacy.html">Privacy Policy</a></li>
+                    <li><a href="../cookies.html">Cookies Policy</a></li>
+                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="../disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact.html">Contact Us</a></li>
+                    <li><a href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
         </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
 
     </main>
 

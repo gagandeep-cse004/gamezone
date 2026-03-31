@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird - GameZone</title>
+    <title>Snake Game - GameZone</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="Play Flappy Bird online for free. Navigate through pipes, collect coins, and beat your high score!">
-    <meta name="keywords" content="flappy bird game, arcade game, free games, online games, tap game">
+    <meta name="description" content="Play the classic Snake game online for free. No download required!">
+    <meta name="keywords" content="snake game, free games, online games, classic games">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7337515965983452"
         crossorigin="anonymous"></script>
     <!-- Google Fonts -->
@@ -32,35 +31,6 @@
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
-            user-select: none;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(120, 58, 237, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(243, 156, 18, 0.1) 0%, transparent 50%);
-            animation: backgroundFloat 20s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes backgroundFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) scale(1);
-            }
-
-            50% {
-                transform: translateY(-20px) scale(1.05);
-            }
         }
 
         /* ========== NAVBAR ========== */
@@ -154,30 +124,17 @@
 
         .game-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .game-header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #feca57, #ff6b6b, #00d4ff);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        @keyframes gradientShift {
-
-            0%,
-            100% {
-                filter: hue-rotate(0deg);
-            }
-
-            50% {
-                filter: hue-rotate(30deg);
-            }
         }
 
         .game-header p {
@@ -189,7 +146,7 @@
         .game-stats {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
@@ -198,95 +155,29 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 10px 20px;
+            padding: 15px 30px;
             text-align: center;
-            min-width: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
+            min-width: 120px;
         }
 
         .stat-box.highlight {
-            border-color: #feca57;
-            background: rgba(254, 202, 87, 0.1);
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
         }
 
         .stat-box h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #feca57, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #00d4ff;
         }
 
         .stat-box p {
             font-size: 0.85rem;
             color: #888;
-            margin-top: 3px;
-        }
-
-        /* Medals Display */
-        .medals-display {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
             margin-top: 5px;
         }
 
-        .medal {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        .medal.bronze {
-            background: linear-gradient(135deg, #CD7F32, #B87333);
-            color: #fff;
-        }
-
-        .medal.silver {
-            background: linear-gradient(135deg, #C0C0C0, #B8B8B8);
-            color: #fff;
-        }
-
-        .medal.gold {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .medal.platinum {
-            background: linear-gradient(135deg, #E5E4E2, #BEC2CB);
-            color: #333;
-            box-shadow: 0 0 25px rgba(229, 228, 226, 0.6);
-        }
-
-        /* Game Wrapper */
+        /* Game Canvas Container */
         .game-wrapper {
             position: relative;
             display: flex;
@@ -294,95 +185,36 @@
             align-items: center;
         }
 
-        /* Canvas Container */
         .canvas-container {
             position: relative;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             border-radius: 20px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(254, 202, 87, 0.1),
-                inset 0 0 30px rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(0, 212, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         #gameCanvas {
             display: block;
-            border-radius: 20px;
-            cursor: pointer;
+            border-radius: 10px;
+            background: #0a0a15;
         }
 
-        /* Score Display on Canvas */
-        .canvas-score {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        /* Power-up Indicators */
-        .powerup-indicators {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .powerup-indicator {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-
-        .powerup-indicator.active {
-            opacity: 1;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        /* Game Overlays */
+        /* Game Overlay */
         .game-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
             background: rgba(0, 0, 0, 0.9);
-            border-radius: 20px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            z-index: 10;
         }
 
         .game-overlay.hidden {
@@ -391,129 +223,39 @@
 
         .overlay-content {
             text-align: center;
-            padding: 30px;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            padding: 20px;
         }
 
         .overlay-content h2 {
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #feca57, #ff6b6b);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .overlay-content .bird-preview {
-            font-size: 4rem;
-            margin: 20px 0;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
         .overlay-content .score-display {
             font-size: 1.5rem;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .overlay-content .score-display span {
-            color: #feca57;
+            color: #00d4ff;
             font-weight: 700;
         }
 
-        .medal-earned {
-            margin: 20px 0;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .medal-earned h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        .overlay-content .high-score-text {
             color: #feca57;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
         }
 
-        .medal-earned .large-medal {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
+        .overlay-content .high-score-text i {
+            margin-right: 5px;
         }
 
-        /* Difficulty Selection */
-        .difficulty-selector {
-            margin: 20px 0;
-        }
-
-        .difficulty-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .diff-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-        }
-
-        .diff-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .diff-btn.easy:hover {
-            background: #2ecc71;
-            border-color: #2ecc71;
-        }
-
-        .diff-btn.normal:hover {
-            background: #3498db;
-            border-color: #3498db;
-        }
-
-        .diff-btn.hard:hover {
-            background: #e74c3c;
-            border-color: #e74c3c;
-        }
-
-        /* Game Buttons */
         .game-btn {
             padding: 15px 40px;
             font-size: 1.1rem;
@@ -524,36 +266,16 @@
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             margin: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .game-btn:hover::before {
-            width: 300px;
-            height: 300px;
         }
 
         .btn-play {
-            background: linear-gradient(135deg, #feca57, #ff6b6b);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             color: #fff;
         }
 
         .btn-play:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(254, 202, 87, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
         }
 
         .btn-secondary {
@@ -591,149 +313,190 @@
         }
 
         .control-btn:hover {
-            background: #feca57;
-            border-color: #feca57;
+            background: #00d4ff;
+            border-color: #00d4ff;
         }
 
         .control-btn:active {
             transform: scale(0.95);
         }
 
+        /* Mobile Controls */
+        .mobile-controls {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .mobile-dpad {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .dpad-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dpad-btn:active {
+            background: #00d4ff;
+            border-color: #00d4ff;
+            transform: scale(0.95);
+        }
+
+        .dpad-btn.empty {
+            background: transparent;
+            border: none;
+            cursor: default;
+        }
+
         /* Instructions */
         .game-instructions {
             margin-top: 30px;
-            max-width: 600px;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 25px 35px;
+            padding: 20px 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .game-instructions h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #feca57, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #00d4ff;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .instructions-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+        .game-instructions ul {
+            list-style: none;
         }
 
-        .instruction-item {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .instruction-item i {
-            font-size: 1.5rem;
-            color: #feca57;
-            width: 30px;
-        }
-
-        .instruction-item span {
+        .game-instructions li {
+            padding: 8px 0;
             color: #aaa;
-            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .game-instructions li i {
+            color: #00d4ff;
+            width: 20px;
         }
 
         .key-hint {
-            background: rgba(254, 202, 87, 0.2);
-            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 10px;
             border-radius: 5px;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #feca57;
         }
 
-        /* Power-ups Legend */
-        .powerups-legend {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-        }
-
-        .powerups-legend h4 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: #00d4ff;
-        }
-
-        .powerup-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-
-        .powerup-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-        }
-
-        .powerup-item .icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Tips Section */
-        .tips-section {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(254, 202, 87, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(254, 202, 87, 0.2);
-        }
-
-        .tips-section h4 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: #feca57;
-        }
-
-        .tips-section ul {
-            list-style: none;
-            color: #aaa;
+        /* Level indicator */
+        .level-indicator {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
             font-size: 0.85rem;
+            z-index: 5;
         }
 
-        .tips-section li {
-            padding: 5px 0;
+        .level-indicator span {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        /* Power-up indicator */
+        .powerup-indicator {
+            position: absolute;
+            top: 25px;
+            right: 25px;
             display: flex;
-            align-items: center;
             gap: 10px;
+            z-index: 5;
         }
 
-        .tips-section li i {
+        .powerup-badge {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: none;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .powerup-badge.active {
+            display: flex;
+        }
+
+        .powerup-badge i {
             color: #feca57;
+        }
+
+        /* Combo display */
+        .combo-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: 800;
+            color: #feca57;
+            text-shadow: 0 0 20px rgba(254, 202, 87, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        .combo-display.show {
+            animation: comboPopup 0.5s ease forwards;
+        }
+
+        @keyframes comboPopup {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1) translateY(-20px);
+            }
         }
 
         /* Footer */
         .game-footer {
-            margin-top: 50px;
+            margin-top: 40px;
             text-align: center;
             padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 800px;
+            max-width: 600px;
         }
 
         .game-footer p {
@@ -742,8 +505,154 @@
         }
 
         .game-footer a {
-            color: #feca57;
+            color: #00d4ff;
             text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info i {
+            width: 16px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* Related Games */
+        .related-games {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .related-games h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .related-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 15px;
+        }
+
+        .related-card h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .related-card p {
+            font-size: 0.8rem;
+            color: #888;
         }
 
         /* Sound toggle */
@@ -767,7 +676,11 @@
         }
 
         .sound-toggle:hover {
-            background: #feca57;
+            background: #00d4ff;
+        }
+
+        .sound-toggle.muted i::before {
+            content: "\f6a9";
         }
 
         /* Responsive */
@@ -785,31 +698,66 @@
             }
 
             .game-header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .game-stats {
+                gap: 15px;
+            }
+
+            .stat-box {
+                padding: 12px 20px;
+                min-width: 100px;
+            }
+
+            .stat-box h3 {
+                font-size: 1.4rem;
             }
 
             #gameCanvas {
                 max-width: 100%;
-                height: auto;
+            }
+
+            .mobile-controls {
+                display: block;
             }
 
             .game-instructions {
                 display: none;
             }
+
+            .overlay-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .game-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 400px) {
-            .game-header h1 {
-                font-size: 1.5rem;
+            .canvas-container {
+                padding: 10px;
             }
 
             .stat-box {
-                padding: 8px 15px;
+                padding: 10px 15px;
                 min-width: 80px;
             }
 
             .stat-box h3 {
                 font-size: 1.2rem;
+            }
+
+            .dpad-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .mobile-dpad {
+                grid-template-columns: repeat(3, 50px);
+                grid-template-rows: repeat(3, 50px);
             }
         }
     </style>
@@ -845,8 +793,8 @@
     <main class="game-page">
 
         <div class="game-header">
-            <h1>🐦 FLAPPY BIRD</h1>
-            <p>Tap to fly through the pipes and beat your high score!</p>
+            <h1>🐍 Snake Game</h1>
+            <p>Eat the food, grow longer, and don't hit the walls or yourself!</p>
         </div>
 
         <!-- Stats -->
@@ -857,83 +805,47 @@
             </div>
             <div class="stat-box">
                 <h3 id="highScore">0</h3>
-                <p>Best</p>
+                <p>High Score</p>
             </div>
             <div class="stat-box">
-                <h3 id="coins">0</h3>
-                <p>Coins</p>
+                <h3 id="currentLevel">1</h3>
+                <p>Level</p>
             </div>
             <div class="stat-box">
-                <div class="medals-display" id="medalsDisplay">
-                    <!-- Medals will be shown here -->
-                </div>
-                <p>Medals</p>
+                <h3 id="foodEaten">0</h3>
+                <p>Food Eaten</p>
             </div>
         </div>
 
         <!-- Game Wrapper -->
         <div class="game-wrapper">
             <div class="canvas-container">
-                <canvas id="gameCanvas" width="400" height="600"></canvas>
+                <!-- Level Indicator -->
+                <div class="level-indicator">
+                    Level <span id="levelDisplay">1</span>
+                </div>
 
-                <div class="canvas-score" id="canvasScore">0</div>
-
-                <!-- Power-up Indicators -->
-                <div class="powerup-indicators">
-                    <div class="powerup-indicator" id="shieldIndicator"
-                        style="background: linear-gradient(135deg, #3498db, #2980b9);" title="Shield">
-                        🛡️
-                    </div>
-                    <div class="powerup-indicator" id="magnetIndicator"
-                        style="background: linear-gradient(135deg, #e74c3c, #c0392b);" title="Magnet">
-                        🧲
-                    </div>
-                    <div class="powerup-indicator" id="slowIndicator"
-                        style="background: linear-gradient(135deg, #2ecc71, #27ae60);" title="Slow Motion">
-                        🕐
+                <!-- Power-up Indicator -->
+                <div class="powerup-indicator">
+                    <div class="powerup-badge" id="speedBadge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Speed Boost</span>
                     </div>
                 </div>
+
+                <!-- Combo Display -->
+                <div class="combo-display" id="comboDisplay"></div>
+
+                <!-- Game Canvas -->
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
 
                 <!-- Start Overlay -->
                 <div class="game-overlay" id="startOverlay">
                     <div class="overlay-content">
-                        <h2>🐦 FLAPPY BIRD</h2>
-                        <div class="bird-preview">🐤</div>
-
-                        <div class="difficulty-selector">
-                            <h3 style="font-size: 1.1rem; color: #888; margin-bottom: 10px;">Select Difficulty</h3>
-                            <div class="difficulty-buttons">
-                                <button class="diff-btn easy" onclick="setDifficulty('easy')">
-                                    😊 Easy
-                                </button>
-                                <button class="diff-btn normal" onclick="setDifficulty('normal')">
-                                    😐 Normal
-                                </button>
-                                <button class="diff-btn hard" onclick="setDifficulty('hard')">
-                                    😤 Hard
-                                </button>
-                            </div>
-                        </div>
-
-                        <p style="color: #888; margin: 20px 0;">
-                            Tap or Press <span class="key-hint">SPACE</span> to fly!
-                        </p>
-
+                        <h2>🐍 Snake</h2>
+                        <p style="color: #888; margin-bottom: 20px;">Classic arcade fun!</p>
                         <button class="game-btn btn-play" onclick="startGame()">
                             <i class="fas fa-play"></i> Start Game
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Pause Overlay -->
-                <div class="game-overlay hidden" id="pauseOverlay">
-                    <div class="overlay-content">
-                        <h2>⏸️ PAUSED</h2>
-                        <button class="game-btn btn-play" onclick="resumeGame()">
-                            <i class="fas fa-play"></i> Resume
-                        </button>
-                        <button class="game-btn btn-secondary" onclick="restartGame()">
-                            <i class="fas fa-redo"></i> Restart
                         </button>
                     </div>
                 </div>
@@ -941,19 +853,13 @@
                 <!-- Game Over Overlay -->
                 <div class="game-overlay hidden" id="gameOverOverlay">
                     <div class="overlay-content">
-                        <h2>💥 GAME OVER</h2>
+                        <h2>Game Over!</h2>
                         <div class="score-display">
-                            Score: <span id="finalScore">0</span>
+                            Your Score: <span id="finalScore">0</span>
                         </div>
-                        <div class="score-display">
-                            Best: <span id="finalBest">0</span>
+                        <div class="high-score-text" id="newHighScore" style="display: none;">
+                            <i class="fas fa-crown"></i> New High Score!
                         </div>
-
-                        <div class="medal-earned" id="medalEarned" style="display: none;">
-                            <h3>Medal Earned!</h3>
-                            <div class="large-medal" id="earnedMedal"></div>
-                        </div>
-
                         <button class="game-btn btn-play" onclick="restartGame()">
                             <i class="fas fa-redo"></i> Play Again
                         </button>
@@ -962,12 +868,26 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Pause Overlay -->
+                <div class="game-overlay hidden" id="pauseOverlay">
+                    <div class="overlay-content">
+                        <h2>⏸️ Paused</h2>
+                        <p style="color: #888; margin-bottom: 20px;">Game is paused</p>
+                        <button class="game-btn btn-play" onclick="resumeGame()">
+                            <i class="fas fa-play"></i> Resume
+                        </button>
+                        <button class="game-btn btn-secondary" onclick="restartGame()">
+                            <i class="fas fa-redo"></i> Restart
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Controls -->
+            <!-- Desktop Controls -->
             <div class="game-controls">
                 <button class="control-btn" onclick="togglePause()" title="Pause">
-                    <i class="fas fa-pause" id="pauseIcon"></i>
+                    <i class="fas fa-pause"></i>
                 </button>
                 <button class="control-btn" onclick="restartGame()" title="Restart">
                     <i class="fas fa-redo"></i>
@@ -976,74 +896,177 @@
                     <i class="fas fa-volume-up" id="soundIcon"></i>
                 </button>
             </div>
+
+            <!-- Mobile Controls -->
+            <div class="mobile-controls">
+                <div class="mobile-dpad">
+                    <div class="dpad-btn empty"></div>
+                    <button class="dpad-btn" onclick="changeDirection('up')">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <div class="dpad-btn empty"></div>
+                    <button class="dpad-btn" onclick="changeDirection('left')">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="dpad-btn" onclick="togglePause()" style="background: rgba(0, 212, 255, 0.2);">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="dpad-btn" onclick="changeDirection('right')">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="dpad-btn empty"></div>
+                    <button class="dpad-btn" onclick="changeDirection('down')">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dpad-btn empty"></div>
+                </div>
+            </div>
         </div>
 
         <!-- Instructions -->
         <div class="game-instructions">
-            <h3><i class="fas fa-gamepad"></i> How to Play</h3>
-
-            <div class="instructions-grid">
-                <div class="instruction-item">
-                    <i class="fas fa-hand-pointer"></i>
-                    <span>Click or Tap anywhere to make the bird fly</span>
-                </div>
-                <div class="instruction-item">
-                    <i class="fas fa-keyboard"></i>
-                    <span>Press <span class="key-hint">SPACE</span> or <span class="key-hint">↑</span> to fly</span>
-                </div>
-                <div class="instruction-item">
+            <h3><i class="fas fa-info-circle"></i> How to Play</h3>
+            <ul>
+                <li>
+                    <i class="fas fa-arrow-right"></i>
+                    Use <span class="key-hint">↑</span> <span class="key-hint">↓</span> <span class="key-hint">←</span>
+                    <span class="key-hint">→</span> arrow keys to move
+                </li>
+                <li>
+                    <i class="fas fa-apple-alt"></i>
+                    Eat the red food to grow and score points
+                </li>
+                <li>
+                    <i class="fas fa-star"></i>
+                    Eat the golden food for bonus points!
+                </li>
+                <li>
+                    <i class="fas fa-skull"></i>
+                    Avoid hitting walls and yourself
+                </li>
+                <li>
+                    <i class="fas fa-tachometer-alt"></i>
+                    Speed increases as you level up
+                </li>
+                <li>
                     <i class="fas fa-pause"></i>
-                    <span>Press <span class="key-hint">P</span> or <span class="key-hint">ESC</span> to pause</span>
+                    Press <span class="key-hint">Space</span> or <span class="key-hint">P</span> to pause
+                </li>
+            </ul>
+        </div>
+
+        <!-- Related Games -->
+        <div class="related-games">
+            <h3>🎮 More Games You'll Love</h3>
+            <div class="related-grid">
+                <a href="tetris.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=300" alt="Tetris">
+                    <div class="related-card-content">
+                        <h4>Tetris</h4>
+                        <p>Classic puzzle game</p>
+                    </div>
+                </a>
+                <a href="2048.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=300" alt="2048">
+                    <div class="related-card-content">
+                        <h4>2048</h4>
+                        <p>Number puzzle</p>
+                    </div>
+                </a>
+                <a href="flappy.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=300" alt="Flappy Bird">
+                    <div class="related-card-content">
+                        <h4>Flappy Bird</h4>
+                        <p>Tap to fly</p>
+                    </div>
+                </a>
+                <a href="memory.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=300" alt="Memory">
+                    <div class="related-card-content">
+                        <h4>Memory Match</h4>
+                        <p>Test your memory</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="../index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="contact-info" style="margin: 15px 0;">
+                    <p style="color: #00d4ff; margin: 5px 0;">
+                        <i class="fas fa-phone"></i> +91 8264819037
+                    </p>
+                    <p style="color: #888; margin: 5px 0;">
+                        <i class="fas fa-envelope"></i> support@gamezone.com
+                    </p>
                 </div>
-                <div class="instruction-item">
-                    <i class="fas fa-trophy"></i>
-                    <span>Navigate through pipes to earn points</span>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/gamezone" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.twitter.com/gamezone" target="_blank" rel="noopener noreferrer" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gamezone" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@gamezone" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/gamezone" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918264819037" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="powerups-legend">
-                <h4>🎁 Power-ups & Items</h4>
-                <div class="powerup-list">
-                    <div class="powerup-item">
-                        <div class="icon" style="background: #feca57;">💰</div>
-                        <span>Coin - Collect for bonus points</span>
-                    </div>
-                    <div class="powerup-item">
-                        <div class="icon" style="background: #3498db;">🛡️</div>
-                        <span>Shield - One-time protection</span>
-                    </div>
-                    <div class="powerup-item">
-                        <div class="icon" style="background: #e74c3c;">🧲</div>
-                        <span>Magnet - Attracts coins</span>
-                    </div>
-                    <div class="powerup-item">
-                        <div class="icon" style="background: #2ecc71;">🕐</div>
-                        <span>Slow - Slows down the game</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tips-section">
-                <h4>💡 Pro Tips</h4>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
                 <ul>
-                    <li><i class="fas fa-lightbulb"></i> Keep a steady rhythm when tapping</li>
-                    <li><i class="fas fa-lightbulb"></i> Stay in the middle of the screen</li>
-                    <li><i class="fas fa-lightbulb"></i> Focus on the next pipe, not the current one</li>
-                    <li><i class="fas fa-lightbulb"></i> Collect power-ups for advantages</li>
-                    <li><i class="fas fa-lightbulb"></i> Bronze: 10+ | Silver: 20+ | Gold: 30+ | Platinum: 50+</li>
+                    <li><a href="../games.html">All Games</a></li>
+                    <li><a href="../categories.html">Categories</a></li>
+                    <li><a href="../leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../privacy.html">Privacy Policy</a></li>
+                    <li><a href="../cookies.html">Cookies Policy</a></li>
+                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="../disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact.html">Contact Us</a></li>
+                    <li><a href="../faq.html">FAQ</a></li>
                 </ul>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="game-footer">
-            <p>© 2025 <a href="../index.html">GameZone</a>. All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
         </div>
+    </footer>
 
     </main>
 
     <!-- Sound Toggle Button -->
-    <button class="sound-toggle" onclick="toggleSound()" title="Toggle Sound">
+    <button class="sound-toggle" onclick="toggleSound()" id="soundToggle" title="Toggle Sound">
         <i class="fas fa-volume-up"></i>
     </button>
 
@@ -1052,107 +1075,87 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        let gameRunning = false;
-        let gamePaused = false;
-        let animationId;
+        // Game settings
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+
+        // Game state
+        let snake = [];
+        let food = { x: 0, y: 0 };
+        let bonusFood = null;
+        let direction = { x: 0, y: 0 };
+        let nextDirection = { x: 0, y: 0 };
         let score = 0;
-        let highScore = localStorage.getItem('flappyHighScore') || 0;
-        let totalCoins = localStorage.getItem('flappyCoins') || 0;
+        let highScore = localStorage.getItem('snakeHighScore') || 0;
+        let level = 1;
+        let foodEaten = 0;
+        let gameSpeed = 150;
+        let gameLoop = null;
+        let isGameRunning = false;
+        let isPaused = false;
         let soundEnabled = true;
-        let difficulty = 'normal';
 
-        // Audio Context
+        // Combo system
+        let combo = 0;
+        let lastFoodTime = 0;
+        const comboTimeout = 2000; // 2 seconds
+
+        // Colors
+        const colors = {
+            snakeHead: '#00d4ff',
+            snakeBody: '#7c3aed',
+            snakeGradient: ['#00d4ff', '#7c3aed', '#5b21b6'],
+            food: '#ff6b6b',
+            bonusFood: '#feca57',
+            grid: 'rgba(255, 255, 255, 0.03)'
+        };
+
+        // Audio context for sounds
         let audioContext = null;
-
-        // Game Settings based on difficulty
-        const difficultySettings = {
-            easy: {
-                gravity: 0.4,
-                jumpStrength: -7,
-                pipeGap: 180,
-                pipeSpeed: 2
-            },
-            normal: {
-                gravity: 0.5,
-                jumpStrength: -8,
-                pipeGap: 150,
-                pipeSpeed: 3
-            },
-            hard: {
-                gravity: 0.6,
-                jumpStrength: -8,
-                pipeGap: 120,
-                pipeSpeed: 4
-            }
-        };
-
-        let currentSettings = difficultySettings.normal;
-
-        // Bird
-        const bird = {
-            x: 100,
-            y: 300,
-            width: 40,
-            height: 30,
-            velocity: 0,
-            rotation: 0,
-            frame: 0,
-            frameCounter: 0
-        };
-
-        // Pipes
-        let pipes = [];
-        const pipeWidth = 60;
-        const pipeSpacing = 200;
-
-        // Items & Power-ups
-        let coins = [];
-        let powerups = [];
-        let particles = [];
-
-        // Active power-ups
-        let activePowerups = {
-            shield: false,
-            magnet: false,
-            slowMotion: false
-        };
-
-        // Background elements
-        let clouds = [];
-        let bgOffset = 0;
-
-        // Medals
-        const medals = {
-            bronze: 10,
-            silver: 20,
-            gold: 30,
-            platinum: 50
-        };
 
         // ==================== INITIALIZATION ====================
         function init() {
+            // Update high score display
             document.getElementById('highScore').textContent = highScore;
-            document.getElementById('coins').textContent = totalCoins;
-            updateMedalsDisplay();
 
-            // Initialize background elements
-            for (let i = 0; i < 5; i++) {
-                clouds.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * 200,
-                    width: 60 + Math.random() * 40,
-                    speed: 0.5 + Math.random() * 0.5
-                });
-            }
+            // Draw initial screen
+            drawGrid();
 
-            // Event listeners
-            canvas.addEventListener('click', jump);
-            canvas.addEventListener('touchstart', jump, { passive: false });
-            document.addEventListener('keydown', handleKeyDown);
+            // Set up event listeners
+            document.addEventListener('keydown', handleKeyPress);
 
-            // Initialize audio on first interaction
+            // Touch events for swipe controls
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            canvas.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                const diffX = touchEndX - touchStartX;
+                const diffY = touchEndY - touchStartY;
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 30) changeDirection('right');
+                    else if (diffX < -30) changeDirection('left');
+                } else {
+                    if (diffY > 30) changeDirection('down');
+                    else if (diffY < -30) changeDirection('up');
+                }
+            });
+
+            // Initialize audio context on first user interaction
             document.addEventListener('click', initAudio, { once: true });
-            document.addEventListener('touchstart', initAudio, { once: true });
+            document.addEventListener('keydown', initAudio, { once: true });
         }
 
         function initAudio() {
@@ -1161,119 +1164,90 @@
             }
         }
 
-        function setDifficulty(level) {
-            difficulty = level;
-            currentSettings = difficultySettings[level];
-
-            // Update button styles
-            document.querySelectorAll('.diff-btn').forEach(btn => {
-                btn.style.background = 'rgba(255, 255, 255, 0.1)';
-            });
-
-            const selectedBtn = document.querySelector(`.diff-btn.${level}`);
-            if (selectedBtn) {
-                const colors = {
-                    easy: '#2ecc71',
-                    normal: '#3498db',
-                    hard: '#e74c3c'
-                };
-                selectedBtn.style.background = colors[level];
-            }
-        }
-
         // ==================== GAME CONTROLS ====================
         function startGame() {
+            // Hide start overlay
             document.getElementById('startOverlay').classList.add('hidden');
+            document.getElementById('gameOverOverlay').classList.add('hidden');
+            document.getElementById('pauseOverlay').classList.add('hidden');
+
+            // Reset game state
             resetGame();
-            gameRunning = true;
-            gamePaused = false;
-            gameLoop();
+
+            // Start game loop
+            isGameRunning = true;
+            isPaused = false;
+            gameLoop = setInterval(update, gameSpeed);
         }
 
         function resetGame() {
+            // Initialize snake in the center
+            snake = [
+                { x: Math.floor(tileCount / 2), y: Math.floor(tileCount / 2) }
+            ];
+
+            // Reset variables
+            direction = { x: 0, y: 0 };
+            nextDirection = { x: 0, y: 0 };
             score = 0;
-            bird.y = 300;
-            bird.velocity = 0;
-            bird.rotation = 0;
-            pipes = [];
-            coins = [];
-            powerups = [];
-            particles = [];
+            level = 1;
+            foodEaten = 0;
+            gameSpeed = 150;
+            combo = 0;
+            bonusFood = null;
 
-            // Reset power-ups
-            activePowerups = {
-                shield: false,
-                magnet: false,
-                slowMotion: false
-            };
+            // Update displays
+            updateDisplays();
 
-            updateDisplay();
-            updatePowerupIndicators();
+            // Place first food
+            placeFood();
         }
 
         function restartGame() {
-            hideAllOverlays();
-            resetGame();
-            gameRunning = true;
-            gamePaused = false;
-            gameLoop();
+            if (gameLoop) clearInterval(gameLoop);
+            startGame();
         }
 
         function togglePause() {
-            if (!gameRunning) return;
+            if (!isGameRunning) return;
 
-            gamePaused = !gamePaused;
-
-            if (gamePaused) {
-                document.getElementById('pauseOverlay').classList.remove('hidden');
-                document.getElementById('pauseIcon').className = 'fas fa-play';
+            if (isPaused) {
+                resumeGame();
             } else {
-                document.getElementById('pauseOverlay').classList.add('hidden');
-                document.getElementById('pauseIcon').className = 'fas fa-pause';
-                gameLoop();
+                pauseGame();
             }
+        }
+
+        function pauseGame() {
+            if (!isGameRunning) return;
+
+            isPaused = true;
+            clearInterval(gameLoop);
+            document.getElementById('pauseOverlay').classList.remove('hidden');
+            playSound('pause');
         }
 
         function resumeGame() {
-            gamePaused = false;
+            isPaused = false;
             document.getElementById('pauseOverlay').classList.add('hidden');
-            document.getElementById('pauseIcon').className = 'fas fa-pause';
-            gameLoop();
+            gameLoop = setInterval(update, gameSpeed);
         }
 
         function gameOver() {
-            gameRunning = false;
+            isGameRunning = false;
+            clearInterval(gameLoop);
 
-            // Update high score
-            if (score > highScore) {
+            // Check for new high score
+            const isNewHighScore = score > highScore;
+            if (isNewHighScore) {
                 highScore = score;
-                localStorage.setItem('flappyHighScore', highScore);
+                localStorage.setItem('snakeHighScore', highScore);
                 document.getElementById('highScore').textContent = highScore;
             }
 
-            // Save total coins
-            localStorage.setItem('flappyCoins', totalCoins);
-
-            // Check for medals
-            let medal = null;
-            if (score >= medals.platinum) medal = 'platinum';
-            else if (score >= medals.gold) medal = 'gold';
-            else if (score >= medals.silver) medal = 'silver';
-            else if (score >= medals.bronze) medal = 'bronze';
-
-            // Display game over screen
+            // Show game over overlay
             document.getElementById('finalScore').textContent = score;
-            document.getElementById('finalBest').textContent = highScore;
-
-            if (medal) {
-                document.getElementById('medalEarned').style.display = 'block';
-                const medalElement = document.getElementById('earnedMedal');
-                medalElement.className = `large-medal ${medal}`;
-                medalElement.innerHTML = getMedalIcon(medal);
-            } else {
-                document.getElementById('medalEarned').style.display = 'none';
-            }
-
+            document.getElementById('newHighScore').style.display = isNewHighScore ? 'block' : 'none';
             document.getElementById('gameOverOverlay').classList.remove('hidden');
 
             playSound('gameOver');
@@ -1284,577 +1258,395 @@
         }
 
         // ==================== INPUT HANDLING ====================
-        function jump(e) {
-            if (e) e.preventDefault();
-
-            if (!gameRunning || gamePaused) return;
-
-            bird.velocity = currentSettings.jumpStrength;
-            playSound('jump');
-
-            // Create jump particles
-            createJumpParticles();
-        }
-
-        function handleKeyDown(e) {
-            if (e.key === ' ' || e.key === 'ArrowUp') {
+        function handleKeyPress(e) {
+            // Prevent default for arrow keys
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
                 e.preventDefault();
-                jump();
             }
 
-            if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') {
-                togglePause();
+            // Direction keys
+            switch (e.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    changeDirection('up');
+                    break;
+                case 'ArrowDown':
+                case 'KeyS':
+                    changeDirection('down');
+                    break;
+                case 'ArrowLeft':
+                case 'KeyA':
+                    changeDirection('left');
+                    break;
+                case 'ArrowRight':
+                case 'KeyD':
+                    changeDirection('right');
+                    break;
+                case 'Space':
+                case 'KeyP':
+                    if (!isGameRunning && !isPaused) {
+                        startGame();
+                    } else {
+                        togglePause();
+                    }
+                    break;
+                case 'KeyR':
+                    restartGame();
+                    break;
+                case 'KeyM':
+                    toggleSound();
+                    break;
+            }
+        }
+
+        function changeDirection(dir) {
+            // Start game if not running
+            if (!isGameRunning && !isPaused) {
+                startGame();
+            }
+
+            switch (dir) {
+                case 'up':
+                    if (direction.y !== 1) {
+                        nextDirection = { x: 0, y: -1 };
+                    }
+                    break;
+                case 'down':
+                    if (direction.y !== -1) {
+                        nextDirection = { x: 0, y: 1 };
+                    }
+                    break;
+                case 'left':
+                    if (direction.x !== 1) {
+                        nextDirection = { x: -1, y: 0 };
+                    }
+                    break;
+                case 'right':
+                    if (direction.x !== -1) {
+                        nextDirection = { x: 1, y: 0 };
+                    }
+                    break;
             }
         }
 
         // ==================== GAME LOOP ====================
-        function gameLoop() {
-            if (!gameRunning || gamePaused) return;
-
-            update();
-            draw();
-
-            animationId = requestAnimationFrame(gameLoop);
-        }
-
         function update() {
-            // Apply slow motion if active
-            const speedMultiplier = activePowerups.slowMotion ? 0.5 : 1;
-
-            // Update background
-            bgOffset -= 0.5 * speedMultiplier;
-            if (bgOffset <= -canvas.width) bgOffset = 0;
-
-            // Update clouds
-            clouds.forEach(cloud => {
-                cloud.x -= cloud.speed * speedMultiplier;
-                if (cloud.x + cloud.width < 0) {
-                    cloud.x = canvas.width + Math.random() * 100;
-                    cloud.y = Math.random() * 200;
-                }
-            });
-
-            // Update bird
-            bird.velocity += currentSettings.gravity;
-            bird.y += bird.velocity;
-
-            // Update rotation based on velocity
-            bird.rotation = Math.min(Math.max(bird.velocity * 3, -30), 90);
-
-            // Bird animation
-            bird.frameCounter++;
-            if (bird.frameCounter > 5) {
-                bird.frame = (bird.frame + 1) % 3;
-                bird.frameCounter = 0;
+            // Update direction
+            if (nextDirection.x !== 0 || nextDirection.y !== 0) {
+                direction = { ...nextDirection };
             }
 
-            // Check boundaries
-            if (bird.y < 0) {
-                bird.y = 0;
-                bird.velocity = 0;
+            // Don't move if no direction set
+            if (direction.x === 0 && direction.y === 0) {
+                draw();
+                return;
             }
 
-            if (bird.y + bird.height > canvas.height) {
+            // Calculate new head position
+            const head = {
+                x: snake[0].x + direction.x,
+                y: snake[0].y + direction.y
+            };
+
+            // Check wall collision
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
                 gameOver();
                 return;
             }
 
-            // Update pipes
-            updatePipes(speedMultiplier);
-
-            // Update coins
-            updateCoins(speedMultiplier);
-
-            // Update power-ups
-            updatePowerups(speedMultiplier);
-
-            // Update particles
-            updateParticles();
-
-            // Check collisions
-            checkCollisions();
-        }
-
-        function updatePipes(speedMultiplier) {
-            // Generate new pipes
-            if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - pipeSpacing) {
-                const gap = currentSettings.pipeGap;
-                const minHeight = 100;
-                const maxHeight = canvas.height - gap - minHeight;
-                const height = Math.random() * (maxHeight - minHeight) + minHeight;
-
-                pipes.push({
-                    x: canvas.width,
-                    topHeight: height,
-                    bottomY: height + gap,
-                    passed: false,
-                    hasItem: Math.random() < 0.5 // 50% chance of having an item
-                });
-
-                // Add coin or power-up
-                const pipe = pipes[pipes.length - 1];
-                if (pipe.hasItem) {
-                    if (Math.random() < 0.7) {
-                        // Add coin
-                        coins.push({
-                            x: pipe.x + pipeWidth / 2,
-                            y: pipe.topHeight + gap / 2,
-                            radius: 15,
-                            collected: false
-                        });
-                    } else {
-                        // Add power-up
-                        const types = ['shield', 'magnet', 'slowMotion'];
-                        powerups.push({
-                            x: pipe.x + pipeWidth / 2,
-                            y: pipe.topHeight + gap / 2,
-                            type: types[Math.floor(Math.random() * types.length)],
-                            collected: false
-                        });
-                    }
+            // Check self collision
+            for (let segment of snake) {
+                if (head.x === segment.x && head.y === segment.y) {
+                    gameOver();
+                    return;
                 }
             }
 
-            // Move and remove pipes
-            pipes = pipes.filter(pipe => {
-                pipe.x -= currentSettings.pipeSpeed * speedMultiplier;
+            // Add new head
+            snake.unshift(head);
 
-                // Check if bird passed pipe
-                if (!pipe.passed && pipe.x + pipeWidth < bird.x) {
-                    pipe.passed = true;
-                    score++;
-                    updateDisplay();
-                    playSound('score');
-                }
-
-                return pipe.x + pipeWidth > 0;
-            });
-        }
-
-        function updateCoins(speedMultiplier) {
-            coins = coins.filter(coin => {
-                if (coin.collected) return false;
-
-                coin.x -= currentSettings.pipeSpeed * speedMultiplier;
-
-                // Magnet effect
-                if (activePowerups.magnet) {
-                    const dx = bird.x + bird.width / 2 - coin.x;
-                    const dy = bird.y + bird.height / 2 - coin.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        coin.x += dx * 0.1;
-                        coin.y += dy * 0.1;
-                    }
-                }
-
-                return coin.x > -20;
-            });
-        }
-
-        function updatePowerups(speedMultiplier) {
-            powerups = powerups.filter(powerup => {
-                if (powerup.collected) return false;
-
-                powerup.x -= currentSettings.pipeSpeed * speedMultiplier;
-
-                return powerup.x > -30;
-            });
-        }
-
-        function updateParticles() {
-            particles = particles.filter(particle => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-                particle.vy += 0.2;
-                particle.life -= 0.02;
-
-                return particle.life > 0;
-            });
-        }
-
-        function checkCollisions() {
-            // Check pipe collisions
-            for (let pipe of pipes) {
-                // Top pipe
-                if (bird.x + bird.width > pipe.x &&
-                    bird.x < pipe.x + pipeWidth &&
-                    bird.y < pipe.topHeight) {
-
-                    if (activePowerups.shield) {
-                        activePowerups.shield = false;
-                        updatePowerupIndicators();
-                        playSound('shieldBreak');
-                        createShieldBreakParticles();
-                    } else {
-                        gameOver();
-                        return;
-                    }
-                }
-
-                // Bottom pipe
-                if (bird.x + bird.width > pipe.x &&
-                    bird.x < pipe.x + pipeWidth &&
-                    bird.y + bird.height > pipe.bottomY) {
-
-                    if (activePowerups.shield) {
-                        activePowerups.shield = false;
-                        updatePowerupIndicators();
-                        playSound('shieldBreak');
-                        createShieldBreakParticles();
-                    } else {
-                        gameOver();
-                        return;
-                    }
-                }
+            // Check food collision
+            let ate = false;
+            if (head.x === food.x && head.y === food.y) {
+                ate = true;
+                eatFood(false);
+            } else if (bonusFood && head.x === bonusFood.x && head.y === bonusFood.y) {
+                ate = true;
+                eatFood(true);
+            } else {
+                // Remove tail if didn't eat
+                snake.pop();
             }
 
-            // Check coin collection
-            coins.forEach(coin => {
-                const dx = (bird.x + bird.width / 2) - coin.x;
-                const dy = (bird.y + bird.height / 2) - coin.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+            // Check bonus food timeout
+            if (bonusFood && Date.now() - bonusFood.spawnTime > 5000) {
+                bonusFood = null;
+            }
 
-                if (distance < bird.width / 2 + coin.radius && !coin.collected) {
-                    coin.collected = true;
-                    score += 5;
-                    totalCoins++;
-                    updateDisplay();
-                    playSound('coin');
-                    createCoinParticles(coin.x, coin.y);
+            // Draw everything
+            draw();
+        }
+
+        function eatFood(isBonus) {
+            const now = Date.now();
+
+            // Calculate combo
+            if (now - lastFoodTime < comboTimeout) {
+                combo++;
+                if (combo > 1) {
+                    showCombo(combo);
                 }
-            });
+            } else {
+                combo = 1;
+            }
+            lastFoodTime = now;
 
-            // Check power-up collection
-            powerups.forEach(powerup => {
-                if (bird.x + bird.width > powerup.x - 20 &&
-                    bird.x < powerup.x + 20 &&
-                    bird.y + bird.height > powerup.y - 20 &&
-                    bird.y < powerup.y + 20 &&
-                    !powerup.collected) {
+            // Calculate points
+            let points = isBonus ? 50 : 10;
+            points *= combo; // Combo multiplier
+            points *= level; // Level multiplier
 
-                    powerup.collected = true;
-                    activatePowerup(powerup.type);
-                    playSound('powerup');
-                }
-            });
-        }
+            score += points;
+            foodEaten++;
 
-        function activatePowerup(type) {
-            switch (type) {
-                case 'shield':
-                    activePowerups.shield = true;
-                    setTimeout(() => {
-                        activePowerups.shield = false;
-                        updatePowerupIndicators();
-                    }, 10000);
-                    break;
-
-                case 'magnet':
-                    activePowerups.magnet = true;
-                    setTimeout(() => {
-                        activePowerups.magnet = false;
-                        updatePowerupIndicators();
-                    }, 8000);
-                    break;
-
-                case 'slowMotion':
-                    activePowerups.slowMotion = true;
-                    setTimeout(() => {
-                        activePowerups.slowMotion = false;
-                        updatePowerupIndicators();
-                    }, 5000);
-                    break;
+            // Level up every 5 food
+            if (foodEaten % 5 === 0) {
+                levelUp();
             }
 
-            updatePowerupIndicators();
+            // Place new food
+            if (isBonus) {
+                bonusFood = null;
+            } else {
+                placeFood();
+            }
+
+            // Random chance for bonus food
+            if (!bonusFood && Math.random() < 0.2) {
+                placeBonusFood();
+            }
+
+            // Update displays
+            updateDisplays();
+
+            // Play sound
+            playSound(isBonus ? 'bonusEat' : 'eat');
         }
 
-        function createJumpParticles() {
-            for (let i = 0; i < 5; i++) {
-                particles.push({
-                    x: bird.x,
-                    y: bird.y + bird.height,
-                    vx: Math.random() * 2 - 1,
-                    vy: Math.random() * 2,
-                    color: '#feca57',
-                    size: Math.random() * 3 + 2,
-                    life: 1
-                });
-            }
+        function levelUp() {
+            level++;
+            gameSpeed = Math.max(50, 150 - (level - 1) * 10);
+
+            // Restart game loop with new speed
+            clearInterval(gameLoop);
+            gameLoop = setInterval(update, gameSpeed);
+
+            playSound('levelUp');
+            showCombo('Level ' + level + '!');
         }
 
-        function createCoinParticles(x, y) {
-            for (let i = 0; i < 10; i++) {
-                const angle = (Math.PI * 2 * i) / 10;
-                particles.push({
-                    x: x,
-                    y: y,
-                    vx: Math.cos(angle) * 3,
-                    vy: Math.sin(angle) * 3,
-                    color: '#feca57',
-                    size: 4,
-                    life: 1
-                });
-            }
+        // ==================== FOOD ====================
+        function placeFood() {
+            let newFood;
+            do {
+                newFood = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount)
+                };
+            } while (isOnSnake(newFood.x, newFood.y));
+
+            food = newFood;
         }
 
-        function createShieldBreakParticles() {
-            for (let i = 0; i < 15; i++) {
-                particles.push({
-                    x: bird.x + bird.width / 2,
-                    y: bird.y + bird.height / 2,
-                    vx: (Math.random() - 0.5) * 8,
-                    vy: (Math.random() - 0.5) * 8,
-                    color: '#3498db',
-                    size: Math.random() * 4 + 2,
-                    life: 1
-                });
-            }
+        function placeBonusFood() {
+            let newFood;
+            do {
+                newFood = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount),
+                    spawnTime: Date.now()
+                };
+            } while (isOnSnake(newFood.x, newFood.y) ||
+                (newFood.x === food.x && newFood.y === food.y));
+
+            bonusFood = newFood;
+        }
+
+        function isOnSnake(x, y) {
+            return snake.some(segment => segment.x === x && segment.y === y);
         }
 
         // ==================== DRAWING ====================
         function draw() {
             // Clear canvas
-            ctx.fillStyle = '#87CEEB';
+            ctx.fillStyle = '#0a0a15';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Draw background elements
-            drawBackground();
-            drawClouds();
+            // Draw grid
+            drawGrid();
 
-            // Draw game elements
-            drawPipes();
-            drawCoins();
-            drawPowerups();
-            drawBird();
-            drawParticles();
+            // Draw food
+            drawFood();
 
-            // Draw UI elements
-            if (activePowerups.shield) {
-                drawShield();
+            // Draw bonus food
+            if (bonusFood) {
+                drawBonusFood();
+            }
+
+            // Draw snake
+            drawSnake();
+        }
+
+        function drawGrid() {
+            ctx.strokeStyle = colors.grid;
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i <= tileCount; i++) {
+                // Vertical lines
+                ctx.beginPath();
+                ctx.moveTo(i * gridSize, 0);
+                ctx.lineTo(i * gridSize, canvas.height);
+                ctx.stroke();
+
+                // Horizontal lines
+                ctx.beginPath();
+                ctx.moveTo(0, i * gridSize);
+                ctx.lineTo(canvas.width, i * gridSize);
+                ctx.stroke();
             }
         }
 
-        function drawBackground() {
-            // Draw gradient sky
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#87CEEB');
-            gradient.addColorStop(1, '#98D8E8');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function drawSnake() {
+            snake.forEach((segment, index) => {
+                const x = segment.x * gridSize;
+                const y = segment.y * gridSize;
 
-            // Draw ground
-            ctx.fillStyle = '#8B7355';
-            ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
-            ctx.fillStyle = '#228B22';
-            ctx.fillRect(0, canvas.height - 25, canvas.width, 5);
-        }
+                // Calculate color based on position
+                let color;
+                if (index === 0) {
+                    color = colors.snakeHead;
+                } else {
+                    const gradient = index / snake.length;
+                    color = lerpColor(colors.snakeBody, '#5b21b6', gradient);
+                }
 
-        function drawClouds() {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            clouds.forEach(cloud => {
-                // Draw cloud with circles
+                // Draw segment with rounded corners
+                ctx.fillStyle = color;
                 ctx.beginPath();
-                ctx.arc(cloud.x, cloud.y, cloud.width * 0.3, 0, Math.PI * 2);
-                ctx.arc(cloud.x + cloud.width * 0.3, cloud.y, cloud.width * 0.4, 0, Math.PI * 2);
-                ctx.arc(cloud.x + cloud.width * 0.6, cloud.y, cloud.width * 0.3, 0, Math.PI * 2);
+                ctx.roundRect(x + 1, y + 1, gridSize - 2, gridSize - 2, 5);
                 ctx.fill();
-            });
-        }
 
-        function drawBird() {
-            ctx.save();
-            ctx.translate(bird.x + bird.width / 2, bird.y + bird.height / 2);
-            ctx.rotate(bird.rotation * Math.PI / 180);
-
-            // Draw bird body
-            ctx.fillStyle = '#feca57';
-            ctx.fillRect(-bird.width / 2, -bird.height / 2, bird.width, bird.height);
-
-            // Draw bird details
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(-bird.width / 2 + 10, -bird.height / 2 + 5, 8, 8);
-            ctx.fillStyle = '#000';
-            ctx.fillRect(-bird.width / 2 + 13, -bird.height / 2 + 7, 4, 4);
-
-            // Draw beak
-            ctx.fillStyle = '#ff6b6b';
-            ctx.beginPath();
-            ctx.moveTo(bird.width / 2, 0);
-            ctx.lineTo(bird.width / 2 + 8, -3);
-            ctx.lineTo(bird.width / 2 + 8, 3);
-            ctx.closePath();
-            ctx.fill();
-
-            // Draw wing (animated)
-            ctx.fillStyle = '#f39c12';
-            const wingY = Math.sin(bird.frame) * 5;
-            ctx.fillRect(-5, -5 + wingY, 15, 10);
-
-            ctx.restore();
-        }
-
-        function drawPipes() {
-            pipes.forEach(pipe => {
-                // Pipe gradient
-                const gradient = ctx.createLinearGradient(pipe.x, 0, pipe.x + pipeWidth, 0);
-                gradient.addColorStop(0, '#2ecc71');
-                gradient.addColorStop(0.5, '#27ae60');
-                gradient.addColorStop(1, '#229954');
-
-                ctx.fillStyle = gradient;
-
-                // Top pipe
-                ctx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
-                ctx.fillStyle = '#27ae60';
-                ctx.fillRect(pipe.x - 5, pipe.topHeight - 30, pipeWidth + 10, 30);
-
-                // Bottom pipe
-                ctx.fillStyle = gradient;
-                ctx.fillRect(pipe.x, pipe.bottomY, pipeWidth, canvas.height - pipe.bottomY);
-                ctx.fillStyle = '#27ae60';
-                ctx.fillRect(pipe.x - 5, pipe.bottomY, pipeWidth + 10, 30);
-
-                // Pipe highlights
-                ctx.strokeStyle = '#229954';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(pipe.x, 0, pipeWidth, pipe.topHeight);
-                ctx.strokeRect(pipe.x, pipe.bottomY, pipeWidth, canvas.height - pipe.bottomY);
-            });
-        }
-
-        function drawCoins() {
-            coins.forEach(coin => {
-                if (!coin.collected) {
-                    // Coin glow
-                    ctx.shadowColor = '#feca57';
-                    ctx.shadowBlur = 15;
-
-                    // Draw coin
-                    ctx.fillStyle = '#feca57';
+                // Add shine effect to head
+                if (index === 0) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
                     ctx.beginPath();
-                    ctx.arc(coin.x, coin.y, coin.radius, 0, Math.PI * 2);
+                    ctx.arc(x + gridSize / 3, y + gridSize / 3, 3, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Coin symbol
+                    // Draw eyes
+                    const eyeOffsetX = direction.x * 3;
+                    const eyeOffsetY = direction.y * 3;
                     ctx.fillStyle = '#fff';
-                    ctx.font = 'bold 16px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('$', coin.x, coin.y);
+                    ctx.beginPath();
+                    ctx.arc(x + gridSize / 3 + eyeOffsetX, y + gridSize / 2 + eyeOffsetY, 2, 0, Math.PI * 2);
+                    ctx.arc(x + 2 * gridSize / 3 + eyeOffsetX, y + gridSize / 2 + eyeOffsetY, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
 
+                // Add glow effect
+                if (index === 0) {
+                    ctx.shadowColor = colors.snakeHead;
+                    ctx.shadowBlur = 10;
+                    ctx.fillStyle = 'transparent';
+                    ctx.fill();
                     ctx.shadowBlur = 0;
                 }
             });
         }
 
-        function drawPowerups() {
-            powerups.forEach(powerup => {
-                if (!powerup.collected) {
-                    const icons = {
-                        shield: '🛡️',
-                        magnet: '🧲',
-                        slowMotion: '🕐'
-                    };
+        function drawFood() {
+            const x = food.x * gridSize;
+            const y = food.y * gridSize;
 
-                    // Power-up background
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                    ctx.beginPath();
-                    ctx.arc(powerup.x, powerup.y, 20, 0, Math.PI * 2);
-                    ctx.fill();
+            // Pulsing animation
+            const pulse = 1 + Math.sin(Date.now() / 200) * 0.1;
+            const size = (gridSize - 4) * pulse;
+            const offset = (gridSize - size) / 2;
 
-                    // Power-up icon
-                    ctx.font = '20px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(icons[powerup.type], powerup.x, powerup.y);
-                }
-            });
-        }
-
-        function drawShield() {
-            ctx.strokeStyle = 'rgba(52, 152, 219, 0.5)';
-            ctx.lineWidth = 3;
+            // Draw food (apple shape)
+            ctx.fillStyle = colors.food;
             ctx.beginPath();
-            ctx.arc(bird.x + bird.width / 2, bird.y + bird.height / 2, 30, 0, Math.PI * 2);
-            ctx.stroke();
+            ctx.arc(x + gridSize / 2, y + gridSize / 2, size / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Add shine
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.beginPath();
+            ctx.arc(x + gridSize / 3, y + gridSize / 3, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Add glow
+            ctx.shadowColor = colors.food;
+            ctx.shadowBlur = 15;
+            ctx.fill();
+            ctx.shadowBlur = 0;
         }
 
-        function drawParticles() {
-            particles.forEach(particle => {
-                ctx.globalAlpha = particle.life;
-                ctx.fillStyle = particle.color;
-                ctx.fillRect(particle.x, particle.y, particle.size, particle.size);
-            });
-            ctx.globalAlpha = 1;
+        function drawBonusFood() {
+            const x = bonusFood.x * gridSize;
+            const y = bonusFood.y * gridSize;
+
+            // Flashing animation (faster near timeout)
+            const timeLeft = 5000 - (Date.now() - bonusFood.spawnTime);
+            const flashSpeed = timeLeft < 2000 ? 100 : 300;
+            const visible = Math.floor(Date.now() / flashSpeed) % 2 === 0;
+
+            if (!visible && timeLeft < 2000) return;
+
+            // Draw bonus food (star shape)
+            ctx.fillStyle = colors.bonusFood;
+            ctx.beginPath();
+
+            const centerX = x + gridSize / 2;
+            const centerY = y + gridSize / 2;
+            const outerRadius = gridSize / 2 - 2;
+            const innerRadius = outerRadius / 2;
+            const points = 5;
+
+            for (let i = 0; i < points * 2; i++) {
+                const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                const angle = (i * Math.PI / points) - Math.PI / 2;
+                const px = centerX + radius * Math.cos(angle);
+                const py = centerY + radius * Math.sin(angle);
+
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+
+            ctx.closePath();
+            ctx.fill();
+
+            // Add glow
+            ctx.shadowColor = colors.bonusFood;
+            ctx.shadowBlur = 20;
+            ctx.fill();
+            ctx.shadowBlur = 0;
         }
 
         // ==================== UI UPDATES ====================
-        function updateDisplay() {
+        function updateDisplays() {
             document.getElementById('currentScore').textContent = score;
-            document.getElementById('canvasScore').textContent = score;
-            document.getElementById('highScore').textContent = highScore;
-            document.getElementById('coins').textContent = totalCoins;
+            document.getElementById('currentLevel').textContent = level;
+            document.getElementById('levelDisplay').textContent = level;
+            document.getElementById('foodEaten').textContent = foodEaten;
         }
 
-        function updatePowerupIndicators() {
-            document.getElementById('shieldIndicator').className =
-                activePowerups.shield ? 'powerup-indicator active' : 'powerup-indicator';
-            document.getElementById('magnetIndicator').className =
-                activePowerups.magnet ? 'powerup-indicator active' : 'powerup-indicator';
-            document.getElementById('slowIndicator').className =
-                activePowerups.slowMotion ? 'powerup-indicator active' : 'powerup-indicator';
-        }
-
-        function updateMedalsDisplay() {
-            const medalsDiv = document.getElementById('medalsDisplay');
-            medalsDiv.innerHTML = '';
-
-            if (highScore >= medals.bronze) {
-                const medal = document.createElement('div');
-                medal.className = 'medal bronze';
-                medal.innerHTML = '🥉';
-                medalsDiv.appendChild(medal);
-            }
-
-            if (highScore >= medals.silver) {
-                const medal = document.createElement('div');
-                medal.className = 'medal silver';
-                medal.innerHTML = '🥈';
-                medalsDiv.appendChild(medal);
-            }
-
-            if (highScore >= medals.gold) {
-                const medal = document.createElement('div');
-                medal.className = 'medal gold';
-                medal.innerHTML = '🥇';
-                medalsDiv.appendChild(medal);
-            }
-
-            if (highScore >= medals.platinum) {
-                const medal = document.createElement('div');
-                medal.className = 'medal platinum';
-                medal.innerHTML = '💎';
-                medalsDiv.appendChild(medal);
-            }
-        }
-
-        function getMedalIcon(medal) {
-            const icons = {
-                bronze: '🥉',
-                silver: '🥈',
-                gold: '🥇',
-                platinum: '💎'
-            };
-            return icons[medal];
-        }
-
-        function hideAllOverlays() {
-            document.querySelectorAll('.game-overlay').forEach(overlay => {
-                overlay.classList.add('hidden');
-            });
+        function showCombo(text) {
+            const comboDisplay = document.getElementById('comboDisplay');
+            comboDisplay.textContent = typeof text === 'number' ? `${text}x Combo!` : text;
+            comboDisplay.classList.remove('show');
+            void comboDisplay.offsetWidth; // Trigger reflow
+            comboDisplay.classList.add('show');
         }
 
         // ==================== SOUND ====================
@@ -1868,27 +1660,34 @@
             gainNode.connect(audioContext.destination);
 
             switch (type) {
-                case 'jump':
-                    oscillator.frequency.value = 400;
-                    oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.1);
-                    break;
-
-                case 'score':
+                case 'eat':
                     oscillator.frequency.value = 600;
                     oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
                     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
                     oscillator.start();
                     oscillator.stop(audioContext.currentTime + 0.1);
                     break;
-
-                case 'coin':
-                    const notes = [523, 659, 784];
+                case 'bonusEat':
+                    oscillator.frequency.value = 800;
+                    oscillator.type = 'sine';
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                    break;
+                case 'gameOver':
+                    oscillator.frequency.value = 200;
+                    oscillator.type = 'sawtooth';
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.5);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                    break;
+                case 'levelUp':
+                    const notes = [523, 659, 784, 1047];
                     notes.forEach((freq, i) => {
                         setTimeout(() => {
                             if (!soundEnabled) return;
@@ -1898,42 +1697,20 @@
                             gain.connect(audioContext.destination);
                             osc.frequency.value = freq;
                             osc.type = 'sine';
-                            gain.gain.setValueAtTime(0.05, audioContext.currentTime);
-                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                            gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
                             osc.start();
-                            osc.stop(audioContext.currentTime + 0.1);
-                        }, i * 30);
+                            osc.stop(audioContext.currentTime + 0.15);
+                        }, i * 100);
                     });
                     return;
-
-                case 'powerup':
-                    oscillator.frequency.value = 300;
+                case 'pause':
+                    oscillator.frequency.value = 440;
                     oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.3);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.3);
-                    break;
-
-                case 'shieldBreak':
-                    oscillator.frequency.value = 200;
-                    oscillator.type = 'sawtooth';
                     gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.2);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
                     oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.2);
-                    break;
-
-                case 'gameOver':
-                    oscillator.frequency.value = 300;
-                    oscillator.type = 'square';
-                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.5);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.5);
+                    oscillator.stop(audioContext.currentTime + 0.1);
                     break;
             }
         }
@@ -1941,23 +1718,63 @@
         function toggleSound() {
             soundEnabled = !soundEnabled;
             const icon = document.getElementById('soundIcon');
-            const toggleBtn = document.querySelector('.sound-toggle i');
+            const toggle = document.getElementById('soundToggle');
 
             if (soundEnabled) {
                 icon.className = 'fas fa-volume-up';
-                toggleBtn.className = 'fas fa-volume-up';
+                toggle.querySelector('i').className = 'fas fa-volume-up';
+                toggle.classList.remove('muted');
             } else {
                 icon.className = 'fas fa-volume-mute';
-                toggleBtn.className = 'fas fa-volume-mute';
+                toggle.querySelector('i').className = 'fas fa-volume-mute';
+                toggle.classList.add('muted');
             }
         }
 
+        // ==================== HELPER FUNCTIONS ====================
+        function lerpColor(color1, color2, factor) {
+            const c1 = hexToRgb(color1);
+            const c2 = hexToRgb(color2);
+
+            const r = Math.round(c1.r + (c2.r - c1.r) * factor);
+            const g = Math.round(c1.g + (c2.g - c1.g) * factor);
+            const b = Math.round(c1.b + (c2.b - c1.b) * factor);
+
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 0, g: 0, b: 0 };
+        }
+
         function toggleMenu() {
-            // Mobile menu toggle implementation
+            // Mobile menu toggle
         }
 
         // ==================== START ====================
         init();
+
+        // Resize canvas for mobile
+        function resizeCanvas() {
+            const container = document.querySelector('.canvas-container');
+            const maxWidth = Math.min(400, window.innerWidth - 60);
+
+            if (window.innerWidth < 500) {
+                canvas.width = maxWidth;
+                canvas.height = maxWidth;
+            } else {
+                canvas.width = 400;
+                canvas.height = 400;
+            }
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
     </script>
 
 </body>

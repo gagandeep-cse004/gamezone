@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2048 Game - GameZone</title>
+    <title>Snake Game - GameZone</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="Play the addictive 2048 puzzle game online for free. Combine tiles to reach 2048!">
-    <meta name="keywords" content="2048 game, puzzle game, free games, online games, number puzzle">
+    <meta name="description" content="Play the classic Snake game online for free. No download required!">
+    <meta name="keywords" content="snake game, free games, online games, classic games">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7337515965983452"
         crossorigin="anonymous"></script>
     <!-- Google Fonts -->
@@ -132,7 +131,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -147,7 +146,7 @@
         .game-stats {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
@@ -156,20 +155,20 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 15px 25px;
+            padding: 15px 30px;
             text-align: center;
-            min-width: 110px;
+            min-width: 120px;
         }
 
         .stat-box.highlight {
-            border-color: #f39c12;
-            background: rgba(243, 156, 18, 0.1);
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
         }
 
         .stat-box h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #f39c12;
+            color: #00d4ff;
         }
 
         .stat-box p {
@@ -178,37 +177,7 @@
             margin-top: 5px;
         }
 
-        .score-add {
-            font-size: 0.9rem;
-            color: #2ecc71;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .score-add.show {
-            opacity: 1;
-            animation: scorePopup 0.5s ease forwards;
-        }
-
-        @keyframes scorePopup {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateY(-5px);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-        }
-
-        /* Game Wrapper */
+        /* Game Canvas Container */
         .game-wrapper {
             position: relative;
             display: flex;
@@ -216,183 +185,23 @@
             align-items: center;
         }
 
-        /* Game Board Container */
-        .board-container {
+        .canvas-container {
             position: relative;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             border-radius: 20px;
             padding: 15px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(243, 156, 18, 0.1);
+                0 0 100px rgba(0, 212, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Game Board */
-        .game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.3);
+        #gameCanvas {
+            display: block;
             border-radius: 10px;
-            padding: 10px;
-            width: 340px;
-            height: 340px;
+            background: #0a0a15;
         }
 
-        /* Cell */
-        .cell {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            position: relative;
-        }
-
-        /* Tile */
-        .tile {
-            position: absolute;
-            width: 75px;
-            height: 75px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            transition: all 0.15s ease-in-out;
-            z-index: 10;
-        }
-
-        .tile.new {
-            animation: tileAppear 0.2s ease forwards;
-        }
-
-        .tile.merged {
-            animation: tileMerge 0.2s ease forwards;
-        }
-
-        @keyframes tileAppear {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes tileMerge {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Tile Colors */
-        .tile-2 {
-            background: linear-gradient(135deg, #eee4da, #ede0c8);
-            color: #776e65;
-            font-size: 2rem;
-        }
-
-        .tile-4 {
-            background: linear-gradient(135deg, #ede0c8, #e2d6b5);
-            color: #776e65;
-            font-size: 2rem;
-        }
-
-        .tile-8 {
-            background: linear-gradient(135deg, #f2b179, #f59563);
-            color: #fff;
-            font-size: 2rem;
-        }
-
-        .tile-16 {
-            background: linear-gradient(135deg, #f59563, #f67c5f);
-            color: #fff;
-            font-size: 1.9rem;
-        }
-
-        .tile-32 {
-            background: linear-gradient(135deg, #f67c5f, #f65e3b);
-            color: #fff;
-            font-size: 1.9rem;
-        }
-
-        .tile-64 {
-            background: linear-gradient(135deg, #f65e3b, #e74c3c);
-            color: #fff;
-            font-size: 1.9rem;
-        }
-
-        .tile-128 {
-            background: linear-gradient(135deg, #edcf72, #edcc61);
-            color: #fff;
-            font-size: 1.6rem;
-            box-shadow: 0 0 30px rgba(243, 215, 116, 0.4);
-        }
-
-        .tile-256 {
-            background: linear-gradient(135deg, #edcc61, #edc850);
-            color: #fff;
-            font-size: 1.6rem;
-            box-shadow: 0 0 30px rgba(243, 215, 116, 0.5);
-        }
-
-        .tile-512 {
-            background: linear-gradient(135deg, #edc53f, #edc22e);
-            color: #fff;
-            font-size: 1.6rem;
-            box-shadow: 0 0 40px rgba(243, 215, 116, 0.6);
-        }
-
-        .tile-1024 {
-            background: linear-gradient(135deg, #edc22e, #f0b818);
-            color: #fff;
-            font-size: 1.3rem;
-            box-shadow: 0 0 50px rgba(243, 215, 116, 0.7);
-        }
-
-        .tile-2048 {
-            background: linear-gradient(135deg, #f0b818, #f39c12);
-            color: #fff;
-            font-size: 1.3rem;
-            box-shadow: 0 0 60px rgba(243, 156, 18, 0.8);
-            animation: winPulse 1s ease infinite;
-        }
-
-        .tile-super {
-            background: linear-gradient(135deg, #3c3a32, #1f1d18);
-            color: #fff;
-            font-size: 1rem;
-            box-shadow: 0 0 60px rgba(60, 58, 50, 0.8);
-        }
-
-        @keyframes winPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 60px rgba(243, 156, 18, 0.8);
-            }
-
-            50% {
-                box-shadow: 0 0 80px rgba(243, 156, 18, 1);
-            }
-        }
-
-        /* Game Overlays */
+        /* Game Overlay */
         .game-overlay {
             position: absolute;
             top: 15px;
@@ -405,7 +214,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            z-index: 10;
         }
 
         .game-overlay.hidden {
@@ -420,14 +229,7 @@
         .overlay-content h2 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #f39c12, #e74c3c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .overlay-content h2.win {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -440,7 +242,7 @@
         }
 
         .overlay-content .score-display span {
-            color: #f39c12;
+            color: #00d4ff;
             font-weight: 700;
         }
 
@@ -467,13 +269,13 @@
         }
 
         .btn-play {
-            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
             color: #fff;
         }
 
         .btn-play:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
         }
 
         .btn-secondary {
@@ -484,16 +286,6 @@
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-continue {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: #fff;
-        }
-
-        .btn-continue:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
         }
 
         /* Controls */
@@ -521,17 +313,12 @@
         }
 
         .control-btn:hover {
-            background: #f39c12;
-            border-color: #f39c12;
+            background: #00d4ff;
+            border-color: #00d4ff;
         }
 
         .control-btn:active {
             transform: scale(0.95);
-        }
-
-        .control-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         /* Mobile Controls */
@@ -564,8 +351,8 @@
         }
 
         .dpad-btn:active {
-            background: #f39c12;
-            border-color: #f39c12;
+            background: #00d4ff;
+            border-color: #00d4ff;
             transform: scale(0.95);
         }
 
@@ -588,7 +375,7 @@
         .game-instructions h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: #f39c12;
+            color: #00d4ff;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -608,7 +395,7 @@
         }
 
         .game-instructions li i {
-            color: #f39c12;
+            color: #00d4ff;
             width: 20px;
         }
 
@@ -620,28 +407,8 @@
             font-weight: 600;
         }
 
-        /* Tile Preview */
-        .tile-preview {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .preview-tile {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        /* Move Counter */
-        .move-counter {
+        /* Level indicator */
+        .level-indicator {
             position: absolute;
             top: 25px;
             left: 25px;
@@ -652,35 +419,74 @@
             z-index: 5;
         }
 
-        .move-counter span {
-            color: #f39c12;
+        .level-indicator span {
+            color: #00d4ff;
             font-weight: 600;
         }
 
-        /* Best Tile Indicator */
-        .best-tile-indicator {
+        /* Power-up indicator */
+        .powerup-indicator {
             position: absolute;
             top: 25px;
             right: 25px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            z-index: 5;
             display: flex;
-            align-items: center;
-            gap: 8px;
+            gap: 10px;
+            z-index: 5;
         }
 
-        .best-tile-indicator .mini-tile {
-            width: 25px;
-            height: 25px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
+        .powerup-badge {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: none;
             align-items: center;
-            font-size: 0.6rem;
-            font-weight: 700;
+            gap: 5px;
+        }
+
+        .powerup-badge.active {
+            display: flex;
+        }
+
+        .powerup-badge i {
+            color: #feca57;
+        }
+
+        /* Combo display */
+        .combo-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: 800;
+            color: #feca57;
+            text-shadow: 0 0 20px rgba(254, 202, 87, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        .combo-display.show {
+            animation: comboPopup 0.5s ease forwards;
+        }
+
+        @keyframes comboPopup {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1) translateY(-20px);
+            }
         }
 
         /* Footer */
@@ -699,8 +505,100 @@
         }
 
         .game-footer a {
-            color: #f39c12;
+            color: #00d4ff;
             text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 50px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info i {
+            width: 16px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
         }
 
         /* Related Games */
@@ -734,7 +632,7 @@
 
         .related-card:hover {
             transform: translateY(-5px);
-            border-color: #f39c12;
+            border-color: #00d4ff;
         }
 
         .related-card img {
@@ -778,7 +676,11 @@
         }
 
         .sound-toggle:hover {
-            background: #f39c12;
+            background: #00d4ff;
+        }
+
+        .sound-toggle.muted i::before {
+            content: "\f6a9";
         }
 
         /* Responsive */
@@ -800,28 +702,20 @@
             }
 
             .game-stats {
-                gap: 10px;
+                gap: 15px;
             }
 
             .stat-box {
-                padding: 10px 15px;
-                min-width: 80px;
+                padding: 12px 20px;
+                min-width: 100px;
             }
 
             .stat-box h3 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
 
-            .game-board {
-                width: 300px;
-                height: 300px;
-                gap: 8px;
-                padding: 8px;
-            }
-
-            .tile {
-                width: 65px;
-                height: 65px;
+            #gameCanvas {
+                max-width: 100%;
             }
 
             .mobile-controls {
@@ -843,46 +737,27 @@
         }
 
         @media (max-width: 400px) {
-            .board-container {
+            .canvas-container {
                 padding: 10px;
             }
 
-            .game-board {
-                width: 280px;
-                height: 280px;
-                gap: 6px;
-                padding: 6px;
-            }
-
-            .tile {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem !important;
-            }
-
-            .tile-1024,
-            .tile-2048,
-            .tile-super {
-                font-size: 1rem !important;
-            }
-
             .stat-box {
-                padding: 8px 12px;
-                min-width: 70px;
+                padding: 10px 15px;
+                min-width: 80px;
             }
 
             .stat-box h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .dpad-btn {
-                width: 55px;
-                height: 55px;
+                width: 50px;
+                height: 50px;
             }
 
             .mobile-dpad {
-                grid-template-columns: repeat(3, 55px);
-                grid-template-rows: repeat(3, 55px);
+                grid-template-columns: repeat(3, 50px);
+                grid-template-rows: repeat(3, 50px);
             }
         }
     </style>
@@ -918,8 +793,8 @@
     <main class="game-page">
 
         <div class="game-header">
-            <h1>🔢 2048 Puzzle</h1>
-            <p>Combine the tiles to reach 2048! Swipe or use arrow keys to move.</p>
+            <h1>🐍 Snake Game</h1>
+            <p>Eat the food, grow longer, and don't hit the walls or yourself!</p>
         </div>
 
         <!-- Stats -->
@@ -927,55 +802,48 @@
             <div class="stat-box highlight">
                 <h3 id="currentScore">0</h3>
                 <p>Score</p>
-                <span class="score-add" id="scoreAdd">+0</span>
             </div>
             <div class="stat-box">
                 <h3 id="highScore">0</h3>
-                <p>Best</p>
+                <p>High Score</p>
             </div>
             <div class="stat-box">
-                <h3 id="moves">0</h3>
-                <p>Moves</p>
+                <h3 id="currentLevel">1</h3>
+                <p>Level</p>
             </div>
             <div class="stat-box">
-                <h3 id="bestTile">0</h3>
-                <p>Best Tile</p>
+                <h3 id="foodEaten">0</h3>
+                <p>Food Eaten</p>
             </div>
         </div>
 
         <!-- Game Wrapper -->
         <div class="game-wrapper">
-            <div class="board-container">
-                <!-- Move Counter -->
-                <div class="move-counter">
-                    Moves: <span id="moveDisplay">0</span>
+            <div class="canvas-container">
+                <!-- Level Indicator -->
+                <div class="level-indicator">
+                    Level <span id="levelDisplay">1</span>
                 </div>
 
-                <!-- Best Tile Indicator -->
-                <div class="best-tile-indicator">
-                    Best: <div class="mini-tile" id="bestTileMini">0</div>
+                <!-- Power-up Indicator -->
+                <div class="powerup-indicator">
+                    <div class="powerup-badge" id="speedBadge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Speed Boost</span>
+                    </div>
                 </div>
 
-                <!-- Game Board -->
-                <div class="game-board" id="gameBoard">
-                    <!-- Cells will be generated by JavaScript -->
-                </div>
+                <!-- Combo Display -->
+                <div class="combo-display" id="comboDisplay"></div>
+
+                <!-- Game Canvas -->
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
 
                 <!-- Start Overlay -->
                 <div class="game-overlay" id="startOverlay">
                     <div class="overlay-content">
-                        <h2>🔢 2048</h2>
-                        <p style="color: #888; margin-bottom: 20px;">Join the tiles, get to 2048!</p>
-                        <div class="tile-preview">
-                            <div class="preview-tile tile-2">2</div>
-                            <div class="preview-tile tile-4">4</div>
-                            <div class="preview-tile tile-8">8</div>
-                            <div class="preview-tile tile-16">16</div>
-                            <div class="preview-tile tile-32">32</div>
-                            <span style="color: #888;">...</span>
-                            <div class="preview-tile tile-2048">2048</div>
-                        </div>
-                        <br>
+                        <h2>🐍 Snake</h2>
+                        <p style="color: #888; margin-bottom: 20px;">Classic arcade fun!</p>
                         <button class="game-btn btn-play" onclick="startGame()">
                             <i class="fas fa-play"></i> Start Game
                         </button>
@@ -987,15 +855,13 @@
                     <div class="overlay-content">
                         <h2>Game Over!</h2>
                         <div class="score-display">
-                            Final Score: <span id="finalScore">0</span>
+                            Your Score: <span id="finalScore">0</span>
                         </div>
                         <div class="high-score-text" id="newHighScore" style="display: none;">
                             <i class="fas fa-crown"></i> New High Score!
                         </div>
-                        <p style="color: #888; margin-bottom: 15px;">Best Tile: <span id="finalBestTile"
-                                style="color: #f39c12;">0</span></p>
                         <button class="game-btn btn-play" onclick="restartGame()">
-                            <i class="fas fa-redo"></i> Try Again
+                            <i class="fas fa-redo"></i> Play Again
                         </button>
                         <button class="game-btn btn-secondary" onclick="goHome()">
                             <i class="fas fa-home"></i> Home
@@ -1003,19 +869,16 @@
                     </div>
                 </div>
 
-                <!-- Win Overlay -->
-                <div class="game-overlay hidden" id="winOverlay">
+                <!-- Pause Overlay -->
+                <div class="game-overlay hidden" id="pauseOverlay">
                     <div class="overlay-content">
-                        <h2 class="win">🎉 You Win!</h2>
-                        <div class="score-display">
-                            Score: <span id="winScore">0</span>
-                        </div>
-                        <p style="color: #2ecc71; margin-bottom: 20px;">You reached 2048!</p>
-                        <button class="game-btn btn-continue" onclick="continueGame()">
-                            <i class="fas fa-play"></i> Keep Playing
+                        <h2>⏸️ Paused</h2>
+                        <p style="color: #888; margin-bottom: 20px;">Game is paused</p>
+                        <button class="game-btn btn-play" onclick="resumeGame()">
+                            <i class="fas fa-play"></i> Resume
                         </button>
                         <button class="game-btn btn-secondary" onclick="restartGame()">
-                            <i class="fas fa-redo"></i> New Game
+                            <i class="fas fa-redo"></i> Restart
                         </button>
                     </div>
                 </div>
@@ -1023,8 +886,8 @@
 
             <!-- Desktop Controls -->
             <div class="game-controls">
-                <button class="control-btn" onclick="undoMove()" title="Undo" id="undoBtn" disabled>
-                    <i class="fas fa-undo"></i>
+                <button class="control-btn" onclick="togglePause()" title="Pause">
+                    <i class="fas fa-pause"></i>
                 </button>
                 <button class="control-btn" onclick="restartGame()" title="Restart">
                     <i class="fas fa-redo"></i>
@@ -1038,21 +901,21 @@
             <div class="mobile-controls">
                 <div class="mobile-dpad">
                     <div class="dpad-btn empty"></div>
-                    <button class="dpad-btn" onclick="move('up')">
+                    <button class="dpad-btn" onclick="changeDirection('up')">
                         <i class="fas fa-chevron-up"></i>
                     </button>
                     <div class="dpad-btn empty"></div>
-                    <button class="dpad-btn" onclick="move('left')">
+                    <button class="dpad-btn" onclick="changeDirection('left')">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="dpad-btn" onclick="undoMove()" style="background: rgba(243, 156, 18, 0.2);">
-                        <i class="fas fa-undo"></i>
+                    <button class="dpad-btn" onclick="togglePause()" style="background: rgba(0, 212, 255, 0.2);">
+                        <i class="fas fa-pause"></i>
                     </button>
-                    <button class="dpad-btn" onclick="move('right')">
+                    <button class="dpad-btn" onclick="changeDirection('right')">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                     <div class="dpad-btn empty"></div>
-                    <button class="dpad-btn" onclick="move('down')">
+                    <button class="dpad-btn" onclick="changeDirection('down')">
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dpad-btn empty"></div>
@@ -1067,27 +930,27 @@
                 <li>
                     <i class="fas fa-arrow-right"></i>
                     Use <span class="key-hint">↑</span> <span class="key-hint">↓</span> <span class="key-hint">←</span>
-                    <span class="key-hint">→</span> or swipe to move tiles
+                    <span class="key-hint">→</span> arrow keys to move
                 </li>
                 <li>
-                    <i class="fas fa-layer-group"></i>
-                    Tiles with the same number merge into one
+                    <i class="fas fa-apple-alt"></i>
+                    Eat the red food to grow and score points
                 </li>
                 <li>
-                    <i class="fas fa-plus"></i>
-                    Each merge doubles the tile value
-                </li>
-                <li>
-                    <i class="fas fa-trophy"></i>
-                    Combine tiles to create <strong style="color: #f39c12;">2048</strong>
-                </li>
-                <li>
-                    <i class="fas fa-undo"></i>
-                    Press <span class="key-hint">U</span> to undo last move
+                    <i class="fas fa-star"></i>
+                    Eat the golden food for bonus points!
                 </li>
                 <li>
                     <i class="fas fa-skull"></i>
-                    Game ends when no moves are possible
+                    Avoid hitting walls and yourself
+                </li>
+                <li>
+                    <i class="fas fa-tachometer-alt"></i>
+                    Speed increases as you level up
+                </li>
+                <li>
+                    <i class="fas fa-pause"></i>
+                    Press <span class="key-hint">Space</span> or <span class="key-hint">P</span> to pause
                 </li>
             </ul>
         </div>
@@ -1096,25 +959,18 @@
         <div class="related-games">
             <h3>🎮 More Games You'll Love</h3>
             <div class="related-grid">
-                <a href="snake.html" class="related-card">
-                    <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=300" alt="Snake">
-                    <div class="related-card-content">
-                        <h4>Snake Game</h4>
-                        <p>Classic arcade fun</p>
-                    </div>
-                </a>
                 <a href="tetris.html" class="related-card">
                     <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=300" alt="Tetris">
                     <div class="related-card-content">
                         <h4>Tetris</h4>
-                        <p>Block puzzle game</p>
+                        <p>Classic puzzle game</p>
                     </div>
                 </a>
-                <a href="memory.html" class="related-card">
-                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=300" alt="Memory">
+                <a href="2048.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=300" alt="2048">
                     <div class="related-card-content">
-                        <h4>Memory Match</h4>
-                        <p>Test your memory</p>
+                        <h4>2048</h4>
+                        <p>Number puzzle</p>
                     </div>
                 </a>
                 <a href="flappy.html" class="related-card">
@@ -1124,13 +980,88 @@
                         <p>Tap to fly</p>
                     </div>
                 </a>
+                <a href="memory.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=300" alt="Memory">
+                    <div class="related-card-content">
+                        <h4>Memory Match</h4>
+                        <p>Test your memory</p>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="game-footer">
-            <p>© 2025 <a href="../index.html">GameZone</a>. All Rights Reserved.</p>
+        <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="../index.html" class="logo" style="margin-bottom: 15px; display: inline-flex;">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameZone</span>
+                </a>
+                <p>The ultimate destination for free online games. Play anytime, anywhere!</p>
+                <div class="contact-info" style="margin: 15px 0;">
+                    <p style="color: #00d4ff; margin: 5px 0;">
+                        <i class="fas fa-phone"></i> +91 8264819037
+                    </p>
+                    <p style="color: #888; margin: 5px 0;">
+                        <i class="fas fa-envelope"></i> support@gamezone.com
+                    </p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/gamezone" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.twitter.com/gamezone" target="_blank" rel="noopener noreferrer" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gamezone" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@gamezone" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/gamezone" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918264819037" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../games.html">All Games</a></li>
+                    <li><a href="../categories.html">Categories</a></li>
+                    <li><a href="../leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../privacy.html">Privacy Policy</a></li>
+                    <li><a href="../cookies.html">Cookies Policy</a></li>
+                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="../disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact.html">Contact Us</a></li>
+                    <li><a href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
         </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 GameZone. All Rights Reserved. Made with ❤️ for Gamers</p>
+        </div>
+    </footer>
 
     </main>
 
@@ -1141,19 +1072,43 @@
 
     <script>
         // ==================== GAME VARIABLES ====================
-        const boardSize = 4;
-        let board = [];
-        let previousBoard = [];
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game settings
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+
+        // Game state
+        let snake = [];
+        let food = { x: 0, y: 0 };
+        let bonusFood = null;
+        let direction = { x: 0, y: 0 };
+        let nextDirection = { x: 0, y: 0 };
         let score = 0;
-        let previousScore = 0;
-        let highScore = localStorage.getItem('2048HighScore') || 0;
-        let moves = 0;
-        let bestTile = 0;
+        let highScore = localStorage.getItem('snakeHighScore') || 0;
+        let level = 1;
+        let foodEaten = 0;
+        let gameSpeed = 150;
+        let gameLoop = null;
         let isGameRunning = false;
-        let hasWon = false;
-        let continueAfterWin = false;
+        let isPaused = false;
         let soundEnabled = true;
-        let canUndo = false;
+
+        // Combo system
+        let combo = 0;
+        let lastFoodTime = 0;
+        const comboTimeout = 2000; // 2 seconds
+
+        // Colors
+        const colors = {
+            snakeHead: '#00d4ff',
+            snakeBody: '#7c3aed',
+            snakeGradient: ['#00d4ff', '#7c3aed', '#5b21b6'],
+            food: '#ff6b6b',
+            bonusFood: '#feca57',
+            grid: 'rgba(255, 255, 255, 0.03)'
+        };
 
         // Audio context for sounds
         let audioContext = null;
@@ -1163,14 +1118,40 @@
             // Update high score display
             document.getElementById('highScore').textContent = highScore;
 
-            // Create board cells
-            createBoard();
+            // Draw initial screen
+            drawGrid();
 
             // Set up event listeners
             document.addEventListener('keydown', handleKeyPress);
 
             // Touch events for swipe controls
-            setupTouchControls();
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            canvas.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                const diffX = touchEndX - touchStartX;
+                const diffY = touchEndY - touchStartY;
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 30) changeDirection('right');
+                    else if (diffX < -30) changeDirection('left');
+                } else {
+                    if (diffY > 30) changeDirection('down');
+                    else if (diffY < -30) changeDirection('up');
+                }
+            });
 
             // Initialize audio context on first user interaction
             document.addEventListener('click', initAudio, { once: true });
@@ -1183,132 +1164,93 @@
             }
         }
 
-        function createBoard() {
-            const gameBoard = document.getElementById('gameBoard');
-            gameBoard.innerHTML = '';
-
-            for (let i = 0; i < boardSize * boardSize; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'cell';
-                cell.dataset.index = i;
-                gameBoard.appendChild(cell);
-            }
-        }
-
-        function setupTouchControls() {
-            const gameBoard = document.getElementById('gameBoard');
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let touchEndX = 0;
-            let touchEndY = 0;
-
-            gameBoard.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            gameBoard.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-            }, { passive: false });
-
-            gameBoard.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                touchEndY = e.changedTouches[0].clientY;
-                handleSwipe();
-            }, { passive: true });
-
-            function handleSwipe() {
-                const diffX = touchEndX - touchStartX;
-                const diffY = touchEndY - touchStartY;
-                const minSwipeDistance = 50;
-
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    if (Math.abs(diffX) > minSwipeDistance) {
-                        if (diffX > 0) {
-                            move('right');
-                        } else {
-                            move('left');
-                        }
-                    }
-                } else {
-                    if (Math.abs(diffY) > minSwipeDistance) {
-                        if (diffY > 0) {
-                            move('down');
-                        } else {
-                            move('up');
-                        }
-                    }
-                }
-            }
-        }
-
         // ==================== GAME CONTROLS ====================
         function startGame() {
+            // Hide start overlay
             document.getElementById('startOverlay').classList.add('hidden');
             document.getElementById('gameOverOverlay').classList.add('hidden');
-            document.getElementById('winOverlay').classList.add('hidden');
+            document.getElementById('pauseOverlay').classList.add('hidden');
 
+            // Reset game state
             resetGame();
+
+            // Start game loop
             isGameRunning = true;
+            isPaused = false;
+            gameLoop = setInterval(update, gameSpeed);
         }
 
         function resetGame() {
-            // Initialize empty board
-            board = Array(boardSize).fill(null).map(() => Array(boardSize).fill(0));
-            previousBoard = [];
+            // Initialize snake in the center
+            snake = [
+                { x: Math.floor(tileCount / 2), y: Math.floor(tileCount / 2) }
+            ];
+
+            // Reset variables
+            direction = { x: 0, y: 0 };
+            nextDirection = { x: 0, y: 0 };
             score = 0;
-            previousScore = 0;
-            moves = 0;
-            bestTile = 0;
-            hasWon = false;
-            continueAfterWin = false;
-            canUndo = false;
+            level = 1;
+            foodEaten = 0;
+            gameSpeed = 150;
+            combo = 0;
+            bonusFood = null;
 
             // Update displays
             updateDisplays();
-            updateUndoButton();
 
-            // Add initial tiles
-            addRandomTile();
-            addRandomTile();
-
-            // Render board
-            renderBoard();
+            // Place first food
+            placeFood();
         }
 
         function restartGame() {
+            if (gameLoop) clearInterval(gameLoop);
             startGame();
         }
 
-        function continueGame() {
-            document.getElementById('winOverlay').classList.add('hidden');
-            continueAfterWin = true;
+        function togglePause() {
+            if (!isGameRunning) return;
+
+            if (isPaused) {
+                resumeGame();
+            } else {
+                pauseGame();
+            }
+        }
+
+        function pauseGame() {
+            if (!isGameRunning) return;
+
+            isPaused = true;
+            clearInterval(gameLoop);
+            document.getElementById('pauseOverlay').classList.remove('hidden');
+            playSound('pause');
+        }
+
+        function resumeGame() {
+            isPaused = false;
+            document.getElementById('pauseOverlay').classList.add('hidden');
+            gameLoop = setInterval(update, gameSpeed);
         }
 
         function gameOver() {
             isGameRunning = false;
+            clearInterval(gameLoop);
 
             // Check for new high score
             const isNewHighScore = score > highScore;
             if (isNewHighScore) {
                 highScore = score;
-                localStorage.setItem('2048HighScore', highScore);
+                localStorage.setItem('snakeHighScore', highScore);
                 document.getElementById('highScore').textContent = highScore;
             }
 
             // Show game over overlay
             document.getElementById('finalScore').textContent = score;
-            document.getElementById('finalBestTile').textContent = bestTile;
             document.getElementById('newHighScore').style.display = isNewHighScore ? 'block' : 'none';
             document.getElementById('gameOverOverlay').classList.remove('hidden');
 
             playSound('gameOver');
-        }
-
-        function showWinScreen() {
-            document.getElementById('winScore').textContent = score;
-            document.getElementById('winOverlay').classList.remove('hidden');
-            playSound('win');
         }
 
         function goHome() {
@@ -1317,36 +1259,36 @@
 
         // ==================== INPUT HANDLING ====================
         function handleKeyPress(e) {
-            if (!isGameRunning) {
-                if (e.code === 'Space' || e.code === 'Enter') {
-                    startGame();
-                }
-                return;
+            // Prevent default for arrow keys
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
+                e.preventDefault();
             }
 
+            // Direction keys
             switch (e.code) {
                 case 'ArrowUp':
                 case 'KeyW':
-                    e.preventDefault();
-                    move('up');
+                    changeDirection('up');
                     break;
                 case 'ArrowDown':
                 case 'KeyS':
-                    e.preventDefault();
-                    move('down');
+                    changeDirection('down');
                     break;
                 case 'ArrowLeft':
                 case 'KeyA':
-                    e.preventDefault();
-                    move('left');
+                    changeDirection('left');
                     break;
                 case 'ArrowRight':
                 case 'KeyD':
-                    e.preventDefault();
-                    move('right');
+                    changeDirection('right');
                     break;
-                case 'KeyU':
-                    undoMove();
+                case 'Space':
+                case 'KeyP':
+                    if (!isGameRunning && !isPaused) {
+                        startGame();
+                    } else {
+                        togglePause();
+                    }
                     break;
                 case 'KeyR':
                     restartGame();
@@ -1357,280 +1299,354 @@
             }
         }
 
-        // ==================== GAME LOGIC ====================
-        function move(direction) {
-            if (!isGameRunning) return;
+        function changeDirection(dir) {
+            // Start game if not running
+            if (!isGameRunning && !isPaused) {
+                startGame();
+            }
 
-            // Save state for undo
-            previousBoard = board.map(row => [...row]);
-            previousScore = score;
-
-            let moved = false;
-            let mergedScore = 0;
-
-            switch (direction) {
+            switch (dir) {
                 case 'up':
-                    for (let col = 0; col < boardSize; col++) {
-                        const result = slideAndMerge(getColumn(col));
-                        if (result.moved) moved = true;
-                        mergedScore += result.score;
-                        setColumn(col, result.tiles);
+                    if (direction.y !== 1) {
+                        nextDirection = { x: 0, y: -1 };
                     }
                     break;
                 case 'down':
-                    for (let col = 0; col < boardSize; col++) {
-                        const result = slideAndMerge(getColumn(col).reverse());
-                        if (result.moved) moved = true;
-                        mergedScore += result.score;
-                        setColumn(col, result.tiles.reverse());
+                    if (direction.y !== -1) {
+                        nextDirection = { x: 0, y: 1 };
                     }
                     break;
                 case 'left':
-                    for (let row = 0; row < boardSize; row++) {
-                        const result = slideAndMerge(board[row]);
-                        if (result.moved) moved = true;
-                        mergedScore += result.score;
-                        board[row] = result.tiles;
+                    if (direction.x !== 1) {
+                        nextDirection = { x: -1, y: 0 };
                     }
                     break;
                 case 'right':
-                    for (let row = 0; row < boardSize; row++) {
-                        const result = slideAndMerge([...board[row]].reverse());
-                        if (result.moved) moved = true;
-                        mergedScore += result.score;
-                        board[row] = result.tiles.reverse();
+                    if (direction.x !== -1) {
+                        nextDirection = { x: 1, y: 0 };
                     }
                     break;
             }
-
-            if (moved) {
-                score += mergedScore;
-                moves++;
-                canUndo = true;
-
-                // Show score addition
-                if (mergedScore > 0) {
-                    showScoreAddition(mergedScore);
-                }
-
-                // Add new random tile
-                addRandomTile();
-
-                // Update displays
-                updateDisplays();
-                updateUndoButton();
-
-                // Render board
-                renderBoard();
-
-                // Play sound
-                playSound(mergedScore > 0 ? 'merge' : 'move');
-
-                // Check for win (first time reaching 2048)
-                if (!hasWon && !continueAfterWin && bestTile >= 2048) {
-                    hasWon = true;
-                    setTimeout(() => showWinScreen(), 300);
-                }
-
-                // Check for game over
-                if (!hasMovesAvailable()) {
-                    setTimeout(() => gameOver(), 500);
-                }
-            }
         }
 
-        function slideAndMerge(tiles) {
-            const original = [...tiles];
+        // ==================== GAME LOOP ====================
+        function update() {
+            // Update direction
+            if (nextDirection.x !== 0 || nextDirection.y !== 0) {
+                direction = { ...nextDirection };
+            }
 
-            // Remove zeros and slide
-            let filtered = tiles.filter(t => t !== 0);
-            let result = [];
-            let scoreGained = 0;
+            // Don't move if no direction set
+            if (direction.x === 0 && direction.y === 0) {
+                draw();
+                return;
+            }
 
-            // Merge adjacent equal tiles
-            for (let i = 0; i < filtered.length; i++) {
-                if (i < filtered.length - 1 && filtered[i] === filtered[i + 1]) {
-                    const merged = filtered[i] * 2;
-                    result.push(merged);
-                    scoreGained += merged;
+            // Calculate new head position
+            const head = {
+                x: snake[0].x + direction.x,
+                y: snake[0].y + direction.y
+            };
 
-                    // Update best tile
-                    if (merged > bestTile) {
-                        bestTile = merged;
-                    }
+            // Check wall collision
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                gameOver();
+                return;
+            }
 
-                    i++; // Skip next tile
-                } else {
-                    result.push(filtered[i]);
+            // Check self collision
+            for (let segment of snake) {
+                if (head.x === segment.x && head.y === segment.y) {
+                    gameOver();
+                    return;
                 }
             }
 
-            // Pad with zeros
-            while (result.length < boardSize) {
-                result.push(0);
+            // Add new head
+            snake.unshift(head);
+
+            // Check food collision
+            let ate = false;
+            if (head.x === food.x && head.y === food.y) {
+                ate = true;
+                eatFood(false);
+            } else if (bonusFood && head.x === bonusFood.x && head.y === bonusFood.y) {
+                ate = true;
+                eatFood(true);
+            } else {
+                // Remove tail if didn't eat
+                snake.pop();
             }
 
-            // Check if moved
-            const moved = !arraysEqual(original, result);
-
-            return { tiles: result, moved, score: scoreGained };
-        }
-
-        function getColumn(col) {
-            return board.map(row => row[col]);
-        }
-
-        function setColumn(col, values) {
-            for (let row = 0; row < boardSize; row++) {
-                board[row][col] = values[row];
+            // Check bonus food timeout
+            if (bonusFood && Date.now() - bonusFood.spawnTime > 5000) {
+                bonusFood = null;
             }
+
+            // Draw everything
+            draw();
         }
 
-        function addRandomTile() {
-            const emptyCells = [];
+        function eatFood(isBonus) {
+            const now = Date.now();
 
-            for (let row = 0; row < boardSize; row++) {
-                for (let col = 0; col < boardSize; col++) {
-                    if (board[row][col] === 0) {
-                        emptyCells.push({ row, col });
-                    }
+            // Calculate combo
+            if (now - lastFoodTime < comboTimeout) {
+                combo++;
+                if (combo > 1) {
+                    showCombo(combo);
                 }
+            } else {
+                combo = 1;
+            }
+            lastFoodTime = now;
+
+            // Calculate points
+            let points = isBonus ? 50 : 10;
+            points *= combo; // Combo multiplier
+            points *= level; // Level multiplier
+
+            score += points;
+            foodEaten++;
+
+            // Level up every 5 food
+            if (foodEaten % 5 === 0) {
+                levelUp();
             }
 
-            if (emptyCells.length > 0) {
-                const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-                // 90% chance for 2, 10% chance for 4
-                board[randomCell.row][randomCell.col] = Math.random() < 0.9 ? 2 : 4;
-
-                // Mark as new for animation
-                setTimeout(() => {
-                    const index = randomCell.row * boardSize + randomCell.col;
-                    const tile = document.querySelector(`.tile[data-index="${index}"]`);
-                    if (tile) {
-                        tile.classList.add('new');
-                    }
-                }, 50);
-            }
-        }
-
-        function hasMovesAvailable() {
-            // Check for empty cells
-            for (let row = 0; row < boardSize; row++) {
-                for (let col = 0; col < boardSize; col++) {
-                    if (board[row][col] === 0) return true;
-                }
+            // Place new food
+            if (isBonus) {
+                bonusFood = null;
+            } else {
+                placeFood();
             }
 
-            // Check for possible merges
-            for (let row = 0; row < boardSize; row++) {
-                for (let col = 0; col < boardSize; col++) {
-                    const current = board[row][col];
-
-                    // Check right
-                    if (col < boardSize - 1 && board[row][col + 1] === current) return true;
-
-                    // Check down
-                    if (row < boardSize - 1 && board[row + 1][col] === current) return true;
-                }
+            // Random chance for bonus food
+            if (!bonusFood && Math.random() < 0.2) {
+                placeBonusFood();
             }
 
-            return false;
-        }
-
-        function undoMove() {
-            if (!canUndo || previousBoard.length === 0) return;
-
-            board = previousBoard.map(row => [...row]);
-            score = previousScore;
-            moves = Math.max(0, moves - 1);
-            canUndo = false;
-
+            // Update displays
             updateDisplays();
-            updateUndoButton();
-            renderBoard();
 
-            playSound('undo');
+            // Play sound
+            playSound(isBonus ? 'bonusEat' : 'eat');
         }
 
-        // ==================== RENDERING ====================
-        function renderBoard() {
-            const gameBoard = document.getElementById('gameBoard');
+        function levelUp() {
+            level++;
+            gameSpeed = Math.max(50, 150 - (level - 1) * 10);
 
-            // Remove existing tiles
-            document.querySelectorAll('.tile').forEach(tile => tile.remove());
+            // Restart game loop with new speed
+            clearInterval(gameLoop);
+            gameLoop = setInterval(update, gameSpeed);
 
-            // Create new tiles
-            for (let row = 0; row < boardSize; row++) {
-                for (let col = 0; col < boardSize; col++) {
-                    const value = board[row][col];
-                    if (value !== 0) {
-                        const tile = document.createElement('div');
-                        const index = row * boardSize + col;
+            playSound('levelUp');
+            showCombo('Level ' + level + '!');
+        }
 
-                        // Determine tile class
-                        let tileClass = 'tile';
-                        if (value <= 2048) {
-                            tileClass += ` tile-${value}`;
-                        } else {
-                            tileClass += ' tile-super';
-                        }
+        // ==================== FOOD ====================
+        function placeFood() {
+            let newFood;
+            do {
+                newFood = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount)
+                };
+            } while (isOnSnake(newFood.x, newFood.y));
 
-                        tile.className = tileClass;
-                        tile.textContent = value;
-                        tile.dataset.index = index;
+            food = newFood;
+        }
 
-                        // Position tile
-                        const cell = gameBoard.children[index];
-                        const rect = cell.getBoundingClientRect();
-                        const boardRect = gameBoard.getBoundingClientRect();
+        function placeBonusFood() {
+            let newFood;
+            do {
+                newFood = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount),
+                    spawnTime: Date.now()
+                };
+            } while (isOnSnake(newFood.x, newFood.y) ||
+                (newFood.x === food.x && newFood.y === food.y));
 
-                        tile.style.left = `${cell.offsetLeft}px`;
-                        tile.style.top = `${cell.offsetTop}px`;
-                        tile.style.width = `${cell.offsetWidth}px`;
-                        tile.style.height = `${cell.offsetHeight}px`;
+            bonusFood = newFood;
+        }
 
-                        gameBoard.appendChild(tile);
-                    }
-                }
+        function isOnSnake(x, y) {
+            return snake.some(segment => segment.x === x && segment.y === y);
+        }
+
+        // ==================== DRAWING ====================
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = '#0a0a15';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw grid
+            drawGrid();
+
+            // Draw food
+            drawFood();
+
+            // Draw bonus food
+            if (bonusFood) {
+                drawBonusFood();
             }
+
+            // Draw snake
+            drawSnake();
+        }
+
+        function drawGrid() {
+            ctx.strokeStyle = colors.grid;
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i <= tileCount; i++) {
+                // Vertical lines
+                ctx.beginPath();
+                ctx.moveTo(i * gridSize, 0);
+                ctx.lineTo(i * gridSize, canvas.height);
+                ctx.stroke();
+
+                // Horizontal lines
+                ctx.beginPath();
+                ctx.moveTo(0, i * gridSize);
+                ctx.lineTo(canvas.width, i * gridSize);
+                ctx.stroke();
+            }
+        }
+
+        function drawSnake() {
+            snake.forEach((segment, index) => {
+                const x = segment.x * gridSize;
+                const y = segment.y * gridSize;
+
+                // Calculate color based on position
+                let color;
+                if (index === 0) {
+                    color = colors.snakeHead;
+                } else {
+                    const gradient = index / snake.length;
+                    color = lerpColor(colors.snakeBody, '#5b21b6', gradient);
+                }
+
+                // Draw segment with rounded corners
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.roundRect(x + 1, y + 1, gridSize - 2, gridSize - 2, 5);
+                ctx.fill();
+
+                // Add shine effect to head
+                if (index === 0) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.beginPath();
+                    ctx.arc(x + gridSize / 3, y + gridSize / 3, 3, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Draw eyes
+                    const eyeOffsetX = direction.x * 3;
+                    const eyeOffsetY = direction.y * 3;
+                    ctx.fillStyle = '#fff';
+                    ctx.beginPath();
+                    ctx.arc(x + gridSize / 3 + eyeOffsetX, y + gridSize / 2 + eyeOffsetY, 2, 0, Math.PI * 2);
+                    ctx.arc(x + 2 * gridSize / 3 + eyeOffsetX, y + gridSize / 2 + eyeOffsetY, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Add glow effect
+                if (index === 0) {
+                    ctx.shadowColor = colors.snakeHead;
+                    ctx.shadowBlur = 10;
+                    ctx.fillStyle = 'transparent';
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            });
+        }
+
+        function drawFood() {
+            const x = food.x * gridSize;
+            const y = food.y * gridSize;
+
+            // Pulsing animation
+            const pulse = 1 + Math.sin(Date.now() / 200) * 0.1;
+            const size = (gridSize - 4) * pulse;
+            const offset = (gridSize - size) / 2;
+
+            // Draw food (apple shape)
+            ctx.fillStyle = colors.food;
+            ctx.beginPath();
+            ctx.arc(x + gridSize / 2, y + gridSize / 2, size / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Add shine
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.beginPath();
+            ctx.arc(x + gridSize / 3, y + gridSize / 3, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Add glow
+            ctx.shadowColor = colors.food;
+            ctx.shadowBlur = 15;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        function drawBonusFood() {
+            const x = bonusFood.x * gridSize;
+            const y = bonusFood.y * gridSize;
+
+            // Flashing animation (faster near timeout)
+            const timeLeft = 5000 - (Date.now() - bonusFood.spawnTime);
+            const flashSpeed = timeLeft < 2000 ? 100 : 300;
+            const visible = Math.floor(Date.now() / flashSpeed) % 2 === 0;
+
+            if (!visible && timeLeft < 2000) return;
+
+            // Draw bonus food (star shape)
+            ctx.fillStyle = colors.bonusFood;
+            ctx.beginPath();
+
+            const centerX = x + gridSize / 2;
+            const centerY = y + gridSize / 2;
+            const outerRadius = gridSize / 2 - 2;
+            const innerRadius = outerRadius / 2;
+            const points = 5;
+
+            for (let i = 0; i < points * 2; i++) {
+                const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                const angle = (i * Math.PI / points) - Math.PI / 2;
+                const px = centerX + radius * Math.cos(angle);
+                const py = centerY + radius * Math.sin(angle);
+
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+
+            ctx.closePath();
+            ctx.fill();
+
+            // Add glow
+            ctx.shadowColor = colors.bonusFood;
+            ctx.shadowBlur = 20;
+            ctx.fill();
+            ctx.shadowBlur = 0;
         }
 
         // ==================== UI UPDATES ====================
         function updateDisplays() {
             document.getElementById('currentScore').textContent = score;
-            document.getElementById('moves').textContent = moves;
-            document.getElementById('moveDisplay').textContent = moves;
-            document.getElementById('bestTile').textContent = bestTile;
-
-            // Update best tile mini display
-            const bestTileMini = document.getElementById('bestTileMini');
-            bestTileMini.textContent = bestTile;
-            bestTileMini.className = 'mini-tile';
-            if (bestTile <= 2048 && bestTile > 0) {
-                bestTileMini.classList.add(`tile-${bestTile}`);
-            } else if (bestTile > 2048) {
-                bestTileMini.classList.add('tile-super');
-            }
-
-            // Update high score if needed
-            if (score > highScore) {
-                highScore = score;
-                localStorage.setItem('2048HighScore', highScore);
-                document.getElementById('highScore').textContent = highScore;
-            }
+            document.getElementById('currentLevel').textContent = level;
+            document.getElementById('levelDisplay').textContent = level;
+            document.getElementById('foodEaten').textContent = foodEaten;
         }
 
-        function updateUndoButton() {
-            const undoBtn = document.getElementById('undoBtn');
-            undoBtn.disabled = !canUndo;
-        }
-
-        function showScoreAddition(points) {
-            const scoreAdd = document.getElementById('scoreAdd');
-            scoreAdd.textContent = `+${points}`;
-            scoreAdd.classList.remove('show');
-            void scoreAdd.offsetWidth; // Trigger reflow
-            scoreAdd.classList.add('show');
+        function showCombo(text) {
+            const comboDisplay = document.getElementById('comboDisplay');
+            comboDisplay.textContent = typeof text === 'number' ? `${text}x Combo!` : text;
+            comboDisplay.classList.remove('show');
+            void comboDisplay.offsetWidth; // Trigger reflow
+            comboDisplay.classList.add('show');
         }
 
         // ==================== SOUND ====================
@@ -1644,22 +1660,22 @@
             gainNode.connect(audioContext.destination);
 
             switch (type) {
-                case 'move':
-                    oscillator.frequency.value = 300;
+                case 'eat':
+                    oscillator.frequency.value = 600;
                     oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
                     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
                     oscillator.start();
                     oscillator.stop(audioContext.currentTime + 0.1);
                     break;
-                case 'merge':
-                    oscillator.frequency.value = 500;
+                case 'bonusEat':
+                    oscillator.frequency.value = 800;
                     oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(700, audioContext.currentTime + 0.1);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
                     oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.15);
+                    oscillator.stop(audioContext.currentTime + 0.2);
                     break;
                 case 'gameOver':
                     oscillator.frequency.value = 200;
@@ -1670,9 +1686,9 @@
                     oscillator.start();
                     oscillator.stop(audioContext.currentTime + 0.5);
                     break;
-                case 'win':
-                    const winNotes = [523, 659, 784, 1047, 1319];
-                    winNotes.forEach((freq, i) => {
+                case 'levelUp':
+                    const notes = [523, 659, 784, 1047];
+                    notes.forEach((freq, i) => {
                         setTimeout(() => {
                             if (!soundEnabled) return;
                             const osc = audioContext.createOscillator();
@@ -1682,17 +1698,16 @@
                             osc.frequency.value = freq;
                             osc.type = 'sine';
                             gain.gain.setValueAtTime(0.2, audioContext.currentTime);
-                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
                             osc.start();
-                            osc.stop(audioContext.currentTime + 0.2);
+                            osc.stop(audioContext.currentTime + 0.15);
                         }, i * 100);
                     });
                     return;
-                case 'undo':
-                    oscillator.frequency.value = 400;
+                case 'pause':
+                    oscillator.frequency.value = 440;
                     oscillator.type = 'sine';
-                    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 0.1);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
                     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
                     oscillator.start();
                     oscillator.stop(audioContext.currentTime + 0.1);
@@ -1708,15 +1723,33 @@
             if (soundEnabled) {
                 icon.className = 'fas fa-volume-up';
                 toggle.querySelector('i').className = 'fas fa-volume-up';
+                toggle.classList.remove('muted');
             } else {
                 icon.className = 'fas fa-volume-mute';
                 toggle.querySelector('i').className = 'fas fa-volume-mute';
+                toggle.classList.add('muted');
             }
         }
 
         // ==================== HELPER FUNCTIONS ====================
-        function arraysEqual(a, b) {
-            return a.length === b.length && a.every((val, i) => val === b[i]);
+        function lerpColor(color1, color2, factor) {
+            const c1 = hexToRgb(color1);
+            const c2 = hexToRgb(color2);
+
+            const r = Math.round(c1.r + (c2.r - c1.r) * factor);
+            const g = Math.round(c1.g + (c2.g - c1.g) * factor);
+            const b = Math.round(c1.b + (c2.b - c1.b) * factor);
+
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 0, g: 0, b: 0 };
         }
 
         function toggleMenu() {
@@ -1726,12 +1759,22 @@
         // ==================== START ====================
         init();
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (isGameRunning) {
-                renderBoard();
+        // Resize canvas for mobile
+        function resizeCanvas() {
+            const container = document.querySelector('.canvas-container');
+            const maxWidth = Math.min(400, window.innerWidth - 60);
+
+            if (window.innerWidth < 500) {
+                canvas.width = maxWidth;
+                canvas.height = maxWidth;
+            } else {
+                canvas.width = 400;
+                canvas.height = 400;
             }
-        });
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
     </script>
 
 </body>
