@@ -323,13 +323,19 @@
             <span>Free Games</span>
         </a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="games.html">Games</a></li>
             <li><a href="categories.html">Categories</a></li>
             <li><a href="leaderboard.html">Leaderboard</a></li>
             <li><a href="about.html">About</a></li>
         </ul>
+
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <!-- ========== MAIN CONTENT ========== -->
@@ -557,6 +563,79 @@
             <p>&copy; 2025 Play Free Online Games. All Rights Reserved. Made with ❤️ for Gamers</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.querySelector('.navbar');
+            
+            if (navLinks.classList.contains('active') && 
+                !navbar.contains(event.target)) {
+                toggleMenu();
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                const menuToggle = document.getElementById('menuToggle');
+                
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Handle escape key to close menu
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Add touch support for mobile devices
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    </script>
 
 </body>
 

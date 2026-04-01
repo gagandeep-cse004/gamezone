@@ -41,6 +41,7 @@
             background: rgba(15, 15, 35, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -48,6 +49,86 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            z-index: 1001;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         .logo i {
@@ -325,13 +406,114 @@
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100vw;
             }
 
-            .nav-links,
+            .navbar {
+                padding: 12px 20px;
+                width: 100%;
+                max-width: 100vw;
+                box-sizing: border-box;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo i {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                max-width: 100vw;
+                height: 100vh;
+                height: 100dvh; /* Use dynamic viewport height for mobile */
+                background: linear-gradient(135deg, rgba(15, 15, 35, 0.98), rgba(0, 212, 255, 0.1));
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 120px 20px 30px;
+                gap: 20px;
+                z-index: 999;
+                overflow-y: auto;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideIn 0.3s ease-out;
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 15px 20px;
+                display: block;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:hover {
+                background: rgba(0, 212, 255, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+            }
+
+            .nav-links a.active {
+                background: rgba(0, 212, 255, 0.3);
+                border-color: #00d4ff;
+            }
+
             .nav-buttons {
                 display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+                position: relative;
+                z-index: 1001;
+            }
+
+            .menu-toggle span {
+                background: #fff;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
             }
 
             .page-header {
@@ -345,6 +527,76 @@
             .games-grid {
                 padding: 20px;
                 gap: 20px;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .game-card {
+                margin-bottom: 20px;
+            }
+
+            .game-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .game-card p {
+                font-size: 0.9rem;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 30px;
+            }
+
+            .footer-section h4 {
+                font-size: 1rem;
+            }
+
+            .footer-section ul li a {
+                font-size: 0.9rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-info p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo i {
+                font-size: 1.6rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
             }
         }
         .footer {
@@ -517,7 +769,7 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo"><i class="fas fa-gamepad"></i><span>Free Games</span></a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="games.html" class="active">Games</a></li>
             <li><a href="categories.html">Categories</a></li>
@@ -527,6 +779,11 @@
         <div class="nav-buttons">
             <a href="login.html" class="btn btn-outline">Login</a>
             <a href="login.html" class="btn btn-primary">Sign Up</a>
+        </div>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
@@ -604,54 +861,125 @@
 
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.querySelector('.navbar');
+            
+            if (navLinks.classList.contains('active') && 
+                !navbar.contains(event.target)) {
+                toggleMenu();
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                const menuToggle = document.getElementById('menuToggle');
+                
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Handle escape key to close menu
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Add touch support for mobile devices
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Games data and functionality
         const games = [
             { id: 1, title: "Snake Game", desc: "Classic snake game with modern graphics", category: "arcade", img: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400", rating: 4.8, plays: "250K", badge: "HOT 🔥", url: "games/snake.html" },
             { id: 2, title: "Tetris Classic", desc: "The legendary puzzle game", category: "puzzle", img: "https://images.unsplash.com/photo-1553481187-be93c21490a9?w=400", rating: 4.9, plays: "180K", badge: "TRENDING", url: "games/tetris.html" },
-            { id: 3, title: "Memory Match", desc: "Test your memory skills", category: "puzzle", img: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400", rating: 4.7, plays: "95K", badge: "NEW", url: "games/memory.html" },
-            { id: 4, title: "2048 Puzzle", desc: "Addictive number puzzle game", category: "puzzle", img: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400", rating: 4.6, plays: "320K", badge: "POPULAR", url: "games/2048.html" },
-            { id: 5, title: "Flappy Bird", desc: "The infamous flying bird game", category: "arcade", img: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400", rating: 4.5, plays: "410K", badge: "CLASSIC", url: "games/flappy.html" },
-            { id: 6, title: "Speed Racer", desc: "High-speed racing adventure", category: "racing", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400", rating: 4.8, plays: "275K", badge: "ACTION", url: "games/racing.html" },
-            { id: 7, title: "Pong", desc: "Classic 2-player pong game", category: "arcade", img: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=400", rating: 4.4, plays: "150K", badge: "RETRO", url: "games/pong.html" },
-            { id: 8, title: "Breakout", desc: "Break all the bricks!", category: "arcade", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400", rating: 4.6, plays: "180K", badge: "FUN", url: "games/breakout.html" },
-            { id: 9, title: "Minesweeper", desc: "Classic minesweeper puzzle", category: "puzzle", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400", rating: 4.5, plays: "120K", badge: "BRAIN", url: "games/minesweeper.html" },
-            { id: 10, title: "Typing Speed", desc: "Test your typing speed", category: "action", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400", rating: 4.7, plays: "95K", badge: "SKILL", url: "games/typing.html" }
+            { id: 3, title: "2048 Puzzle", desc: "Addictive number puzzle game", category: "puzzle", img: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=400", rating: 4.6, plays: "320K", badge: "POPULAR", url: "games/2048.html" },
+            { id: 4, title: "Flappy Bird", desc: "The infamous flying bird game", category: "arcade", img: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400", rating: 4.5, plays: "410K", badge: "CLASSIC", url: "games/flappy.html" },
+            { id: 5, title: "Memory Match", desc: "Test your memory skills", category: "puzzle", img: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=400", rating: 4.7, plays: "95K", badge: "NEW", url: "games/memory.html" },
+            { id: 6, title: "Speed Racer", desc: "High-speed racing adventure", category: "racing", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400", rating: 4.8, plays: "275K", badge: "FAST", url: "games/racing.html" },
+            { id: 7, title: "Space Shooter", desc: "Defend Earth from alien invasion", category: "action", img: "https://images.unsplash.com/photo-1606141268069-2e65c8ae9d7c?w=400", rating: 4.6, plays: "150K", badge: "ACTION", url: "games/space-shooter.html" },
+            { id: 8, title: "Bubble Shooter", desc: "Pop colorful bubbles", category: "puzzle", img: "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=400", rating: 4.4, plays: "200K", badge: "CASUAL", url: "games/bubble-shooter.html" },
+            { id: 9, title: "Word Search", desc: "Find hidden words", category: "puzzle", img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400", rating: 4.3, plays: "120K", badge: "EDUCATIONAL", url: "games/word-search.html" },
+            { id: 10, title: "Chess Master", desc: "Classic strategy game", category: "strategy", img: "https://images.unsplash.com/photo-1528745098233-2b4e1cde1973?w=400", rating: 4.9, plays: "180K", badge: "STRATEGY", url: "games/chess.html" },
+            { id: 11, title: "Sudoku Pro", desc: "Challenge your mind", category: "puzzle", img: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=400", rating: 4.7, plays: "160K", badge: "BRAIN", url: "games/sudoku.html" },
+            { id: 12, title: "Platform Runner", desc: "Jump and run adventure", category: "action", img: "https://images.unsplash.com/photo-1516259762348-7bd9344b3c4f?w=400", rating: 4.5, plays: "140K", badge: "ADVENTURE", url: "games/runner.html" }
         ];
 
         function renderGames(gamesToRender) {
-            const grid = document.getElementById('gamesGrid');
-            grid.innerHTML = gamesToRender.map(game => `
-                <div class="game-card" data-category="${game.category}" onclick="window.location.href='${game.url}'">
-                    <div class="game-card-image">
-                        <img src="${game.img}" alt="${game.title}">
-                        <span class="game-badge">${game.badge}</span>
-                        <span class="game-rating"><i class="fas fa-star"></i> ${game.rating}</span>
-                        <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            const gamesGrid = document.querySelector('.games-grid');
+            gamesGrid.innerHTML = gamesToRender.map(game => `
+                <div class="game-card" data-category="${game.category}">
+                    <div class="game-image">
+                        <img src="${game.img}" alt="${game.title}" loading="lazy">
+                        <div class="game-badge">${game.badge}</div>
                     </div>
-                    <div class="game-card-content">
+                    <div class="game-info">
                         <h3>${game.title}</h3>
                         <p>${game.desc}</p>
-                        <div class="game-meta">
-                            <span class="game-plays"><i class="fas fa-users"></i> ${game.plays} plays</span>
-                            <a href="${game.url}" class="play-btn">Play</a>
+                        <div class="game-stats">
+                            <span class="rating">⭐ ${game.rating}</span>
+                            <span class="plays">👥 ${game.plays}</span>
                         </div>
+                        <a href="${game.url}" class="btn btn-primary">Play Now</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        function filterGames(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            const filtered = category === 'all' ? games : games.filter(g => g.category === category);
-            renderGames(filtered);
-        }
-
         function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = games.filter(g => g.title.toLowerCase().includes(query) || g.desc.toLowerCase().includes(query));
-            renderGames(filtered);
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredGames = games.filter(game => 
+                game.title.toLowerCase().includes(searchTerm) || 
+                game.desc.toLowerCase().includes(searchTerm) ||
+                game.category.toLowerCase().includes(searchTerm)
+            );
+            renderGames(filteredGames);
         }
 
+        // Initialize
         renderGames(games);
     </script>
 </body>
